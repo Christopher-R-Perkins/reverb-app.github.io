@@ -2038,15 +2038,18 @@
     </div>
     <div id="use-cases" class="bg-dark">
       <div class="p-8 pt-16 max-w-100% mx-auto">
-        <!-- Needs mobile Version -->
+        <!-- Needs mobile Version - May not need -->
         <div id="tab-block" class="flex flex-row">
           <div data-target="use-1" class="tab selected">Abandoned</div>
           <div data-target="use-2" class="tab">Square</div>
           <div data-target="use-3" class="tab">Sumarize</div>
           <div data-target="use-4" class="tab">Sign-up</div>
         </div>
-        <div class="grid">
-          <pre id="use-1" class="show"><code class="language-typescript">
+        <div
+          class="grid bg-black text-[9px] sm:text-[11px] md:text-[13px] lg:text-lg 2xl:text-xl">
+          <pre
+            id="use-1"
+            class="text-clip show"><code class="language-typescript">
 const processAbandonedCart = reverb.createFunction({
   id: 'process-abandoned-cart',
   event: 'client.shopping_cart_abandoned',
@@ -2075,7 +2078,7 @@ const processAbandonedCart = reverb.createFunction({
   },
 });
           </code></pre>
-          <pre id="use-2"><code>
+          <pre id="use-2"><code class="language-typescript">
 const processSquareWebhook = reverb.createFunction({
 id: 'process-square-webhook',
 event: 'reverb-received-webhook',
@@ -2130,7 +2133,7 @@ fn: async (event, step) => {
 },
 });
           </code></pre>
-          <pre id="use-3"><code>
+          <pre id="use-3"><code class="language-typescript">
 const summarizeWithBlockers = reverb.createFunction({
   id: 'summarize-with-blockers',
   event: 'submit-minutes',
@@ -2158,7 +2161,7 @@ const summarizeWithBlockers = reverb.createFunction({
   },
 });
           </code></pre>
-          <pre id="use-4"><code>
+          <pre id="use-4"><code class="language-typescript">
 const handleSignUp = reverb.createFunction({
   id: 'handle-sign-up',
   event: 'sign-up',

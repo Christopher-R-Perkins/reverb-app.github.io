@@ -831,6 +831,20 @@ article strong {
   height: 100vh;
 }
 
+.h-full {
+  height: 100%;
+}
+
+.h-max {
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
 .max-h-\[80vh\] {
   max-height: 80vh;
 }
@@ -849,6 +863,10 @@ article strong {
 
 .max-w-prose {
   max-width: 65ch;
+}
+
+.max-w-full {
+  max-width: 100%;
 }
 
 .list-none {
@@ -877,6 +895,10 @@ article strong {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.text-clip {
+  text-overflow: clip;
 }
 
 .rounded-full {
@@ -940,6 +962,44 @@ article strong {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-\[10px\] {
+  font-size: 10px;
+}
+
+.text-\[10pt\] {
+  font-size: 10pt;
+}
+
+.text-\[8pt\] {
+  font-size: 8pt;
+}
+
+.text-\[4pt\] {
+  font-size: 4pt;
+}
+
+.text-\[0\.1rem\] {
+  font-size: 0.1rem;
+}
+
+.text-\[8px\] {
+  font-size: 8px;
+}
+
+.text-\[9px\] {
+  font-size: 9px;
 }
 
 .font-medium {
@@ -1168,6 +1228,32 @@ article small {
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
+
+  .sm\:text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .sm\:text-\[16px\] {
+    font-size: 16px;
+  }
+
+  .sm\:text-\[12px\] {
+    font-size: 12px;
+  }
+
+  .sm\:text-\[10px\] {
+    font-size: 10px;
+  }
+
+  .sm\:text-\[11px\] {
+    font-size: 11px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1196,6 +1282,29 @@ article small {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
+
+  .md\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .md\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .md\:text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+
+  .md\:text-\[14px\] {
+    font-size: 14px;
+  }
+
+  .md\:text-\[13px\] {
+    font-size: 13px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1219,6 +1328,11 @@ article small {
   .lg\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+
+  .lg\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 
@@ -1245,6 +1359,11 @@ article small {
 
   .\32xl\:text-lg {
     font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .\32xl\:text-xl {
+    font-size: 1.25rem;
     line-height: 1.75rem;
   }
 }
