@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reverb</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" />
+    <link rel="stylesheet" href="./stylesheets/index.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  </head>
+  <body class="text-bright">
+    <header
+      class="invisible md:visible bg-black fixed w-full h-16 z-100 flex flex-row items-center justify-between px-8 border-b-2">
+      <img src="./images/Logo.png" alt="Reverb" class="h-12" />
+      <!-- Needs mobile version -->
+      <nav class="flex flex-row items-center">
+        <a href="#start" class="link selected">Top</a>
+        <a href="#case-study" class="link">Case Study</a>
+        <a href="#use-cases" class="link">Use Cases</a>
+        <a href="#team" class="link">Our Team</a>
+        <a
+          href="https://github.com/reverb-app/reverb"
+          target="_blank"
+          class="link"
+          >Docs</a
+        >
+        <a
+          href="https://github.com/reverb-app"
+          target="_blank"
+          class="link mr-4"
+          ><span class="fab fa-github text-2xl block -my-1"></span
+        ></a>
+      </nav>
+    </header>
+
+    <aside
+      id="toc"
+      class="invisible lg:visible fixed bg-dark w-[400px] left-[-400px] mt-16 h-screen transition-all duration-300 border-r-2 border-b-[66px] lg:text-sm xl:text-base 2xl:text-lg">
+      <ul>
+        <!-- Section 1 -->
+        <li data-section="section-1" class="selected">
+          <a href="#section-1-0">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>What is Reverb?</p>
+            </div>
+          </a>
+        </li>
+
+        <!-- Section 2 -->
+        <li data-section="section-2">
+          <a href="#section-2-0">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Asynchronous Workflows</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-2" class="subitem">
+          <a href="#section-2-1">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>The Request-Response Cycle</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-2" class="subitem">
+          <a href="#section-2-2">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Offloading Asynchronous Jobs</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-2" class="subitem">
+          <a href="#section-2-3">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Adding a Message Queue</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-2" class="subitem">
+          <a href="#section-2-4">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Event-driven Architecture (EDA)</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-2" class="subitem">
+          <a href="#section-2-5">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>From Background Jobs to Workflows</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-2" class="subitem">
+          <a href="#section-2-6">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Different Kinds of Workflows</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-2" class="subitem">
+          <a href="#section-2-7">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Solution: Using a Workflow Engine</p>
+            </div>
+          </a>
+        </li>
+
+        <!-- Section 3 -->
+        <li data-section="section-3">
+          <a href="#section-3-0">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Existing Solutions</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-3" class="subitem">
+          <a href="#section-3-1">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>DIY Approach</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-3" class="subitem">
+          <a href="#section-3-2">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Paid Solutions</p>
+            </div>
+          </a>
+        </li>
+
+        <!-- Section 4 -->
+        <li data-section="section-4">
+          <a href="#section-4-0">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Introducing Reverb</p>
+            </div>
+          </a>
+        </li>
+
+        <!-- Section 5 -->
+        <li data-section="section-5">
+          <a href="#section-5-0">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Building Reverb’s Core</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-5" class="subitem">
+          <a href="#section-5-1">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Overview of the Three-Node Pattern</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-5" class="subitem">
+          <a href="#section-5-2">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Ingesting Events</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-5" class="subitem">
+          <a href="#section-5-3">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Implementing our Queues</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-5" class="subitem">
+          <a href="#section-5-4">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Defining &amp; Executing Workflows</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-5" class="subitem">
+          <a href="#section-5-5">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>The Life Cycle of a Multi-Step Workflow</p>
+            </div>
+          </a>
+        </li>
+
+        <!-- Section 6 -->
+        <li data-section="section-6">
+          <a href="#section-6-0">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Improving Reverb</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-6" class="subitem">
+          <a href="#section-6-1">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Logging, Event Tracing, and Monitoring</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-6" class="subitem">
+          <a href="#section-6-2">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Webhooks</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-6" class="subitem">
+          <a href="#section-6-3">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>CI/CD &amp; GitHub Actions</p>
+            </div>
+          </a>
+        </li>
+
+        <!-- Section 7 -->
+        <li data-section="section-7">
+          <a href="#section-7-0">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Reverb’s Architecture</p>
+            </div>
+          </a>
+        </li>
+
+        <!-- Section 8 -->
+        <li data-section="section-8">
+          <a href="#section-8-0">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Implementation Challenges</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-8" class="subitem">
+          <a href="#section-8-1">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Step Functionality and State Management</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-8" class="subitem">
+          <a href="#section-8-2">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Handling Codebase Updates</p>
+            </div>
+          </a>
+        </li>
+
+        <!-- Section 9 -->
+        <li data-section="section-9">
+          <a href="#section-9-0">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Future Work</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-9" class="subitem">
+          <a href="#section-9-1">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>More Observability Metrics</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-9" class="subitem">
+          <a href="#section-9-2">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>waitForEvent Steps</p>
+            </div>
+          </a>
+        </li>
+        <li data-section="section-9" class="subitem">
+          <a href="#section-9-2">
+            <div>
+              <div class="bullet"><div></div></div>
+              <p>Multiple Language Support</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <div id="start" class="md:min-h-screen bg-dark">
+      <img
+        src="./images/Logo-Name.png"
+        alt="Reverb Logo"
+        class="mx-auto max-h-[80vh] md:pt-16 mb-4 sm:mb-8 md:mb-16" />
+      <p class="text-center font-medium text-xl sm:text-3xl md:text-4xl px-4">
+        An open-source, <strong>event-driven</strong>,
+        <em>asynchronous workflow engine</em>.
+      </p>
+    </div>
+
+    <div id="case-study" class="bg-black">
+      <!-- <div class="h-16"></div> -->
+      <!--spacer-->
+      <article
+        class="p-8 pt-16 lg:ml-[400px] max-w-prose text-base sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl">
+        <h2 id="section-1-0"><strong>What is Reverb?</strong></h2>
+        <p>
+          Reverb is an open-source, <strong>event-driven, asynchronous</strong>
+          <strong>workflow engine</strong> that abstracts away the logic and
+          infrastructure developers need to orchestrate complex background
+          tasks. Users define tasks as multi-step functions in their repository,
+          and Reverb handles triggering and executing them step-by-step. The
+          service is self-hosted on Amazon Web Services (AWS) and is deployable
+          with one command using our CLI tool.
+        </p>
+        <p>
+          In this case study, we will discuss how we built Reverb and the
+          technical challenges we encountered. But first, we need to explore why
+          developers would benefit from using a workflow engine.
+        </p>
+        <h2 id="section-2-0">
+          <strong>Asynchronous Workflows</strong>
+        </h2>
+        <h3 id="section-2-1">The Request-Response Cycle</h3>
+        <p>
+          The <strong>request-response cycle</strong> is the basis for all web
+          interactions. The client sends a request to retrieve data or perform
+          an action, and the server processes this request and returns a
+          response.
+        </p>
+        <figure>
+          <img src="./images/diagrams/req_res.gif" alt="Request-Response" />
+          <figcaption>Request-Response Cycle</figcaption>
+        </figure>
+        <p>
+          Any tasks the server completes between receiving a request and sending
+          a response are said to be handled <strong>synchronously</strong>. For
+          quick tasks that don’t require many resources, like simple database
+          queries or calculations, synchronous execution makes sense since the
+          user would barely notice any delay in the response.
+        </p>
+        <h3 id="section-2-2">Offloading Asynchronous Jobs</h3>
+        <p>
+          On the other hand, many tasks would be problematic to handle
+          synchronously. For instance, consider a user signing up for a
+          subscription service. Their initial sign-up should be synchronous
+          because it must be confirmed before they can continue using the site.
+          However, generating and sending a welcome email could take a few extra
+          minutes. Executing this operation synchronously would be terrible for
+          the user experience. There’s no reason to make them sit and wait on a
+          long task that doesn’t need to run immediately.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/long_wait.gif"
+            alt="Long wait for a response" />
+        </figure>
+        <p>
+          Furthermore, having the API handle long or intensive operations would
+          consume significant resources, leaving fewer available for responding
+          to other requests. This could lead to longer response times and
+          temporarily deadlock the server under high-traffic conditions.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/overwhelm.gif"
+            alt="Server is overwhelmed" />
+        </figure>
+        <p>
+          To solve these problems, time or resource-intensive jobs can be
+          completed <strong>asynchronously</strong>, or outside of the primary
+          request-response cycle. The client-facing API server can offload jobs
+          to another service, freeing up the API to immediately send back
+          responses and become available to new requests.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/background_jobs_service.png"
+            alt="Offloaded background jobs service" />
+          <figcaption>
+            Offloading asynchronous background jobs frees up the API server.
+          </figcaption>
+        </figure>
+        <p>
+          By breaking up the application like this, we adopt a
+          <strong>microservices architecture</strong>. Rather than tightly
+          coupling all of an app’s operations and running them as a single,
+          monolithic process, this architecture breaks the app down into smaller
+          services that each perform specific business tasks. For instance, a
+          delivery tracking app might have an Accounts Service, Payments
+          Service, Tracking Service, Notifications Service, and more. This
+          system lessens the load and scope of responsibility for each service,
+          helping developers build more reliable systems.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/monlith_v_micro.png"
+            alt="Monolith v Microservices" />
+          <figcaption>
+            Each microservice performs a specific business task.
+          </figcaption>
+        </figure>
+        <p>
+          For our purposes thus far, we might separate out an API Service and a
+          Background Jobs Service. While this is great for offloading
+          asynchronous jobs and keeping the API responsive, it introduces
+          fragility into the system:
+        </p>
+        <ul>
+          <li>
+            Different parts of the application now communicate over the network
+            rather than through memory. Even a momentary network failure can
+            result in jobs being lost while in transit.
+            <figure>
+              <img src="./images/diagrams/failure.gif" alt="Network failure" />
+              <figcaption>Network failures lead to dropped jobs.</figcaption>
+            </figure>
+          </li>
+          <li>
+            If the background service crashes, it won&#39;t receive any jobs
+            sent during that period.
+          </li>
+          <li>
+            If the service can’t handle the volume of throughput it’s receiving,
+            jobs will be dropped.
+          </li>
+          <li>
+            If the service throws an error while executing a job, that job will
+            be discarded.
+          </li>
+        </ul>
+        <h3 id="section-2-3">Adding a Message Queue</h3>
+        <p>
+          Problems that arise when communicating in a distributed system are
+          commonly solved by positioning a
+          <strong>message queue</strong> between services. Messages are the
+          data–in our case, background job invocations–transported between a
+          producer service and a consumer service. The producer adds jobs to the
+          queue, and the consumer dequeues and executes them.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/message_queue.png"
+            alt="Message queue added" />
+          <figcaption>
+            Message queues add reliability to distributed systems.
+          </figcaption>
+        </figure>
+        <p>
+          If the network fails or the consumer crashes, the queue will persist
+          the job until the consumer is reachable and ready to process it.
+          Additionally, the queue can act as a rate limiter by letting the
+          consumer wait to process additional jobs until it has the resources to
+          do so. But using queues as a solution also introduces new problems:
+        </p>
+        <ul>
+          <li>
+            <strong>Adding Infrastructure:</strong> Different queues are built
+            on different underlying technologies. Devs must choose which queue
+            fits their system best without adding too much new infrastructure to
+            maintain. We’ll discuss the tradeoffs of different queueing
+            technologies more deeply when we cover how Reverb implemented its
+            queue.
+          </li>
+          <li>
+            <strong>Retrying Jobs: </strong> Jobs that are dequeued but then
+            fail can still be lost. Some queues offer built-in retry systems,
+            where the consumer tells the queue that the job failed and it’s
+            re-enqueued to try again. However, developers are still responsible
+            for configuring timeouts between retries and maximum retry limits to
+            keep their queue from clogging up.
+            <figure>
+              <img
+                src="./images/diagrams/retries.gif
+              "
+                alt="Queue retrying a job" />
+            </figure>
+          </li>
+          <li>
+            <strong>Dead Letters:</strong> Sometimes a job never succeeds, even
+            after many retries. This often happens if the job is malformatted
+            and can’t be interpreted by the consumer. Such jobs are typically
+            offloaded into a “dead-letter queue,” and devs must decide how to
+            process these dead letters.
+          </li>
+          <li>
+            <strong>Durability and Scaling:</strong> If the queue becomes
+            overloaded by too many incoming messages and crashes, the jobs in
+            the queue could be permanently lost. This is particularly true for
+            queues implemented in memory. To solve this, a developer might
+            consider scaling the queue horizontally or vertically.
+          </li>
+          <li class="list-none">
+            <strong>Vertical scaling</strong> involves increasing the capacity
+            of the existing queue by adding more resources—such as CPU, memory,
+            or storage. This keeps infrastructure simple, but hardware can only
+            vertically scale so much. Additionally, having just one instance
+            means there’s still a single point of failure and everything could
+            be lost if the queue goes down.
+          </li>
+          <li class="list-none">
+            <strong> Horizontal scaling</strong>, on the other hand, means
+            adding more instances of the queue to handle more messages
+            concurrently and make overloading an individual instance less
+            likely. This also improves fault tolerance by removing the single
+            point of failure. However, distributing messages across multiple
+            queues makes it difficult to keep messages in order. And, of course,
+            it adds more moving pieces to the system.
+          </li>
+        </ul>
+
+        <h3 id="section-2-4">Event-driven Architecture (EDA)</h3>
+        <p>
+          So far, we’ve assumed that the API server adds one job invocation to
+          the queue for each job that needs to be executed. However, this
+          doesn’t let the API server off the hook as fully as we want. The
+          server must still be aware of every background job and contain all the
+          logic for determining if and when to execute a specific one.
+        </p>
+        <p>
+          An alternative to this setup is an
+          <strong>event-driven architecture</strong>. Rather than telling
+          services which jobs to execute, the API server would simply indicate
+          that an event has occurred. To illustrate this, consider again a user
+          signing up on a website. Instead of enqueuing jobs for welcome emails,
+          new-user discounts, and data analytics, the API server could just
+          queue a “user-signed-up” event. It doesn’t have to know which jobs run
+          when that event occurs–only that it occurred.
+        </p>
+        <p>
+          So where does all the logic for mapping events to job invocations go?
+          The queue. The queue must now have some mechanism for implementing a
+          pattern known as <strong>fan-out</strong>, which occurs when a single
+          process triggers multiple operations to run simultaneously. To
+          continue with our sign-up example, the queue would make it so a single
+          “user-signed-up” event fans out to trigger the email, discount, and
+          analytics jobs.
+        </p>
+
+        <!-- DIAGRAM: Simple fan out diagram of the above example -->
+
+        <p>
+          Of course, a queue can’t automatically know which events map to which
+          jobs. So developers have to configure this mapping within the queue
+          manually. Additionally, devs will need to implement some form of
+          <strong>event tracing</strong>, which means introducing tools that
+          track the flow of an event from its emission through all of the jobs
+          it triggers. This is crucial for debugging and monitoring the health
+          of an event-driven system.
+        </p>
+        <h3 id="section-2-5">From Background Jobs to Workflows</h3>
+        <p>
+          We’ve seen that an event can trigger multiple jobs concurrently. But
+          what if you instead want to trigger jobs as an in-order sequence of
+          steps, where each job relies on the successful completion of the job
+          before it?
+        </p>
+        <p>
+          This is common for many use cases, including the delivery tracking app
+          we discussed earlier. Consider the asynchronous jobs that a
+          “user-placed-order” event would trigger. First, the app might generate
+          a shipping label and tracking number for the delivery. Only
+          <em>after</em> the tracking number is successfully generated can you
+          email the user their shipping information. And only <em>after</em> the
+          order is ultimately delivered can you send an “Order delivered!”
+          notification and change the delivery’s status in your database.
+        </p>
+
+        <figure>
+          <img
+            src="./images/diagrams/basic_workflow.png"
+            alt="A basic workflow" />
+        </figure>
+        <p>
+          Multi-step background jobs like these are called
+          <strong>asynchronous workflows</strong>, and implementing them can
+          benefit your application in many ways.
+        </p>
+        <ul>
+          <li>
+            As in the example above, you can string together interdependent
+            tasks to build complex background processes.
+          </li>
+          <li>
+            You can divide time and resource-intensive tasks—like video
+            transcoding or processing large datasets—into smaller, more
+            manageable steps to reduce the burden on your system. Executing
+            these steps concurrently enhances your application&#39;s
+            performance, allowing it to handle demanding jobs more efficiently.
+          </li>
+          <li>
+            Serverless functions are popular for their auto-scaling abilities,
+            but functions can only run for a few minutes at a time. This makes
+            serverless a non-starter for longer background jobs. However, if you
+            can break such jobs into a sequence of shorter workflow steps,
+            executing with serverless becomes a viable option.
+          </li>
+        </ul>
+        <!-- Multistep Lambda diagram -->
+        <ul>
+          <li>
+            Workflows greatly increase retry efficiency because failing in the
+            middle of a workflow no longer means you have to retry the entire
+            job—just the latest step.
+          </li>
+          <li>
+            Event tracing becomes more specific and helpful for debugging
+            because you can identify failures at specific substeps.
+          </li>
+          <li>
+            A single event can trigger multiple <em>sequences</em> of jobs
+            instead of individual ones. A service expends negligible resources
+            to enqueue an event, yet this simple action can set off a complex
+            network of processes.
+          </li>
+        </ul>
+        <figure>
+          <img
+            src="./images/diagrams/complex_workflow.png"
+            alt="A Complex Workflow" />
+        </figure>
+        <p>
+          Of course, before you can reap the benefits above, you must write a
+          lot of new logic for your application. This can be a significant
+          challenge for developers who are new to the concept of workflows.
+        </p>
+        <p>
+          For every workflow, you first need to define the logic determining the
+          order in which steps are executed. Because each step could be handled
+          by a different service, this logic might be scattered throughout your
+          application and difficult to maintain or update.
+        </p>
+        <p>
+          You then have to keep track of which steps have run and which steps
+          still need to, which is often called <strong>managing state</strong>.
+          What’s more, this state must survive server crashes and system
+          failures if you want to ensure workflows execute reliably. Storing
+          state to disk via a database is an option, but you must first figure
+          out how to represent something as abstract as “workflow state” in your
+          schema. Not to mention, this strategy requires adding yet another
+          piece of infrastructure to maintain.
+        </p>
+        <p>
+          Additionally, you’ll need to store the return values from each step
+          and share them with the next step in the sequence. Using our delivery
+          app example, the “email-tracking-number” step would need access to the
+          tracking number returned by the “generate-label” step before it. Each
+          step needs to return a meaningful value that the next step knows how
+          to process, or else the workflow could fail partway through.
+        </p>
+        <p>
+          Finally, workflows make event tracing more complicated, too. In
+          addition to tracking an event from its emission through the completion
+          of the jobs it triggers, you need to follow it across every individual
+          step of every workflow. You’ll also need to make this tracing
+          accessible and digestible to developers, perhaps through a
+          Command-Line Interface (CLI) or User Interface (UI).
+        </p>
+        <p>
+          Clearly, manually implementing workflows demands substantial
+          development time and deep expertise in the subject matter.
+        </p>
+        <h3 id="section-2-6">Different Kinds of Workflows</h3>
+        <p>
+          Executing workflows is challenging enough when they simply respond to
+          events and proceed step-by-step. However, modern workflows come in
+          many shapes and sizes. As a result, developers must design their
+          applications with the flexibility to handle a variety of triggers and
+          steps.
+        </p>
+        <h4>Different Triggers</h4>
+        <p>
+          Other than events, there are several common ways to trigger a
+          workflow. Each one comes with its own set of challenges:
+        </p>
+        <ul>
+          <li>
+            <strong>Cron:</strong> Many applications have background jobs that
+            automatically execute on a recurring schedule set by the developers.
+            These are known as <strong>cron jobs</strong>, and they commonly
+            perform routine maintenance like backing up data or generating
+            performance reports. But if a cron job has several interdependent
+            steps, it makes sense to break it out into a cron workflow. Many
+            queues cannot accommodate cron triggers out of the box, so devs may
+            need to write more logic or incorporate yet another component into
+            their system for this specific purpose.
+          </li>
+          <li>
+            <strong>Third-Party Webhooks:</strong> A third-party service can be
+            thought of as a microservice managed by an external company rather
+            than by the application&#39;s developers. Third parties can take
+            some responsibility off a developer’s plate and handle complex tasks
+            reliably.
+          </li>
+          <li class="list-none">
+            However, third parties themselves introduce new complexity into a
+            workflow system. They often communicate through
+            <strong>webhooks</strong>, which are HTTP requests triggered by
+            events on the service. For instance, a payment service like Stripe
+            might send a webhook to your app when a client’s payment is
+            processed. But webhook formats are not standardized. A Stripe
+            webhook has headers and body content that are different from a
+            GitHub webhook, and so on. This means developers might need to write
+            custom logic for each third-party integration.
+          </li>
+          <li>
+            <strong>Remote Procedure Calls (RPCs): </strong> In general, RPCs
+            allow a program on one server to execute functions, or “procedures,”
+            on another. Unlike events, each RPC is a direct invocation that can
+            only trigger one workflow at a time. This can be useful when you
+            want to invoke a workflow in your app explicitly, but RPCs typically
+            utilize standardized protocols that developers must learn to use.
+          </li>
+        </ul>
+        <h4>Different Steps</h4>
+        <p>
+          To this point, we’ve assumed that every “step” is just a piece of code
+          that performs an action, like sending an e-mail or prompting a large
+          language model (LLM). But there are other types of steps that come up
+          so frequently that developers often write additional logic
+          specifically for them:
+        </p>
+        <ul>
+          <li>
+            <strong>Invocation Step: </strong>Sends an RPC to invoke a workflow
+            from within a different workflow.
+          </li>
+          <li>
+            <strong>Event Step: </strong>Emits an event from within a workflow,
+            triggering any number of additional workflows.
+          </li>
+          <li>
+            <strong>Branching Step: </strong>Rather than performing a specific
+            action, this step determines which step(s) should run next based on
+            some condition.
+          </li>
+          <li>
+            <strong>Delay Step:</strong> Defer the enqueuing and execution of
+            the subsequent step for a specified amount of time.
+          </li>
+        </ul>
+        <p>
+          Larger applications often need hundreds of workflows, each containing
+          dozens of steps. Writing the logic for each of these kinds of steps
+          and triggers every time they appeared would make such a codebase
+          incredibly messy, repetitive, and unmanageable.
+        </p>
+        <h3 id="section-2-7">Solution: Using a Workflow Engine</h3>
+        <p>
+          Given all the complexities we’ve outlined in implementing asynchronous
+          workflows, it&#39;s evident why developers might seek out a more
+          managed solution. Crafting and maintaining intricate sequences with
+          various triggers, steps, and dependencies is not only time-consuming
+          but also fraught with potential for bugs and inefficiencies.
+          Additionally, the underlying infrastructure for queuing and executing
+          steps across a distributed system can be cumbersome to design and
+          maintain. All of this underscores the need for a specialized service
+          that fully manages workflow orchestration for developers, also known
+          as a <strong>workflow engine</strong>.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/req_res_workflow.png"
+            alt="Request Response Cycle with Workflow Engine" />
+          <figcaption>
+            Workflow engines manage complex workflow orchestration.
+          </figcaption>
+        </figure>
+        <p>
+          Workflow engines have emerged and grown rapidly in popularity over the
+          past five years. But what exactly are the capabilities an engine must
+          have in order to be considered a competitive solution?
+        </p>
+        <ul>
+          <li>
+            <strong>Defining workflows:</strong> Typically, the engine provides
+            a library or Software Development Kit (SDK) that devs use to define
+            workflows and the events or cron that trigger them.
+          </li>
+          <li>
+            <strong>Executing workflows: </strong>Users should not have to
+            implement any logic or infrastructure for queueing, executing, or
+            managing the state of their workflows. This is the core benefit of
+            using an engine.
+          </li>
+          <li>
+            <strong>Exposing workflows: </strong>There must be a way to expose
+            user-defined workflows to RPCs so that the engine can invoke them
+            wherever they’re hosted
+          </li>
+          <li>
+            <strong>Durability: </strong>Some level of error handling, retries,
+            and state persistence should be ensured for executing workflow
+            steps.
+          </li>
+          <li>
+            <strong>Observability:</strong> Devs should be able to monitor their
+            workflows through event tracing. Engines commonly offer a UI to
+            display tracing data in a digestible way.
+          </li>
+          <li>
+            <strong>Serverless Compatibility: </strong>Most workflow engines are
+            either hosted on a cloud provider or able to be self-hosted on one.
+          </li>
+          <li>
+            <strong>Third-Party Integration: </strong>An engine must provide
+            some way to integrate third-party services and their webhooks into
+            workflows.
+          </li>
+        </ul>
+        <h2 id="section-3-0"><strong>Existing Solutions</strong></h2>
+        <h3 id="section-3-1">DIY Approach</h3>
+        <p>
+          As we saw in the Asynchronous Workflows section, going the
+          Do-It-Yourself (DIY) route for event-driven workflow orchestration can
+          be quite complex and inefficient. This approach requires a lot of dev
+          time, energy, and expertise to build the necessary logic and
+          infrastructure––not to mention deploying and maintaining that
+          infrastructure over time. This is not always realistic for small to
+          medium-sized companies.
+        </p>
+        <h3 id="section-3-2">Paid Solutions</h3>
+        <h4>Inngest</h4>
+        <p>
+          Inngest is a prototypical event-driven workflow engine. It offers a
+          full suite of features, including multi-language SDKs, logging &amp;
+          observability tools, support for long-running and recurring jobs, and
+          automatic retries. Workflows are written as step functions with
+          intuitive syntax that makes development easy for engineers.
+        </p>
+        <p>
+          However, Inngest has a very limited free tier, and scaling up incurs
+          hefty fees. Additionally, Inngest requires that you outsource your
+          workflow management to their cloud service, which leads to a lack of
+          ownership over your data.
+        </p>
+        <h4>Temporal</h4>
+        <p>
+          Temporal’s open-source workflow engine emphasizes durability over
+          developer experience. It guarantees reliable execution even with
+          server failures or network outages. Additionally, Temporal lets you
+          manually define your queue’s workers, configure retry policies, pause
+          or stop bug-inducing workflows, and set timeouts for workflow
+          executions.
+        </p>
+        <p>
+          While these features make for a durable solution, devs typically turn
+          to a workflow engine to reduce overhead and save valuable development
+          time. Between all the additional configuration and its less intuitive
+          SDKs, Temporal struggles with ease of use.
+        </p>
+        <p>
+          Finally, while Temporal does offer a self-hosted solution to improve
+          data ownership, it does not have a free tier.
+        </p>
+        <h4>AWS Step Functions</h4>
+        <p>
+          AWS is a veteran in the workflow engine game. Its Step Functions
+          service was one of the first solutions to design workflow execution as
+          a state machine (more on that later), and AWS created an entire
+          language called Amazon State Language. It also offers a unique no-code
+          interface to build your workflows visually.
+        </p>
+        <!-- DIAGRAM: AWS Step Functions ... I can't export from google doc -->
+        <p>
+          However, recent solutions like Inngest and Temporal have become
+          popular precisely because devs like to code workflows in their
+          preferred language. Plus, using AWS comes with all the frustrating
+          infrastructure and permissions configurations you want to avoid when
+          employing a workflow engine.
+        </p>
+        <p>
+          The biggest issue is that Step Functions only provides native support
+          for events and steps that occur within AWS services. This disqualifies
+          it from being a true competitor.
+        </p>
+        <h2 id="section-4-0">Introducing Reverb</h2>
+        <p>
+          Reverb is a production-ready, developer-friendly, fully open-source,
+          and self-hosted solution.
+        </p>
+        <!-- DIAGRAM: Chart of solutions ... I can't export from google doc. -->
+        <p>
+          Our engine supports triggering workflows with events, cron, and
+          webhooks and can handle complex sequences with long-running steps. It
+          also offers production-level durability and scalability, and comes
+          with a user interface and CLI for tracing events and tracking workflow
+          progress.
+        </p>
+        <p>
+          The service is self-hosted on Amazon Web Services (AWS) and can be
+          deployed with one command using the CLI tool.
+        </p>
+        <p>
+          While Reverb does not support multiple languages, it is built with
+          Typescript and comes with a Typescript SDK for defining and exposing
+          workflows. We chose TypeScript due to its level of adoption within the
+          industry and to improve Reverb’s durability further via type safety.
+        </p>
+        <h2 id="section-5-0">
+          <strong>Building Reverb’s Core</strong>
+        </h2>
+        <h3 id="section-5-1">Overview of the Three-Node Pattern</h3>
+        <p>
+          Before discussing how we designed and built Reverb on AWS, let’s
+          consider a high-level view of how an existing application would
+          integrate with the engine during production.
+        </p>
+        <figure>
+          <img src="./images/diagrams/three_node.gif" alt="Three nodes" />
+          <figcaption>
+            Reverb’s core functionality is organized into three nodes.
+          </figcaption>
+        </figure>
+        <ul>
+          <li>
+            Whenever an event that should trigger one or more Reverb workflows
+            occurred within the application, it would send an HTTP request to
+            the first of Reverb’s three conceptual nodes––<strong>the</strong>
+            <strong>ingress node</strong>. This node would ingest and validate
+            the event data.
+          </li>
+          <li>
+            The event would then be added to a message queue in the
+            <strong>queue and workers node</strong>. At a high level, this node
+            would be responsible for determining which workflows need to be
+            triggered by each event and sending RPC requests to execute the
+            workflows.
+          </li>
+          <li>
+            Finally, these RPCs would be received by the
+            <strong>functions node</strong>, which defines the workflows as step
+            functions and exposes them to RPCs at a specified endpoint. The
+            workflows are executed here.
+          </li>
+        </ul>
+        <h3 id="section-5-2">Ingesting Events</h3>
+        <p>
+          Our natural first step was to build the ingress node for ingesting,
+          validating, and enqueuing events. We started out by implementing it as
+          a long-running server that constantly listened for event HTTP requests
+          from the user’s application. However, we quickly realized that this
+          solution was highly inefficient.
+        </p>
+        <p>
+          We therefore pivoted to Lambda, AWS’s serverless function service, for
+          two primary reasons. First, event throughput was likely to be bursty
+          for many use cases, meaning our ingest server would need to respond to
+          frequent spikes of concentrated traffic. And second, the ingestion
+          task was simple enough to fit within Lambda’s timeout limits.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/ingress_lambda.gif"
+            alt="Ingress Lambdas" />
+          <figcaption>
+            Replacing our long-running ingest server with auto-scaling Lambdas.
+          </figcaption>
+        </figure>
+        <h3 id="section-5-3">Implementing our Queues</h3>
+        <p>
+          Creating our own queue system from scratch would have added
+          unnecessary complexity and development time, as there are already many
+          proven technologies in the space. For Reverb, we needed a solution
+          that could handle significant throughput, survive system crashes, and
+          be easy for users to maintain when self-hosting.
+        </p>
+        <h4>Postgres and Graphile Worker</h4>
+        <figure>
+          <img
+            src="./images/diagrams/graphile_postgres.png"
+            alt="Graphile and Postgres Logos" />
+        </figure>
+        <p>
+          We ultimately chose Graphile Worker to implement Reverb’s queues.
+          Graphile Worker is an open-source job queue that stores jobs on
+          PostgreSQL and processes them on Node.js workers. While using a
+          database like Postgres as a queue might sound unusual, doing so
+          prevents queued jobs from being lost to server crashes by writing them
+          to disk. Sure, this means it takes slightly more time to queue and
+          dequeue jobs than it would with an in-memory solution like RabbitMQ,
+          but asynchronous workflows are, well, asynchronous. It’s generally
+          more important that they’re executed successfully than extremely
+          quickly.
+        </p>
+        <p>
+          Additionally, we needed to ensure our service was reliable even when
+          operating under high levels of worker concurrency. Fortunately,
+          Graphile Worker prevents jobs from being dequeued by more than one
+          worker through the Postgres SKIP LOCKED command.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/job_lock.gif"
+            alt="Graphile prevents more than one worker on a job" />
+          <figcaption>
+            Graphile Worker prevents jobs from being dequeued by more than one
+            worker.
+          </figcaption>
+        </figure>
+        <p>Some additional reasons we chose Graphile Worker include:</p>
+        <ul>
+          <li>
+            Automatic retries with exponential backoff allow for even more
+            durability
+          </li>
+          <li>It is highly performant for Reverb’s use case</li>
+          <li>
+            Cron jobs are supported, and Postgres is more capable of handling
+            long delays than in-memory solutions
+          </li>
+          <li>
+            Its use of Postgres and Typescript fit seamlessly with the rest of
+            our tech stack
+          </li>
+        </ul>
+        <p>
+          We also briefly considered a few other solutions, including RabbitMQ
+          and Amazon’s Simple Queue Service (SQS). While RabbitMQ is highly
+          scalable because it lives in memory, this makes it far more
+          susceptible to losing data when its server(s) go down. Additionally,
+          storing large numbers of delayed jobs could really slow it down, which
+          is not the case with Postgres’s persistent storage. Finally, RabbitMQ
+          does not support any cron functionality, so we would have had to build
+          out a separate solution for cron.
+        </p>
+        <p>
+          As for SQS, it does have smart durability defaults and would have
+          integrated easily with the rest of our AWS infrastructure. But it
+          doesn’t offer any solutions for cron jobs or even for delaying
+          messages longer than 15 minutes, which disqualified it for use in our
+          engine.
+        </p>
+        <h4>Processing Events and Invocations with Graphile Worker</h4>
+        <p>
+          To implement our main queuing functionality with Graphile Worker, we
+          created two separate task queues.
+        </p>
+        <p>
+          The first task is called “process-event.” Its workers take in events
+          and map them to the workflows they should trigger.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/dequeue_event.png"
+            alt="process-event can fan out to mutliple process-jobs" />
+          <figcaption>
+            process-event” messages can fan out to multiple “process-job”
+            messages.
+          </figcaption>
+        </figure>
+        <p>
+          Next, the “process-event” workers enqueue a new job for each workflow
+          invocation onto a second task queue called “process-job.” This is how
+          one event fans out to multiple Reverb workflows. Workers on the
+          “process-job” queue send RPCs to the functions node, where the
+          workflows are finally executed.
+        </p>
+        <p>
+          In addition to the initial invocation, “process-job” workers are
+          responsible for handling subsequent steps of a workflow. For more
+          about how this step functionality was implemented, see the
+          Implementation Challenges section.
+        </p>
+        <h4>Mapping to AWS</h4>
+        <p>
+          Because Reverb is a self-hosted service, all maintenance and scaling
+          of our queue would take place on our users’ AWS accounts. Therefore,
+          it was crucial that we made these processes as durable and automated
+          as possible.
+        </p>
+        <p>
+          For the Postgres database, our main options were to run our own
+          instance on AWS Elastic Cloud Compute (EC2) or use the managed AWS
+          Relational Database Service (RDS). We chose RDS for its automated
+          scaling and data backup features, which significantly reduce the
+          manual configuration burden while ensuring durability for the jobs in
+          the queue.
+        </p>
+        <p>
+          As for the workers server, we considered AWS Elastic Container Service
+          (ECS) with either EC2 or Fargate. We opted for the more managed
+          solution with Fargate because it removes the need to select server
+          types or decide when to scale. This approach allows developers
+          self-hosting Reverb to focus solely on defining their workflows
+          without worrying about whether their queue will be able to handle
+          processing them.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/three_node_2.png"
+            alt="Updated Infrastructure" />
+          <figcaption>
+            The AWS infrastructure underlying Reverb’s first two nodes.
+          </figcaption>
+        </figure>
+        <h4>Lambdas vs. Database Connection Pooling</h4>
+        <p>
+          While Lambda and Postgres were each great solutions for their
+          respective nodes, having the Lambdas directly enqueue events in
+          Postgres posed a problem.
+        </p>
+        <p>
+          Opening database connections is expensive. Each new connection
+          introduces overhead and latency through network handshakes, client
+          authentication, and session management. If we’d stuck with an
+          always-on ingress server, we could have maintained a long-running
+          connection pool to store and reuse open connections. In other words,
+          we wouldn’t have had to perform expensive operations every time we
+          wanted to enqueue an event.
+        </p>
+        <p>
+          However, we instead opted for Lambdas and their short lifespans, which
+          cannot maintain database connections between invocations. Thankfully
+          AWS offers a solution to this problem called a database proxy.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/no_proxy.gif"
+            alt="Lambdas with no RDS proxy" />
+          <figcaption>
+            Lambdas open a new database connection every time they spin up.
+          </figcaption>
+        </figure>
+        <h4>Adding a Database Proxy</h4>
+        <p>
+          A database proxy is an intermediary layer that manages traffic between
+          clients (such as our ingress Lambdas) and a database server. It can
+          provide various functionalities like query caching and security, but
+          most importantly for Reverb, it can maintain a connection pool.
+        </p>
+        <p>
+          We introduced an AWS RDS Proxy between the Lambdas and the Postgres
+          queue. Rather than constantly creating new connections to the RDS, the
+          Lambdas communicate with the proxy through a pool of connections it
+          maintains. Ultimately, we decided the efficiency benefits of using
+          Lambdas were worth the tradeoff of adding another piece of
+          infrastructure.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/rds_proxy.gif"
+            alt="Lambda's with Proxy" />
+          <figcaption>
+            Lambdas connect to the database through a connection pool on an RDS
+            Proxy.
+          </figcaption>
+        </figure>
+        <h3 id="section-5-4">Defining &amp; Executing Workflows</h3>
+        <h4>Defining Workflows as Step Functions</h4>
+        <p>
+          We now know how Reverb ingests events, maps them to workflows, and
+          sends RPC calls to invoke those workflows. But how were the workflows
+          defined in the first place?
+        </p>
+        <p>
+          Before an event is ever sent during production, our users would have
+          defined workflows as step functions during development. They do this
+          in their own repository by installing our NPM package,
+          “<strong>@reverb-app/functions</strong>,” and using the
+          “createFunction” method exposed by the package. Here, we see an
+          example step function “handle-sign-up” which is triggered by a
+          “sign-up” event.
+        </p>
+        <!-- DIAGRAM: Code example of a "handle-sign-up" step function with createFunction ... I can't export from google doc.-->
+        <h4>Function Steps</h4>
+        <p>
+          Reverb supports four types of steps within its workflows, allowing it
+          to accommodate many different use cases.
+        </p>
+        <ul>
+          <li>
+            <strong>step.run(): </strong>runs a callback function passed to it
+            as an argument
+          </li>
+          <li>
+            <strong>step.delay(): </strong>delays execution of the subsequent
+            workflow step for a specified time
+          </li>
+          <li>
+            <strong>step.invoke(): </strong>triggers execution of another
+            workflow
+          </li>
+          <li>
+            <strong>step.emitEvent(): </strong>enqueues a new event that can
+            trigger multiple workflows
+          </li>
+        </ul>
+        <p>
+          Reverb also supports <strong>branching steps</strong>, which means any
+          of the above steps can be set to execute only when conditions
+          specified by the developer are satisfied.
+        </p>
+        <h4>Registering &amp; Serving Functions</h4>
+        <p>
+          A workflow engine also needs to provide a way for the user to expose
+          their function definitions to the engine. You can think of this as
+          registering functions with Reverb so it knows how to trigger and
+          execute them. So, in addition to “createFunction,” the Reverb NPM
+          package exposes a “serve” method that performs two essential actions.
+        </p>
+        <p>
+          First, it registers metadata representing functions and events on the
+          same Postgres RDS instance that hosts our queue. The “process-event”
+          workers will use this data to map events to the functions they
+          trigger.
+        </p>
+        <p>
+          Second, the “serve” method spins up a server endpoint where workers
+          can send RPCs to invoke the step functions.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/serve.gif"
+            alt="Worker and Functions Communication Diagram" />
+        </figure>
+        <h4>Where Does the Functions Node Live?</h4>
+        <figure>
+          <img
+            src="./images/diagrams/func_loc.png"
+            alt="Diagram showing the difference between where the functions live" />
+        </figure>
+        <p>
+          Some engines execute workflows on the user’s existing infrastructure,
+          sending RPC requests directly to the user’s codebase. Others provide a
+          way to deploy function definitions to the service itself so they can
+          execute there instead. For Reverb, we opted to host functions on our
+          service for a few reasons.
+        </p>
+        <p>
+          First of all, while executing on user_ _infrastructure typically gives
+          developers more control over the execution environment, we rendered
+          this benefit irrelevant by making Reverb self-hosted. To better
+          understand this, let’s compare our solution with that of a
+          non-self-hosted service like Inngest. Their “functions node” lives on
+          user infrastructure because executing functions on Inngest’s cloud
+          service would give users no way to configure the environment. This
+          isn’t true for Reverb, where the entire service exists on the user’s
+          AWS account anyway.
+        </p>
+        <p>
+          Additionally, we believe hosting on Reverb’s infrastructure improves
+          both security and developer experience:
+        </p>
+        <ul>
+          <li>
+            <strong>Security:</strong> Keeping the functions together with the
+            rest of Reverb’s core architecture inside a private Virtual Private
+            Cloud (VPC) limits access to external actors.
+          </li>
+          <li>
+            <strong>Dev Experience:</strong> Executing on Reverb abstracts
+            execution infrastructure and scaling away from the user, improving
+            ease of use.
+          </li>
+        </ul>
+        <p>
+          We chose this direction despite one notable tradeoff: the functions
+          node has to be redeployed to Reverb’s service every time function
+          definitions are changed or added. Later on in development, we
+          automated this CI/CD process to make this drawback all but invisible
+          to the user. We’ll cover this more deeply in the Improving Reverb
+          section.
+        </p>
+        <h4>Choosing Fargate Again</h4>
+        <p>
+          Our functions node is managed by AWS Fargate alongside the workers
+          node. Combining Fargate with our ingress Lambdas allows Reverb to
+          auto-scale each node independently without adding more work for
+          developers.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/three_node_3.png"
+            alt="Infrastructure Updated Again" />
+          <figcaption>
+            Reverb’s Three-Node Architecture mapped to AWS
+          </figcaption>
+        </figure>
+        <h3 id="section-5-5">The Life Cycle of a Multi-Step Workflow</h3>
+        <p>
+          Now that all of our core functionality is in place, let’s walk through
+          a high-level example of how Reverb might trigger and execute a
+          workflow. Consider the following “handle-sign-up” workflow which is
+          triggered by the “sign-up” event:
+        </p>
+        <!-- DIAGRAM: Step function code with three steps: step.run to add user to a db, step.delay to delay for two weeks, and step.run to email the user a survey ... can't extract from google doc.-->
+        <p>
+          The function definition consists of three steps, the middle of which
+          is a two-week delay. Below, we can see how this workflow progresses
+          through Reverb’s system:
+        </p>
+        <ul>
+          <li><strong>Diagram based on excalidraw</strong></li>
+        </ul>
+        <h2 id="section-6-0"><strong>Improving Reverb</strong></h2>
+        <p>
+          Once Reverb&#39;s core functionality was implemented, it was time to
+          make it a more robust, fully-featured service.
+        </p>
+        <h3 id="section-6-1">Logging, Event Tracing, and Monitoring</h3>
+        <p>
+          Between an event’s initial ingestion and the eventual completion of
+          all the workflows it triggers, there are many places where things
+          could go wrong. An event could fail to reach Reverb, fail to be
+          queued, fail to trigger a workflow, or provide a workflow with a
+          payload it wasn’t expecting. Workflows could also error out or provide
+          unexpected return values at any of their individual steps. To maintain
+          an application’s health, all of the above issues need to be registered
+          in real-time and made visible to developers for debugging.
+        </p>
+        <h4>Collecting Logs</h4>
+        <p>
+          Our first step toward improving Reverb’s observability was logging
+          notable success points and errors along an event’s journey. But where
+          in our infrastructure did it make the most sense to log from?
+        </p>
+        <p>
+          Graphile workers are at the center of the Reverb system. Every event,
+          invocation, and workflow step passes through the workers at some
+          point. So, they were a logical place from which to do our logging.
+        </p>
+        <!-- DIAGRAM: Mongdb is not related to RDS, need to fix -->
+        <figure>
+          <img
+            src="./images/diagrams/mongodb.gif"
+            alt="Workers logs to MongoDB" />
+          <figcaption>
+            Logs are captured on Reverb’s workers and stored in a MongoDB
+            database.
+          </figcaption>
+        </figure>
+        <p>
+          Next, we had to decide where to _store _our logs. There were a few
+          problems to consider when making this choice:
+        </p>
+        <ul>
+          <li>
+            Our Postgres database already had its hands full with all the
+            queueing throughput
+          </li>
+          <li>
+            Because workflows would be executed constantly but only rarely
+            observed and debugged, this storage would need to support vast
+            amounts of writes versus relatively few reads.
+          </li>
+          <li>
+            We didn’t care much about adhering to a specific schema, as
+            different logs from different success or failure points would need
+            to be stored alongside different metadata.
+          </li>
+        </ul>
+        <p>
+          All of these factors pointed us toward utilizing a document database
+          for Reverb’s logs. We went with MongoDB.
+        </p>
+        <h4>Logs API</h4>
+        <h5>Building the API</h5>
+        <p>
+          At this point, our logs database was hidden within a private VPC with
+          the rest of Reverb’s core architecture. In order for the logs to
+          become useful, we needed to provide a way for developers to access
+          them easily and securely. We also knew these logs would only
+          occasionally be read, so we didn’t want to introduce an inefficient,
+          long-running server for directing queries to the database.
+        </p>
+        <p>
+          That’s why we again opted for Lambdas to implement a logs API. The new
+          logs Lambdas joined our ingress Lambdas behind an AWS API Gateway,
+          which allows Reverb to secure access by enforcing the use of an API
+          key. Upon deployment, this key is auto-generated for the user and
+          ensures they’re the only ones who can send events or access logs.
+        </p>
+        <figure>
+          <img src="./images/diagrams/logs_lambda.png" alt="Logs Lambda" />
+        </figure>
+        <p>
+          An API Gateway also lets you define different routes for directing
+          traffic. We separated our ingress Lambdas out to a POST “/events”
+          route, and exposed our logs API at “/logs”.
+        </p>
+        <p>The different “/logs” endpoints are:</p>
+        <ul>
+          <li><strong>GET /: </strong>retrieves all logs</li>
+          <li><strong>GET /events</strong>: retrieves ingested events</li>
+          <li><strong>GET /functions:</strong> retrieves function runs</li>
+          <li>
+            <strong>GET /events/:eventId:</strong> retrieves tracing data
+            associated with an event by its ID
+          </li>
+          <li>
+            <strong>GET /functions/:functionId:</strong> retrieves a function’s
+            execution data by its ID
+          </li>
+          <li><strong>GET /error:</strong> retrieves errors of every kind</li>
+          <li>
+            <strong>GET /dead-letter:</strong> retrieves jobs that surpassed the
+            max allowed retries
+          </li>
+        </ul>
+        <p>
+          Where relevant, we allow devs to filter the results by timestamp or ID
+          through the use of query parameters.
+        </p>
+        <h5>Implementing Pagination</h5>
+        <p>
+          Without further configuration, many of the above routes would return
+          massive amounts of data with every request. This is a problem, as
+          sending that much data over HTTP could noticeably affect performance.
+          It would also be extremely difficult for developers to parse and
+          interpret that much data, which defeats the entire purpose of creating
+          the API.
+        </p>
+        <p>
+          A typical solution to this problem is <strong>pagination</strong>, a
+          technique that divides large datasets into smaller, more manageable
+          pages. We knew we wanted to implement pagination so devs could fetch
+          logs without sandbagging the system, but we first had to figure out
+          the best pagination strategy for our use case.
+        </p>
+        <p>
+          There were two types of pagination we were choosing between for each
+          route: offset-based and cursor-based.
+          <strong>Offset-based pagination</strong> involves specifying a
+          limit––here, the number of logs per page––and an offset, which skips a
+          specified number of records from the start of the data. For instance,
+          you might retrieve the first 100 logs with an offset of 0, then offset
+          by 100 to retrieve the next 100 logs, then offset by 200 to retrieve
+          the next set. As you can already predict from this example,
+          offset-based pagination can be inefficient with large datasets, as it
+          requires skipping more and more records with each subsequent page.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/pagination.png"
+            alt="Pagination choices" />
+        </figure>
+        <p>
+          <strong>Cursor-based pagination</strong>, on the other hand, uses a
+          unique identifier from the last record of the previous page to fetch
+          the next set of records immediately after that one. This method is
+          more efficient for large datasets since it avoids the need to skip
+          past all previous records with every query. We implemented this form
+          of pagination on the <strong>/</strong> route, which is all but
+          guaranteed to return a high quantity of entries.
+        </p>
+        <p>
+          The main drawback of cursor-based pagination is its inability to jump
+          directly to a specific page—you always have to increment from the
+          previous one. For this reason, we opted for offset-based pagination
+          for the rest of the routes, as being able to jump to a specific page
+          of logs is crucial for efficiently locating bugs and fixing them.
+        </p>
+        <p>
+          In the future, we also plan to counteract the inefficiency of
+          offset-based pagination by offloading old logs to long-term storage
+          and keeping datasets small. You can read more about this in the Future
+          Work section.
+        </p>
+        <h4>UI &amp; CLI tool</h4>
+        <!-- Diagram: Visuals/screen recordings from CLI and UI ... Can't export from google doc -->
+        <p>
+          While devs could technically now access their Reverb logs directly at
+          the API endpoints, manually sending requests and parsing responses is
+          not a good developer experience. So, we designed both a CLI tool and a
+          dashboard for interacting with data.
+        </p>
+        <p>
+          The CLI tool lets developers quickly retrieve and filter logs from any
+          of the API endpoints. It also offers helpful features unrelated to
+          logs, like commands for deploying the AWS infrastructure and manually
+          firing off events.
+        </p>
+        <p>
+          However, not every developer loves using the command line, so we also
+          created a dashboard to visualize logs and monitor workflow state.
+          Compared with the CLI tool, the dashboard makes it easier to quickly
+          see a function&#39;s status and offers more robust filtering tools.
+        </p>
+        <h3 id="section-6-2">Webhooks</h3>
+        <p>
+          From Stripe payments to Supabase insertions to automated X posts,
+          <strong>third-party integrations</strong> are critical to modern
+          background workflows. However, third parties can’t be fully integrated
+          without the engine providing a way to digest their webhooks. At this
+          point, all the events Reverb was configured to receive shared an
+          expected schema, while webhook requests from different sources could
+          look completely different from one another.
+        </p>
+        <p>
+          To solve this, we added a second endpoint for reaching our ingress
+          Lambdas: “<strong>/webhooks</strong>”. Any time an authenticated
+          request reaches this endpoint, a specific “reverb-received-webhook”
+          event is queued. The body of the webhook request is made accessible
+          via a “webhook” property in the enqueued payload.
+        </p>
+        <!-- DIAGRAM: Diagram showing the API gateway directing /webhooks and /events to the ingress lambda, and /logs to the logs lambda (Still) -->
+        <p>
+          Essentially, this endpoint acts as a passthrough which allows devs to
+          parse and utilize webhooks in their Reverb workflows. For instance, a
+          developer working at a clothing brand could have X send Reverb a
+          webhook after an automated brand post goes live. They could then
+          define a workflow that is triggered by the “reverb-received-webhook”
+          event, and have the first step of the workflow confirm that the
+          specific webhook received was about a successful X posting. Finally,
+          the remaining workflow steps could prompt ChatGPT to come up with the
+          content for the next post and schedule it for the following week.
+        </p>
+        <h3 id="section-6-3">CI/CD &amp; GitHub Actions</h3>
+        <p>
+          At this point, we had virtually all the infrastructure we needed to
+          implement Reverb, but we didn’t have an easy way for developers to
+          deploy and redeploy it. This was a significant problem because we had
+          decided to execute workflows on Reverb––as opposed to on the user’s
+          infrastructure––meaning the functions code would need to be redeployed
+          every time it was updated. To solve this, we built automated solutions
+          for both the initial infrastructure deployment and to support
+          redeploying functions later on.
+        </p>
+        <p>
+          We first composed the overall infrastructure in code with AWS’s CDK
+          (Cloud Development Kit). Then, we integrated the CDK with our CLI to
+          allow users to deploy Reverb to their AWS account with one command.
+        </p>
+        <h4>GitHub Actions</h4>
+        <p>
+          While the CDK was helpful for the initial infrastructure deployment,
+          we still needed a way for users to deploy and redeploy their workflow
+          definitions to Reverb whenever they changed. Without automation for
+          this process, a developer would have to build a new Docker image of
+          their functions server, push it to a Docker image repository, and
+          redeploy the functions to ECS. Not only is this a lot of work, but
+          it’s a very manual process that could become a large source of user
+          errors.
+        </p>
+        <p>
+          So, we decided to use <strong>Github Actions</strong> to automate the
+          deployment and redeployment of function definitions. GitHub Actions is
+          a
+          <strong>Continuous Integration/Continuous Delivery(CI/CD)</strong>
+          tool that triggers automated workflows when specified events occur in
+          a GitHub repo. For Reverb, we wanted a redeployment sequence to run
+          every time the user pushed new code to a designated repository.
+        </p>
+
+        <!-- DIAGRAM: Image/GIF of an action triggering on Github upon push -->
+        <p>
+          Once triggered, our GitHub Action executes three main steps. First, it
+          integrates with Docker and builds an image of the developer’s
+          repository. Next, it uploads that image to Docker Hub so that it can
+          be pulled by AWS ECS. Finally, it triggers a Lambda to redeploy the
+          functions container using that new image.
+        </p>
+        <!-- Diagram of functions in user codebase → github actions → Docker Hub → functions server → DB (Still) -->
+        <h4>Create Reverb Template</h4>
+        <p>
+          With our Github Action designed for deployment, we now needed a way
+          for developers to start a repository with the Action included. This
+          involved building a template project for users to clone from GitHub
+          with the necessary files already included.
+        </p>
+        <p>
+          We decided to take it one step further and use Node Package Manager to
+          run a create script. This way, a developer just needs to run the
+          command **npm create reverb and a copy of the Reverb GitHub template
+          will be created in their directory automatically. This was an
+          important step to make Reverb as developer friendly as possible.
+        </p>
+        <!-- DIAGRAM: create-reverb-app animation ... Can't export from google doc-->
+        <h2 id="section-7-0">
+          <strong>Reverb’s Architecture</strong>
+        </h2>
+        <p>
+          With every component covered above, this is what Reverb’s current AWS
+          infrastructure looks like.
+        </p>
+
+        <!-- DIAGRAM: Diagram of overall architecture (Still) -->
+        <h2 id="section-8-0">
+          <strong>Implementation Challenges</strong>
+        </h2>
+        <h3 id="section-8-1">Step Functionality and State Management</h3>
+        <p>
+          We encountered significant engineering challenges when figuring out
+          how to implement the step functions at the core of Reverb:
+        </p>
+        <ul>
+          <li>
+            By default, Javascript functions execute from the start of their
+            definition every time. So how can we stop a function at a step,
+            ensure it runs successfully, and then resume execution at the next
+            step?
+          </li>
+          <li>How does a step access the return values of previous steps?</li>
+          <li>
+            What happens if a step throws an error? How do we retry the function
+            starting at that step?
+          </li>
+        </ul>
+        <h4>State Machine Pattern</h4>
+        <p>
+          At the center of any multi-step workflow engine is a state management
+          pattern known as a <strong>state machine.</strong>
+        </p>
+        <figure>
+          <img src="./images/diagrams/state_machine.png" alt="State Machine" />
+          <figcaption>
+            State machines can only have one internal state at a time.
+          </figcaption>
+        </figure>
+        <p>
+          A state machine is a model of computation that represents complex
+          processes as a series of distinct states. The machine can only exist
+          in one state at any given time, meaning the machine has to transition
+          from one state to another in order to perform sequential actions.
+        </p>
+        <p>
+          Clearly, this pattern maps well to the concept of a Reverb workflow:
+        </p>
+        <ul>
+          <li>Each workflow consists of a series of distinct steps</li>
+          <li>
+            It must only be executing or waiting to execute one step at any
+            given time
+          </li>
+          <li>
+            It has to transition to the next step in order to perform a
+            sequential action
+          </li>
+        </ul>
+        <p>
+          We needed to implement a state machine design so that our application
+          would always know which step each workflow was up to. That way, any
+          invocation of the workflow after the initial one would start not from
+          the beginning of the function, but from the first step that hadn’t yet
+          been executed.
+        </p>
+        <h4>Trying a Counter System</h4>
+        <p>
+          We first experimented with a naive solution that boiled down to
+          keeping two counts:
+        </p>
+        <ol>
+          <li>
+            A target count, which is the highest known step count for the
+            function from previous runs (starts at 0)
+          </li>
+          <li>
+            A run count, which is the number of steps encountered in the current
+            run
+          </li>
+        </ol>
+        <p>
+          We’d run the function until the run count exceeded the target count,
+          and then ignore each step after that point. If the run count was
+          greater than the target count at the end of the execution, we’d know
+          that the function had not completed and we could re-enqueue it with an
+          incremented target count for the next step. This solution gave us an
+          easy way to cache return values of steps, as we could cache the values
+          in an array with the index being the step count.
+        </p>
+        <p>
+          However, this led to problems of its own. There was a rigidity in how
+          functions were executed and you could not fundamentally change a
+          function mid-execution. Specifically, adding/removing steps or
+          changing the order would break any already-running functions.
+        </p>
+        <h4>Passing a Cache Object</h4>
+        <p>
+          Instead of using a counter, Reverb implements the “state” part of our
+          state machine by passing in a new instance of a “step” class with each
+          workflow invocation. In addition to methods like step.run() and
+          step.delay(), this class has a hidden step.#cache property that keeps
+          track of previously-run steps and what they returned. Rather than
+          identifying steps by an index, which could change if steps were added
+          or removed, steps are given an id string (like “save-to-database”) by
+          the user.
+        </p>
+        <p>
+          If a step has already been run, it simply returns the prior return
+          value rather than executing again. This tactic is commonly referred to
+          as <strong>memoization</strong>.
+        </p>
+        <p>
+          This solution ensured our workflows always knew which step to execute
+          next. But we still had to figure out how to stop functions mid-run
+          after each step to queue up the next one.
+        </p>
+        <h4>Solution: Intentionally Throwing Custom Errors</h4>
+        <p>
+          The only two ways to exit a Javascript function early are returning or
+          throwing an error. Returning early was a non-starter—it would force
+          developers to manage caching logic themselves to tell the function
+          when to return. This would easily lead to system-breaking user errors
+          and inundate workflow definitions with conditional logic checking
+          what’s in the cache. That’s far from an ideal developer experience.
+        </p>
+        <p>
+          So that left us with the only other choice: throwing errors. Unlike
+          returning, we could throw an error from within a step
+          <em>method</em> and have it bubble up to the top level of our
+          functions server. This would stop the workflow dead in its tracks
+          after executing the step. The server would then catch the intentional
+          error and send a response to the Graphile workers telling them what
+          kind of step had run and what it returned.
+        </p>
+        <!-- Diagram: Should have some diagram here showing how an error thrown within a step method stops a function mid run. Can discuss Morgan.(Animation)-->
+        <p>
+          Finally, the worker would re-enqueue a call to the same workflow, but
+          with an updated cache for the next round.
+        </p>
+        <h3 id="section-8-2">Handling Codebase Updates</h3>
+        <h4>Updates to the Functions Codebase</h4>
+        <p>
+          Using AWS ECS to auto-scale our functions server containers was
+          helpful for accommodating varying levels of throughput. However, this
+          horizontal scaling introduced additional challenges in maintaining
+          efficiency and consistency.
+        </p>
+        <p>
+          When our functions server was hosted on just one ECS container, we
+          could safely assume any redeployment of the container meant the devs
+          had made changes to their functions codebase. There simply was no
+          other reason they would have redeployed their code. Accordingly, the
+          new functions server would update our database with the new event and
+          function mappings.
+        </p>
+        <p>
+          However, when the containers became horizontally scaled, a new
+          deployment no longer meant new code. It could just be scaling up an
+          additional instance of the same code. Updating the database in this
+          case would be pointless and inefficient. Even worse, it would block
+          our Graphile workers from querying the database every time the
+          functions server scaled up.
+        </p>
+        <!-- DIAGRAM: Diagram showing one functions container being deployed from Github Actions and replacing the existing one, and then another one being deployed by ECS for horizontal scaling (Animation?) -->
+        <h5>Detecting changes to the functions</h5>
+        <p>
+          To avoid slowing our system unnecessarily, we needed each new server
+          to know whether it contained brand new functions data in its memory.
+          This way, it would only update the database if it needed to.
+        </p>
+        <p>
+          First, we considered having the server scan the entire database and
+          cross check every record with its own data. But it quickly became
+          clear this would add inefficiencies on top of inefficiencies.
+        </p>
+        <h5>Using a hash</h5>
+        <p>
+          A hash function is an algorithm that always returns the same output,
+          or “hash”, for a given input. Such functions are designed to be fast
+          and efficient, and are used in many different situations, from
+          encrypting passwords to grouping data in a hash map.
+        </p>
+        <p>
+          Importantly, hashing can also be used for checking whether data has
+          been altered by comparing the current data&#39;s hash value with a
+          previously calculated hash. If the hashes don’t match, that
+          necessarily means the inputs were different.
+        </p>
+        <figure>
+          <img src="./images/diagrams/hashing.png" alt="Hashing Functions" />
+          <figcaption>
+            Reverb uses hashing to check whether the user has changed their
+            functions codebase.
+          </figcaption>
+        </figure>
+        <p>
+          We realized we could use a hashing library to efficiently compare the
+          functions data in our database with that on the new functions server.
+          To do so, we created a new, single-row table in the database that
+          stored a hash string. Every time a new server spun up, it would
+          stringify its data, hash it, and compare the hash with what was
+          already in the database. If and only if the hashes didn’t match, it
+          would update the events, functions, and hash tables.
+        </p>
+        <figure>
+          <img src="./images/diagrams/hashing_2.gif" alt="Hashing to db" />
+          <figcaption>
+            The database data is updated when the hashes don’t match.
+          </figcaption>
+        </figure>
+        <h5>Updating Long-Running Functions</h5>
+        <p>
+          One of the problems with updating Reverb’s functions on the fly is
+          that long-running workflows that have already started executing may
+          break mid-run. Consider, for example, a workflow that has a two-month
+          delay in the middle of it. If a developer changes and redeploys that
+          workflow’s function definition at any point during those two months,
+          the previous steps’ memoization could be broken before the next step
+          runs. When designing around this, we came up with two possible
+          solutions:
+        </p>
+        <ol>
+          <li>
+            Make the developer version their functions so that when a function
+            is called, it is tied to a specific version.
+          </li>
+          <li>
+            Make the developer add intermediate steps to fix changes between one
+            version of the function and the next.
+          </li>
+        </ol>
+        <p>
+          In solution 1, developers would have to keep copies of each iteration
+          of each function in their codebase in order to ensure compatibility.
+          If we had gone down this route, we would have needed functionality to
+          tell how many instances of each function version are running at a
+          time, so that when a version of a function had no more active runs,
+          the developer could safely remove that version from the codebase. This
+          would require more space in the database to accommodate all versions.
+        </p>
+        <p>
+          We preferred a simpler and more efficient solution, which is why we
+          decided to have developers add intermediary steps. With the way
+          Reverb’s step functionality is implemented, if a new step is added
+          while a function is mid-run, that step will successfully execute in
+          the spot where it’s defined. This allows developers to insert
+          intermediary “glue” steps. These glue steps can alter the data
+          memoized by the steps before them, so the brand new steps later in the
+          flow receive the data they expect. This tactic does not require any
+          additional database space or version-checking logic.
+        </p>
+        <h4>Updates to Cron Functions</h4>
+        <h5>Managing cron with Graphile Worker</h5>
+        <p>
+          One reason we chose Graphile Worker as our queue was because it had
+          built-in cron job functionality. Every “runner”—which is what Graphile
+          calls a batch of workers subscribed to a common task—determines the
+          cron jobs it’s supposed to run by reading from a crontab. A crontab is
+          essentially a schedule of tasks to be executed at specified times.
+        </p>
+        <p>
+          The catch is that Graphile runners can only configure their crontab
+          when they first start up. This simple fact introduced a number of
+          issues into Reverb’s system.
+        </p>
+        <h5>Timing the startup of the runners</h5>
+        <p>
+          At first, we figured it would be easy enough to store data about
+          cron-triggered workflows in our database and have the runners
+          configure their crontab based on that data. However, if the runners
+          happened to start up before the functions server populated the
+          database, the runners wouldn’t see any data and would configure an
+          empty crontab. And because Graphile doesn’t let you update this later
+          on, Reverb would never execute any cron workflows.
+        </p>
+        <figure>
+          <img src="./images/diagrams/empty_crontab.gif" alt="Empty Crontab" />
+          <figcaption>
+            The crontab could be configured incorrectly if Graphile Worker does
+            this before the database is populated
+          </figcaption>
+        </figure>
+        <p>
+          Our initial solution was to have Graphile Worker poll, or repeatedly
+          query, the database to check for the presence of data. Only after data
+          appeared, Graphile Worker would spin up its runners and configure the
+          correct crontab.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/crontab_polling.gif"
+            alt="Polling the crontab" />
+          <figcaption>
+            The Worker Service polls the database for data before configuring
+            the crontab
+          </figcaption>
+        </figure>
+        <p>
+          This worked for the initial deployment of the data. But what about
+          when the user updates and redeploys their functions? Our runners’
+          crontabs would already be configured, and Graphile wouldn’t let us
+          update them.
+        </p>
+        <h5>Solution: The update-cron Runner</h5>
+        <p>
+          At this point, we only had runners for processing events and jobs. To
+          solve the above conundrum, we added a new runner with workers
+          subscribed to “update-cron” queue messages.
+        </p>
+        <p>
+          The first time this runner spins up, it configures its crontab based
+          on data in the database. It also stores the database hash used in the
+          Updates to the Functions Codebase section.
+        </p>
+        <p>
+          On subsequent changes to the functions data, the functions server
+          enqueues an update-cron message containing the newest hash. An
+          update-cron worker checks whether this new hash matches the old one.
+          If not, it shuts down its own runner and starts an entirely new one.
+          This works because, by default, Graphile has its workers complete
+          their entire task before shutting down.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/update_crontab.gif"
+            alt="Updating the Crontab" />
+        </figure>
+        <p>
+          Finally, the new runner configures its crontab with fresh data from
+          the database.
+        </p>
+        <h5>Achieving Eventual Consistency</h5>
+        <p>
+          As with the functions containers, having AWS Fargate automatically
+          horizontally scale our workers containers caused complications.
+        </p>
+        <p>
+          For one thing, our functions server would have no way of knowing how
+          many instances of the update-cron runner there were. So we couldn’t
+          have it enqueue one update-cron message per runner to ensure they all
+          update their crontab.
+        </p>
+        <p>
+          We could overestimate the number of runners and enqueue more than
+          enough jobs, but even that inefficient solution isn’t a real one. With
+          Graphile Worker, it’s essentially random which runner’s worker’s
+          dequeue a given job. It’s possible and even likely some runners would
+          dequeue multiple update-cron messages, while others wouldn’t dequeue
+          any.
+        </p>
+        <p>
+          Therefore, we decided that the best solution was to achieve eventual
+          consistency across our runners. In an eventually consistent system,
+          updates to a piece of data are propagated to all instances
+          asynchronously. This means that we’d make sure at least one runner was
+          always running the most up-to-date crons, while the other runners
+          could update their own crontabs over time.
+        </p>
+        <p>
+          To achieve this, the functions server only sends one update-cron
+          message to one runner. However, this one runner has its own built-in
+          cron job that enqueues additional update-cron messages on a recurring
+          schedule (Yes, this is a cron job that enqueues cron jobs, in a tactic
+          known by the Reverb team as “cronception”). These subsequent
+          update-cron’s can be picked up by any runner, so eventually all
+          runners will have updated their crontabs.
+        </p>
+        <figure>
+          <img
+            src="./images/diagrams/eventual_consistency.gif"
+            alt="Eventual Consistency with Crontab" />
+          <figcaption>
+            The runners' cron-tabs will reach eventual consistency
+          </figcaption>
+        </figure>
+        <h2 id="section-9-0"><strong>Future Work</strong></h2>
+        <h3 id="section-9-1">More Observability Metrics</h3>
+        <p>
+          Right now, all of Reverb’s observability is based on digesting logs
+          from our Graphile workers. Developers can also view performance
+          metrics via the AWS console, but we have yet to integrate these
+          metrics with our UI or CLI. In addition, we are currently missing out
+          on useful workflow state information that could be gathered directly
+          from the Postgres queue, such as how many total functions are enqueued
+          and how long they’ve been in the queue. Collecting all of this
+          valuable engine data into a single place would improve the developer
+          experience.
+        </p>
+        <h3 id="section-9-2">Long-Term Logs Storage</h3>
+        <p>
+          Reverb’s MongoDB server currently holds all logs from the entire app’s
+          history. This is not ideal, as long-running Reverb instances will
+          eventually fill up the server. Additionally, storing that many logs
+          could lead to inefficiencies in our API’s offset-based pagination
+          system. In the future, we would like to automate removing older logs
+          from the server and storing them in an AWS S3 bucket.
+        </p>
+        <h3 id="section-9-3">waitForEvent Steps</h3>
+        <ul>
+          <li><strong>Potential code example</strong></li>
+        </ul>
+        <p>
+          Some event-based workflow engines, like Inngest, include a
+          waitForEvent step in their API. This step would hold until a specific
+          event occurs or a timeout has been reached. This is a more flexible
+          approach for developers than our current API allows.
+        </p>
+        <p>
+          In our current iteration, the developer would have to wait the full
+          timeout, then manually check if an event occurred or not. With
+          <code>waitForEvent</code>, the function would only continue executing
+          after the event fired and would only deplete the full timeout period
+          if the event never came. Both solutions have their use cases, but it
+          would be best to give developers the choice.
+        </p>
+        <h3 id="section-9-4">Multiple Language Support</h3>
+        <p>
+          Reverb currently only supports Typescript/Javascript due to their
+          level of adoption within the industry.
+        </p>
+        <p>
+          However, not all developers are comfortable with the same languages.
+          This is why Inngest, Temporal, and other paid solutions offer SDKs for
+          a number of choices. Reverb already has a set interface for
+          interacting with the Graphile Worker instances, which would make
+          porting its functions server API to a multitude of other languages
+          quite feasible.
+        </p>
+        <h5><small>Disclaimers for visuals used:</small></h5>
+        <p>
+          <small>
+            Amazon Web Services, AWS, the Powered by AWS logo, [and name any
+            other AWS Marks used in such materials] are trademarks of
+            Amazon.com, Inc. or its affiliates.</small
+          >
+        </p>
+        <p>
+          <small>
+            Postgres, PostgreSQL and the Slonik Logo are trademarks or
+            registered trademarks of the PostgreSQL Community Association of
+            Canada, and used with their permission.</small
+          >
+        </p>
+      </article>
+    </div>
+    <div id="use-cases" class="bg-dark">
+      <div class="p-8 pt-16 max-w-100% mx-auto">
+        <!-- Needs mobile Version -->
+        <div id="tab-block" class="flex flex-row">
+          <div data-target="use-1" class="tab selected">Abandoned</div>
+          <div data-target="use-2" class="tab">Square</div>
+          <div data-target="use-3" class="tab">Sumarize</div>
+          <div data-target="use-4" class="tab">Sign-up</div>
+        </div>
+        <div class="grid">
+          <pre id="use-1" class="show"><code class="language-typescript">
+const processAbandonedCart = reverb.createFunction({
+  id: 'process-abandoned-cart',
+  event: 'client.shopping_cart_abandoned',
+  fn: async (event, step) => {
+    const cart = event.payload;
+
+    if (cart) {
+      await step.run('send_cart_reminder', async () => {
+        await mail.sendCartReminder(cart);
+      });
+
+      await step.delay('wait_24_hours', '1d');
+
+      const hasPurchased = await step.run('check_client_purchase', async () => {
+        return await db.checkPurchase(cart.data.orderId);
+      });
+
+      if (!hasPurchased) {
+        await step.run('send_discount_offer', async () => {
+          await mail.sendDiscountOffer(cart);
+        });
+      }
+
+      console.log(`Abandoned cart process completed for client ${cart.data.clientId}`);
+    }
+  },
+});
+          </code></pre>
+          <pre id="use-2"><code>
+const processSquareWebhook = reverb.createFunction({
+id: 'process-square-webhook',
+event: 'reverb-received-webhook',
+fn: async (event, step) => {
+  if (event.payload) {
+    const payload: { [key: string]: any } = event.payload
+    console.log('Square webhook: ' + payload.webhook.body.type);
+    const squareEvent: string = payload.webhook.body.type
+    const emitSquareEvent: string = 'emit-' + squareEvent
+    await step.emitEvent(emitSquareEvent, squareEvent, payload);
+  }
+  return;
+},
+});
+
+const processSquareInvoicePaid = reverb.createFunction({
+id: 'process-square-invoice-paid',
+event: 'invoice.payment_made',
+fn: async (event, step) => {
+  const invoice = event.payload
+  if (invoice) {
+
+    await step.run('update_invoice_status', async () => {
+      await db.updateInvoiceStatus(invoice);
+    });
+
+    await step.run('send_client_receipt', async () => {
+      await mail.sendClientReceipt(invoice);
+    });
+
+    await step.run('start-shipping-procedure', async () => {
+      await logistics.startShippingProcedure(invoice);
+    });
+
+    console.log(`Invoice ${invoice.data.id} paid successfully`);
+  }
+},
+});
+
+const processSquareInvoiceSubmitted = reverb.createFunction({
+id: 'process-square-invoice-submitted',
+event: 'invoice.submitted',
+fn: async (event, step) => {
+  const invoice = event.payload;
+  if (invoice) {
+    await step.run('update-invoice-status', async () => {
+      await db.updateInvoiceStatus(invoice);
+    });
+
+    console.log(`Invoice ${invoice.data.id} submitted successfully`);
+  }
+},
+});
+          </code></pre>
+          <pre id="use-3"><code>
+const summarizeWithBlockers = reverb.createFunction({
+  id: 'summarize-with-blockers',
+  event: 'submit-minutes',
+  fn: async (event, step) => {
+    const payload: { [key: string]: any } = event.payload
+    const meetingMinutes: string = payload.minutes;
+
+    const summary = await step.run('summarize', async () => {
+      return await llm.createCompletion({
+        model: "gpt-3.5-turbo-0125",
+        prompt: summaryPrompt(meetingMinutes)
+      })
+    });
+
+    const bottlenecks = await step.run('extract-blockers', async () => {
+      return await llm.createCompletion({
+        model: "gpt-3.5-turbo-0125",
+        prompt: bottleneckPrompt(summary)
+      })
+    });
+    
+    await.step.run('save-processed-minutes', async () => {
+      await db.saveMinutes({ bottlenecks: bottlenecks, summary: summary })
+    })
+  },
+});
+          </code></pre>
+          <pre id="use-4"><code>
+const handleSignUp = reverb.createFunction({
+  id: 'handle-sign-up',
+  event: 'sign-up',
+  fn: async (event, step) => {
+    const client = event.payload
+    if (client) {
+      await step.run('add-client', async () => {
+        await db.addClient(client);
+      });
+
+      await step.delay('wait-two-weeks', '2w');
+
+      await step.run('send-experience-survey', async () =>
+        await mail.sendSurvey(client.email)
+      );
+
+      console.log(`Sign up of ${client.name} handled successfully`);
+    }
+  },
+});
+          </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div id="team" class="bg-black flex flex-col items-center">
+      <div>
+        <h2 class="text-center">Meet Our Team</h2>
+        <p class="text-xl text-center">
+          We are currently looking for opportunities. If you liked what you saw
+          and want to talk more, please reach out!
+        </p>
+      </div>
+      <ul class="block flex flex-row justify-center flex-wrap">
+        <li class="profile">
+          <img
+            class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56"
+            data-src="images/team/morgan.jpg"
+            alt="" />
+          <div>
+            <div>
+              <h3>Morgan Davis</h3>
+              <p>Location</p>
+            </div>
+
+            <ul class="social">
+              <li>
+                <a href="mailto:ahmad.j.jiha@gmail.com" target="_blank"
+                  ><i class="fas fa-envelope"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/morgan-summer-davis/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://github.com/Morgan-Summer-Davis" target="_blank"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li>
+                <a href="" target="_blank"><i class="fas fa-globe"></i></a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="profile">
+          <img
+            class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56"
+            data-src="images/team/blake.jpeg"
+            alt="" />
+          <div>
+            <div>
+              <h3>Blake Fromkin</h3>
+              <p>Location</p>
+            </div>
+
+            <ul class="social">
+              <li>
+                <a href="" target="_blank"><i class="fas fa-envelope"></i></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/blake-fromkin-a6296071/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://github.com/blakefromkin" target="_blank"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li>
+                <a href="" target="_blank"><i class="fas fa-globe"></i></a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="profile">
+          <img
+            class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56"
+            data-src="images/team/chris.jpg"
+            alt="" />
+          <div>
+            <div>
+              <h3>Chris Perkins</h3>
+              <p>Easton, PA</p>
+            </div>
+
+            <ul class="social">
+              <li>
+                <a href="mailto:Christopher@Perkins.guru" target="_blank"
+                  ><i class="fas fa-envelope"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/chrisopher-r-perkins/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/Christopher-R-Perkins"
+                  target="_blank"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://perkins.guru" target="_blank"
+                  ><i class="fas fa-globe"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="profile">
+          <img
+            class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56 lazy"
+            data-src="images/team/lt.jpg"
+            alt="" />
+          <div>
+            <div>
+              <h3>Vincent Sijssens</h3>
+              <p>Location</p>
+            </div>
+
+            <ul class="social">
+              <li>
+                <a href="mailto:" target="_blank"
+                  ><i class="fas fa-envelope"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/vincent-sijssens-6228b0152/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://github.com/vincentsz" target="_blank"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+              <li>
+                <a href="" target="_blank"><i class="fas fa-globe"></i></a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </body>
+  <script src="./javascripts/script.js"></script>
+</html>
