@@ -19,7 +19,7 @@
       <nav class="flex flex-row items-center">
         <a href="#start" class="link selected">Top</a>
         <a href="#case-study" class="link">Case Study</a>
-        <a href="#use-cases" class="link">Use Cases</a>
+        <a href="#use-cases" class="link">Sample Workflows</a>
         <a href="#team" class="link">Our Team</a>
         <a
           href="https://github.com/reverb-app/reverb"
@@ -2039,13 +2039,16 @@
     <div id="use-cases" class="bg-dark">
       <div class="p-8 pt-16 max-w-100% mx-auto">
         <!-- Needs mobile Version - May not need -->
-        <div id="tab-block" class="flex flex-row">
+        <div
+          id="tab-block"
+          class="flex flex-row text-[9px] sm:text-[11px] md:text-[13px] lg:text-lg 2xl:text-xl">
           <div data-target="use-1" class="tab selected">Abandoned</div>
           <div data-target="use-2" class="tab">Square</div>
           <div data-target="use-3" class="tab">Sumarize</div>
           <div data-target="use-4" class="tab">Sign-up</div>
         </div>
         <div
+          id="code-block"
           class="bg-black text-[9px] sm:text-[11px] md:text-[13px] lg:text-lg 2xl:text-xl">
           <pre id="use-1" class="show"><code class="language-typescript">
 const processAbandonedCart = reverb.createFunction({
@@ -2185,7 +2188,7 @@ const handleSignUp = reverb.createFunction({
       </div>
     </div>
 
-    <div id="team" class="bg-black flex flex-col items-center">
+    <div id="team" class="bg-black flex flex-col items-center pb-16">
       <div>
         <h2 class="text-center">Meet Our Team</h2>
         <p class="text-xl text-center">

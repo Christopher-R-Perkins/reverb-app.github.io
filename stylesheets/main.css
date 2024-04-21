@@ -220,7 +220,14 @@ article small {
 
 #use-cases .tab {
   padding: 0.5em;
-  border-top-left-radius: 1em;
+  border-top-left-radius: 1rem;
+}
+
+#use-cases #code-block {
+  padding: 1rem 2rem;
+  border-top-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 #use-cases pre {
@@ -229,6 +236,10 @@ article small {
 
 #use-cases pre.show {
   display: block;
+}
+
+#use-cases code {
+  padding: 0;
 }
 
 :root {
