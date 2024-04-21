@@ -224,13 +224,11 @@ article small {
 }
 
 #use-cases pre {
-  grid-row: 1;
-  grid-column: 1;
-  opacity: 0;
+  display: none;
 }
 
 #use-cases pre.show {
-  opacity: 1;
+  display: block;
 }
 
 :root {
