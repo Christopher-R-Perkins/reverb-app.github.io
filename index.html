@@ -2135,32 +2135,32 @@ fn: async (event, step) => {
 });
           </code></pre>
           <pre id="use-3"><code class="language-typescript">
-const summarizeWithBlockers = reverb.createFunction({
-  id: 'summarize-with-blockers',
-  event: 'submit-minutes',
-  fn: async (event, step) => {
-    const payload: { [key: string]: any } = event.payload
-    const meetingMinutes: string = payload.minutes;
+    const summarizeWithBlockers = reverb.createFunction({
+      id: 'summarize-with-blockers',
+      event: 'submit-minutes',
+      fn: async (event, step) => {
+        const payload: { [key: string]: any } = event.payload
+        const meetingMinutes: string = payload.minutes;
 
-    const summary = await step.run('summarize', async () => {
-      return await llm.createCompletion({
-        model: "gpt-3.5-turbo-0125",
-        prompt: summaryPrompt(meetingMinutes)
-      })
-    });
+        const summary = await step.run('summarize', async () => {
+          return await llm.createCompletion({
+            model: "gpt-3.5-turbo-0125",
+            prompt: summaryPrompt(meetingMinutes)
+          })
+        });
 
-    const bottlenecks = await step.run('extract-blockers', async () => {
-      return await llm.createCompletion({
-        model: "gpt-3.5-turbo-0125",
-        prompt: bottleneckPrompt(summary)
-      })
+        const blockers = await step.run('extract-blockers', async () => {
+          return await llm.createCompletion({
+            model: "gpt-3.5-turbo-0125",
+            prompt: blockerPrompt(summary)
+          })
+        });
+        
+        await.step.run('save-processed-minutes', async () => {
+          await db.saveMinutes({ blockers: blockers, summary: summary })
+        })
+      },
     });
-    
-    await.step.run('save-processed-minutes', async () => {
-      await db.saveMinutes({ bottlenecks: bottlenecks, summary: summary })
-    })
-  },
-});
           </code></pre>
           <pre id="use-4"><code class="language-typescript">
 const handleSignUp = reverb.createFunction({
