@@ -25,25 +25,25 @@
   </head>
   <body class="text-offWhite bg-bgGray">
     <header
-      class="invisible md:visible bg-dark fixed w-full h-16 flex flex-row items-center justify-between px-8 shadow-lg z-50"
+      class="bg-dark fixed w-full h-18 lg:h-16 flex flex-row items-center justify-center md:justify-between px-8 shadow-lg z-50 invisible sm:visible"
     >
-      <img src="./assets/Logo.png" alt="Reverb" class="h-10" />
-      <!-- Needs mobile version -->
-      <nav class="flex flex-row items-center">
-        <a href="#start" class="link selected">Top</a>
-        <a href="#case-study" class="link">Case Study</a>
-        <a href="#use-cases" class="link">Sample Workflows</a>
-        <a href="#team" class="link">Our Team</a>
+      <img src="./assets/Logo.png" alt="Reverb" class="h-10 hidden md:block" />
+      <nav
+        class="flex flex-row items-center text-[1.5rem] sm:text-[2rem] lg:text-base min-w-[622px] lg:min-w-0"
+      >
+        <a href="#start" class="link selected my-auto md:my-0">Top</a>
+        <a href="#case-study" class="link my-auto md:my-0">Case Study</a>
+        <a href="#team" class="link" md:my-0>Our Team</a>
         <a
           href="https://github.com/reverb-app/reverb"
           target="_blank"
-          class="link"
+          class="link my-auto md:my-0"
           >Docs</a
         >
         <a
           href="https://github.com/reverb-app"
           target="_blank"
-          class="link mr-4"
+          class="link mr-4 my-auto md:my-0"
           ><span class="fab fa-github text-2xl block -my-1"></span
         ></a>
       </nav>
@@ -354,10 +354,10 @@
 
       <div
         id="workflows-module"
-        class="min-h-[max(25vw,40vh)] shadow-lg z-30 relative bg-dark lg:bg-red-800 xl:bg-green-800 flex flex-column flex-wrap xl:flex-row py-[4%] xl:py-0 xl:flex-nowrap justify-center"
+        class="xl:min-h-[max(25vw,40vh)] shadow-lg z-30 relative bg-dark lg:bg-red-800 xl:bg-green-800 flex flex-column flex-wrap xl:flex-row py-[4%] xl:py-0 xl:flex-nowrap justify-center"
       >
         <div
-          class="text-center xl:text-left -z-10 w-full xl:w-[40%] my-auto order-1 xl:ml-[10%]"
+          class="text-center xl:text-left -z-10 w-full xl:w-[40%] xl:my-auto order-1 xl:ml-[10%]"
         >
           <p class="sm:text-3xl md:text-4xl px-[30px] font-varela">
             Define Workflows as Functions
@@ -367,10 +367,9 @@
             executes, and retries them step-by-step.
           </p>
         </div>
-        <div class="order-2">
+        <div class="order-2 hidden md:block">
           <div id="use-cases">
-            <div class="p-8 pt-16 max-w-100% mx-auto">
-              <!-- Needs mobile Version - May not need -->
+            <div class="lg:p-8 py-16 max-w-100% mx-auto">
               <div
                 id="tab-block"
                 class="flex flex-row justify-center text-center"
@@ -521,7 +520,7 @@
         class="xl:h-[max(25vw,40vh)] shadow-lg z-20 relative bg-bgGray py-[4%] xl:py-[2%] flex flex-column flex-wrap justify-center xl:flex-row"
       >
         <div
-          class="inset w-[60%] min-w-[400px] max-w-[980px] xl:w-auto xl:h-full aspect-[1.414/1] xl:ml-[7.5%] xl:my-auto xl:order-1 order-2"
+          class="inset w-[60%] min-w-[400px] max-w-[980px] xl:w-auto xl:h-full aspect-[1.414/1] xl:ml-[7.5%] xl:my-auto xl:order-1 order-2 hidden md:block"
         >
           <img
             src="./assets/diagrams/github_actions.png"
@@ -556,7 +555,7 @@
           </p>
         </div>
         <div
-          class="inset w-[60%] min-w-[400px] max-w-[980px] xl:w-auto xl:h-full aspect-[1.608/1] xl:ml-[7.5%] xl:my-auto order-2"
+          class="inset w-[60%] min-w-[400px] max-w-[980px] xl:w-auto xl:h-full aspect-[1.608/1] xl:ml-[7.5%] xl:my-auto order-2 hidden md:block"
         >
           <img
             src="./assets/diagrams/ui_screen_recording.gif"
@@ -568,13 +567,10 @@
 
     <div id="case-study" class="bg-bgGray text-gray-300 overflow-x-hidden">
       <article
-        class="p-8 pt-16 lg:ml-[calc(25%+200px)] lg:max-w-[100ch] text-[3rem] sm:text-[3rem] md:text-[2rem] lg:text-base"
+        class="p-8 pt-16 lg:ml-[calc(25%+200px)] lg:max-w-[100ch] text-[1.5rem] sm:text-[2rem] lg:text-base"
       >
         <h2 id="section-1-0">
-          <strong
-            class="bg-red-500 sm:bg-green-500 md:bg-yellow-500 lg:bg-blue-500"
-            >What is Reverb?</strong
-          >
+          <strong>What is Reverb?</strong>
         </h2>
         <p>
           Reverb is an open-source, <strong>event-driven, asynchronous</strong>
@@ -2501,13 +2497,17 @@
       class="bg-dark flex flex-col items-center pb-16 shadow-lg z-30"
     >
       <div>
-        <h2 class="text-center">Meet Our Team</h2>
-        <p class="text-xl text-center">
+        <h2 class="text-center text-offWhite md:bg-yellow-500">
+          Meet Our Team
+        </h2>
+        <p class="text-xl text-center mb-[2rem] mt-[-1rem] text-gray-300">
           We are currently looking for opportunities. If you liked what you saw
           and want to talk more, please reach out!
         </p>
       </div>
-      <ul class="flex flex-row justify-center flex-wrap">
+      <ul
+        class="w-[80%] grid grid-cols-1 md:grid-cols-2 gap-2 justify-between lg:flex lg:flex-row lg:justify-center lg:flex-wrap"
+      >
         <li class="profile">
           <img
             class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56"

@@ -14,7 +14,7 @@
   }
 
   .link {
-    @apply hover:text-turquoise-700 hover:border-b-2 text-base font-medium hover:border-turquoise-700 text-slate-400;
+    @apply hover:text-turquoise-700 hover:border-b-2 font-medium hover:border-turquoise-700 text-slate-400;
   }
 
   .link.selected {
@@ -22,16 +22,29 @@
   }
 
   .profile {
-    @apply bg-bgGray rounded-2xl px-2 py-1 items-center text-center m-2 grow text-offWhite;
+    @apply rounded-2xl px-2 py-1 self-center text-center m-2 grow text-offWhite max-w-[80%] mx-auto;
   }
 
   .profile h3 {
-    @apply text-offWhite;
+    @apply text-offWhite sm:text-3xl md:text-4xl lg:text-2xl;
+  }
+
+  .profile img {
+    @apply shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border-2 border-dark md:w-[255px] md:h-[255px] lg:w-[160px] lg:h-[160px] aspect-auto w-[350px] h-[350px];
+  }
+
+  .profile p {
+    @apply mb-[2%];
+  }
+
+  .profile p,
+  .profile i {
+    @apply sm:text-lg md:text-2xl lg:text-base;
   }
 
   i.fab,
   i.fas {
-    @apply hover:text-bright;
+    @apply hover:text-turquoise-700;
   }
 
   #toc li {
@@ -243,7 +256,17 @@ article small {
   flex-direction: row;
   gap: 1rem;
   justify-content: center;
+  aspect-ratio: 1 / 0.12;
 }
+
+/* .social li {
+  width: 20%;
+  aspect-ratio: 1 / 1;
+} */
+
+/* .social li i {
+  font-size: 2rem;
+} */
 
 #use-cases .tab {
   padding: 0.5em;
@@ -410,4 +433,26 @@ article ol {
 #team {
   box-shadow: inset 0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+#team::after {
+  background-color: #111827;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+  transform: translateZ(-10px);
+}
+
+#team {
+  background: radial-gradient(
+      ellipse at top,
+      rgba(0, 233, 202, 0.06),
+      transparent
+    ),
+    radial-gradient(ellipse at bottom, rgba(17, 24, 39, 1), transparent);
+  transform-style: preserve-3d;
 }
