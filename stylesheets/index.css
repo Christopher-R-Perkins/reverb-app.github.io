@@ -1235,6 +1235,10 @@ article strong {
   font-size: 2rem;
 }
 
+.text-\[3rem\] {
+  font-size: 3rem;
+}
+
 .text-gray-300 {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
@@ -1642,6 +1646,10 @@ article ol {
 
   .sm\:text-\[2rem\] {
     font-size: 2rem;
+  }
+
+  .sm\:text-\[3rem\] {
+    font-size: 3rem;
   }
 }
 
