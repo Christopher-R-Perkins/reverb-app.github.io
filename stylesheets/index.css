@@ -1659,6 +1659,11 @@ article ol {
     background-color: rgb(34 197 94 / var(--tw-bg-opacity));
   }
 
+  .md\:bg-yellow-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+  }
+
   .md\:pt-16 {
     padding-top: 4rem;
   }
@@ -1703,6 +1708,11 @@ article ol {
   .lg\:bg-red-800 {
     --tw-bg-opacity: 1;
     background-color: rgb(153 27 27 / var(--tw-bg-opacity));
+  }
+
+  .lg\:bg-blue-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(59 130 246 / var(--tw-bg-opacity));
   }
 
   .lg\:text-xl {
