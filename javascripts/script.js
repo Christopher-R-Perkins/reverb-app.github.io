@@ -183,5 +183,9 @@ const fadeIn = (element) => {
   }, 10);
 };
 
-logo.addEventListener("load", handleHeaderTextSpacing);
+if (!logo.complete) {
+  logo.addEventListener("load", handleHeaderTextSpacing);
+} else {
+  handleHeaderTextSpacing();
+}
 window.addEventListener("resize", handleHeaderTextSpacing);
