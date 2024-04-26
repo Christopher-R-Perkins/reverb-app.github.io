@@ -770,7 +770,7 @@ i.fab:hover,
 
 #toc .bullet {
   --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  background-color: rgb(30 40 52 / var(--tw-bg-opacity));
 }
 
 #toc a:hover .bullet {
@@ -786,6 +786,8 @@ i.fab:hover,
 article figcaption {
   font-size: 0.875rem;
   line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
 article strong {
@@ -930,10 +932,6 @@ article strong {
   margin-bottom: auto;
 }
 
-.-mb-\[10\%\] {
-  margin-bottom: -10%;
-}
-
 .-mb-\[15rem\] {
   margin-bottom: -15rem;
 }
@@ -942,12 +940,16 @@ article strong {
   margin-bottom: -2em;
 }
 
-.-mt-\[14\%\] {
-  margin-top: -14%;
+.-mb-\[5\%\] {
+  margin-bottom: -5%;
 }
 
 .-mt-\[3em\] {
   margin-top: -3em;
+}
+
+.-mt-\[7\%\] {
+  margin-top: -7%;
 }
 
 .-mt-\[8rem\] {
@@ -1144,7 +1146,7 @@ article strong {
 
 .bg-bgGray {
   --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+  background-color: rgb(30 40 52 / var(--tw-bg-opacity));
 }
 
 .bg-dark {

@@ -69,7 +69,7 @@
   }
 
   article figcaption {
-    @apply text-sm;
+    @apply text-sm text-gray-500;
   }
 
   article strong {

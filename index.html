@@ -341,7 +341,7 @@
             class="text-5xl lg:text-3xl px-[22px] font-varela md:mb-[2%] lg:mb-0 lg:mt-[-50px]"
           >
             <span class="text-turquoise-200">An</span>
-            <span class="text-turquoise-300">open-source,</span>
+            <span class="text-turquoise-300">open-img,</span>
             <span class="text-turquoise-400">event-driven,</span>
             <span class="text-turquoise-300">asynchronous</span>
             <span class="text-turquoise-200">workflow engine</span>
@@ -584,7 +584,7 @@
           <strong>What is Reverb?</strong>
         </h2>
         <p>
-          Reverb is an open-source, <strong>event-driven, asynchronous</strong>
+          Reverb is an open-img, <strong>event-driven, asynchronous</strong>
           <strong>workflow engine</strong> that abstracts away the logic and
           infrastructure developers need to orchestrate complex background
           tasks. Users define tasks as multi-step functions in their repository,
@@ -608,18 +608,17 @@
           response.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source src="./assets/diagrams/req_res.webm" type="video/webm" />
-          </video>
+          <img src="./assets/diagrams/req_res.gif" />
+
           <figcaption>Request-Response Cycle</figcaption>
         </figure>
         <p>
           Any tasks the server completes between receiving a request and sending
           a response are said to be handled
           <strong>synchronously</strong>. For quick tasks that don’t require
-          many resources, like simple database queries or calculations,
-          synchronous execution makes sense since the user would barely notice
-          any delay in the response.
+          many reimgs, like simple database queries or calculations, synchronous
+          execution makes sense since the user would barely notice any delay in
+          the response.
         </p>
         <h3 id="section-2-2">Offloading Asynchronous Jobs</h3>
         <p>
@@ -633,27 +632,24 @@
           long task that doesn’t need to run immediately.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source src="./assets/diagrams/long_job.webm" type="video/webm" />
-          </video>
+          <img src="./assets/diagrams/long_job.gif" />
+
+          <figcaption></figcaption>
         </figure>
         <p>
           Furthermore, having the API handle long or intensive operations would
-          consume significant resources, leaving fewer available for responding
-          to other requests. This could lead to longer response times and
+          consume significant reimgs, leaving fewer available for responding to
+          other requests. This could lead to longer response times and
           temporarily deadlock the server under high-traffic conditions.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/overloading_req_res.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/overloading_req_res.gif" />
+
+          <figcaption></figcaption>
         </figure>
         <p>
-          To solve these problems, time or resource-intensive jobs can be
-          completed <strong>asynchronously</strong>, or outside of the primary
+          To solve these problems, time or reimg-intensive jobs can be completed
+          <strong>asynchronously</strong>, or outside of the primary
           request-response cycle. The client-facing API server can offload jobs
           to another service, freeing up the API to immediately send back
           responses and become available to new requests.
@@ -679,10 +675,11 @@
           system lessens the load and scope of responsibility for each service,
           helping developers build more reliable systems.
         </p>
-        <figure class="mt-[-15%] mb-[-5%]">
+        <figure class="mt-[-15%]">
           <img
             src="./assets/diagrams/monolith_vs_microservices.png"
             alt="Monolith v Microservices"
+            class="mb-[-5%]"
           />
           <figcaption>
             Each microservice performs a specific business task.
@@ -700,12 +697,8 @@
             rather than through memory. Even a momentary network failure can
             result in jobs being lost while in transit.
             <figure>
-              <video loop autoplay muted>
-                <source
-                  src="./assets/diagrams/network_failure.webm"
-                  type="video/webm"
-                />
-              </video>
+              <img src="./assets/diagrams/network_failure.gif" />
+
               <figcaption>Network failures lead to dropped jobs.</figcaption>
             </figure>
           </li>
@@ -745,8 +738,8 @@
           If the network fails or the consumer crashes, the queue will persist
           the job until the consumer is reachable and ready to process it.
           Additionally, the queue can act as a rate limiter by letting the
-          consumer wait to process additional jobs until it has the resources to
-          do so. But using queues as a solution also introduces new problems:
+          consumer wait to process additional jobs until it has the reimgs to do
+          so. But using queues as a solution also introduces new problems:
         </p>
         <ul>
           <li>
@@ -765,12 +758,9 @@
             for configuring timeouts between retries and maximum retry limits to
             keep their queue from clogging up.
             <figure>
-              <video loop autoplay muted>
-                <source
-                  src="./assets/diagrams/retries.webm"
-                  type="video/webm"
-                />
-              </video>
+              <img src="./assets/diagrams/retries.gif" />
+
+              <figcaption></figcaption>
             </figure>
           </li>
           <li>
@@ -789,8 +779,8 @@
           </li>
           <li class="list-none">
             <strong>Vertical scaling</strong> involves increasing the capacity
-            of the existing queue by adding more resources—such as CPU, memory,
-            or storage. This keeps infrastructure simple, but hardware can only
+            of the existing queue by adding more reimgs—such as CPU, memory, or
+            storage. This keeps infrastructure simple, but hardware can only
             vertically scale so much. Additionally, having just one instance
             means there’s still a single point of failure and everything could
             be lost if the queue goes down.
@@ -834,7 +824,7 @@
           analytics jobs.
         </p>
 
-        <figure class="mt-[-8%] mb-[-10%]">
+        <figure class="mt-[-8%] mb-[-10%] small-visual">
           <img src="./assets/diagrams/fan_out.png" alt="Fan out" />
           <figcaption>Events trigger jobs in a fan-out pattern</figcaption>
         </figure>
@@ -866,11 +856,12 @@
           notification and change the delivery’s status in your database.
         </p>
 
-        <figure>
+        <figure class="small-visual">
           <img
             src="./assets/diagrams/basic_workflow.png"
             alt="A basic workflow"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           Multi-step background jobs like these are called
@@ -884,11 +875,11 @@
             tasks to build complex background processes.
           </li>
           <li>
-            You can divide time and resource-intensive tasks—like video
-            transcoding or processing large datasets—into smaller, more
-            manageable steps to reduce the burden on your system. Executing
-            these steps concurrently enhances your application&#39;s
-            performance, allowing it to handle demanding jobs more efficiently.
+            You can divide time and reimg-intensive tasks—like video transcoding
+            or processing large datasets—into smaller, more manageable steps to
+            reduce the burden on your system. Executing these steps concurrently
+            enhances your application&#39;s performance, allowing it to handle
+            demanding jobs more efficiently.
           </li>
           <li>
             Serverless functions are popular for their auto-scaling abilities,
@@ -899,12 +890,8 @@
           </li>
         </ul>
         <figure>
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/steps_with_lambda.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/steps_with_lambda.gif" />
+
           <figcaption>
             Workflows can break long jobs into short steps that can run on
             serverless infrastructure.
@@ -922,8 +909,8 @@
           </li>
           <li>
             A single event can trigger multiple <em>sequences</em> of jobs
-            instead of individual ones. A service expends negligible resources
-            to enqueue an event, yet this simple action can set off a complex
+            instead of individual ones. A service expends negligible reimgs to
+            enqueue an event, yet this simple action can set off a complex
             network of processes.
           </li>
         </ul>
@@ -932,6 +919,7 @@
             src="./assets/diagrams/complex_workflow.png"
             alt="A Complex Workflow"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           Of course, before you can reap the benefits above, you must write a
@@ -1073,12 +1061,8 @@
           as a <strong>workflow engine</strong>.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/req_res_with_workflow_engine.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/req_res_with_workflow_engine.gif" />
+
           <figcaption>
             Workflow engines manage complex workflow orchestration.
           </figcaption>
@@ -1153,13 +1137,13 @@
         </p>
         <p>
           However, Inngest has a very limited free tier, and scaling up incurs
-          hefty fees. Additionally, Inngest requires that you outsource your
+          hefty fees. Additionally, Inngest requires that you outimg your
           workflow management to their cloud service, which leads to a lack of
           ownership over your data.
         </p>
         <h4>Temporal</h4>
         <p>
-          Temporal’s open-source workflow engine emphasizes durability over
+          Temporal’s open-img workflow engine emphasizes durability over
           developer experience. It guarantees reliable execution even with
           server failures or network outages. Additionally, Temporal lets you
           manually define your queue’s workers, configure retry policies, pause
@@ -1189,6 +1173,7 @@
             src="./assets/diagrams/aws_step_functions.png"
             alt="Workflow in AWS Step Functions"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           However, recent solutions like Inngest and Temporal have become
@@ -1204,10 +1189,10 @@
         </p>
         <h2 id="section-4-0">Introducing Reverb</h2>
         <p>
-          Reverb is a production-ready, developer-friendly, fully open-source,
-          and self-hosted solution.
+          Reverb is a production-ready, developer-friendly, fully open-img, and
+          self-hosted solution.
         </p>
-        <figure class="full-visual -mt-[14%] -mb-[10%]">
+        <figure class="full-visual -mt-[7%] -mb-[5%]">
           <img
             src="./assets/diagrams/alternatives_table.png"
             alt="Comparisons between workflow engines"
@@ -1306,7 +1291,7 @@
         </figure>
         <p>
           We ultimately chose Graphile Worker to implement Reverb’s queues.
-          Graphile Worker is an open-source job queue that stores jobs on
+          Graphile Worker is an open-img job queue that stores jobs on
           PostgreSQL and processes them on Node.js workers. While using a
           database like Postgres as a queue might sound unusual, doing so
           prevents queued jobs from being lost to server crashes by writing them
@@ -1323,12 +1308,8 @@
           worker through the Postgres SKIP LOCKED command.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/process_job_lock.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/process_job_lock.gif" />
+
           <figcaption>
             Graphile Worker prevents jobs from being dequeued by more than one
             worker.
@@ -1376,13 +1357,13 @@
           The first task is called “process-event.” Its workers take in events
           and map them to the workflows they should trigger.
         </p>
-        <figure>
+        <figure class="small-visual">
           <img
             src="./assets/diagrams/dequeue_event.png"
             alt="process-event can fan out to mutliple process-jobs"
           />
           <figcaption>
-            process-event” messages can fan out to multiple “process-job”
+            "process-event” messages can fan out to multiple “process-job”
             messages.
           </figcaption>
         </figure>
@@ -1453,9 +1434,8 @@
           AWS offers a solution to this problem called a database proxy.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source src="./assets/diagrams/no_proxy.webm" type="video/webm" />
-          </video>
+          <img src="./assets/diagrams/no_proxy.gif" />
+
           <figcaption>
             Lambdas open a new database connection every time they spin up.
           </figcaption>
@@ -1476,9 +1456,8 @@
           infrastructure.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source src="./assets/diagrams/rds_proxy.webm" type="video/webm" />
-          </video>
+          <img src="./assets/diagrams/rds_proxy.gif" />
+
           <figcaption>
             Lambdas connect to the database through a connection pool on an RDS
             Proxy.
@@ -1553,9 +1532,9 @@
           can send RPCs to invoke the step functions.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source src="./assets/diagrams/serve.webm" type="video/webm" />
-          </video>
+          <img src="./assets/diagrams/serve.gif" />
+
+          <figcaption></figcaption>
         </figure>
         <h4>Where Does the Functions Node Live?</h4>
         <figure>
@@ -1563,6 +1542,7 @@
             src="./assets/diagrams/functions_location.png"
             alt="Diagram showing the difference between where the functions live"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           Some engines execute workflows on the user’s existing infrastructure,
@@ -1641,9 +1621,9 @@
           through Reverb’s system:
         </p>
         <figure class="full-visual">
-          <video loop autoplay muted>
-            <source src="./assets/diagrams/lifecycle.webm" type="video/webm" />
-          </video>
+          <img src="./assets/diagrams/lifecycle.gif" />
+
+          <figcaption></figcaption>
         </figure>
         <h2 id="section-6-0"><strong>Improving Reverb</strong></h2>
         <p>
@@ -1673,9 +1653,8 @@
           point. So, they were a logical place from which to do our logging.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source src="./assets/diagrams/mongodb.webm" type="video/webm" />
-          </video>
+          <img src="./assets/diagrams/mongodb.gif" />
+
           <figcaption>
             Logs are captured on Reverb’s workers and stored in a MongoDB
             database.
@@ -1722,8 +1701,9 @@
           key. Upon deployment, this key is auto-generated for the user and
           ensures they’re the only ones who can send events or access logs.
         </p>
-        <figure>
+        <figure class="small-visual">
           <img src="./assets/diagrams/logs_lambdas.png" alt="Logs Lambda" />
+          <figcaption></figcaption>
         </figure>
         <p>
           An API Gateway also lets you define different routes for directing
@@ -1786,6 +1766,7 @@
             src="./assets/diagrams/pagination.png"
             alt="Pagination choices"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           <strong>Cursor-based pagination</strong>, on the other hand, uses a
@@ -1841,8 +1822,8 @@
           background workflows. However, third parties can’t be fully integrated
           without the engine providing a way to digest their webhooks. At this
           point, all the events Reverb was configured to receive shared an
-          expected schema, while webhook requests from different sources could
-          look completely different from one another.
+          expected schema, while webhook requests from different imgs could look
+          completely different from one another.
         </p>
         <p>
           To solve this, we added a second endpoint for reaching our ingress
@@ -1851,11 +1832,12 @@
           event is queued. The body of the webhook request is made accessible
           via a “webhook” property in the enqueued payload.
         </p>
-        <figure>
+        <figure class="small-visual">
           <img
             src="./assets/diagrams/routes.png"
             alt="Reverb's API Gateway routes"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           Essentially, this endpoint acts as a passthrough which allows devs to
@@ -1892,7 +1874,7 @@
           this process, a developer would have to build a new Docker image of
           their functions server, push it to a Docker image repository, and
           redeploy the functions to ECS. Not only is this a lot of work, but
-          it’s a very manual process that could become a large source of user
+          it’s a very manual process that could become a large img of user
           errors.
         </p>
         <p>
@@ -1913,11 +1895,12 @@
           be pulled by AWS ECS. Finally, it triggers a Lambda to redeploy the
           functions container using that new image.
         </p>
-        <figure class="full-visual">
+        <figure class="small-visual">
           <img
             src="./assets/diagrams/github_actions.png"
             alt="Functions deployed to Reverb via Github Actions and Docker Hub"
           />
+          <figcaption></figcaption>
         </figure>
         <h4>Create Reverb Template</h4>
         <p>
@@ -1952,6 +1935,7 @@
             src="./assets/diagrams/overall_architecture.png"
             alt="Reverb's architecture"
           />
+          <figcaption></figcaption>
         </figure>
 
         <h2 id="section-8-0">
@@ -1980,7 +1964,7 @@
           At the center of any multi-step workflow engine is a state management
           pattern known as a <strong>state machine.</strong>
         </p>
-        <figure>
+        <figure class="small-visual">
           <img src="./assets/diagrams/state_machine.png" alt="State Machine" />
           <figcaption>
             State machines can only have one internal state at a time.
@@ -2083,12 +2067,7 @@
           kind of step had run and what it returned.
         </p>
         <figure class="inset">
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/intentional_errors.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/intentional_errors.gif" />
         </figure>
         <p>
           Finally, the worker would re-enqueue a call to the same workflow, but
@@ -2119,12 +2098,8 @@
           functions server scaled up.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/functions_redeploy_and_scaling.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/functions_redeploy_and_scaling.gif" />
+
           <figcaption>
             Reverb has to know the difference between user-deployed containers
             and those auto-scaled by Fargate.
@@ -2154,7 +2129,7 @@
           previously calculated hash. If the hashes don’t match, that
           necessarily means the inputs were different.
         </p>
-        <figure class="z-10">
+        <figure class="z-10 small-visual">
           <img src="./assets/diagrams/hashing_1.png" alt="Hashing Functions" />
           <figcaption>
             Reverb uses hashing to check whether the user has changed their
@@ -2171,9 +2146,8 @@
           would update the events, functions, and hash tables.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source src="./assets/diagrams/hashing_2.webm" type="video/webm" />
-          </video>
+          <img src="./assets/diagrams/hashing_2.gif" />
+
           <figcaption>
             The database data is updated when the hashes don’t match.
           </figcaption>
@@ -2244,12 +2218,8 @@
           on, Reverb would never execute any cron workflows.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/empty_crontab.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/empty_crontab.gif" />
+
           <figcaption>
             The crontab could be configured incorrectly if Graphile Worker does
             this before the database is populated
@@ -2262,12 +2232,8 @@
           correct crontab.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/crontab_polling.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/crontab_polling.gif" />
+
           <figcaption>
             The Worker Service polls the database for data before configuring
             the crontab
@@ -2299,12 +2265,9 @@
           their entire task before shutting down.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/update_crontab.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/update_crontab.gif" />
+
+          <figcaption></figcaption>
         </figure>
         <p>
           Finally, the new runner configures its crontab with fresh data from
@@ -2347,12 +2310,8 @@
           runners will have updated their crontabs.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/eventual_consistency.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/eventual_consistency.gif" />
+
           <figcaption>
             The runners' cron-tabs will reach eventual consistency
           </figcaption>

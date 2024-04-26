@@ -152,7 +152,6 @@ const handleHeaderTextSpacing = () => {
   if (vw >= 1280) {
     headerText.style.left = `calc(${logo.offsetWidth}px + 10%)`;
     headerText.style.top = `calc(${
-      window.scrollY +
       logo.getBoundingClientRect().top +
       logo.offsetHeight / 2 -
       headerText.offsetHeight / 2
