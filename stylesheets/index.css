@@ -1231,6 +1231,10 @@ article strong {
   line-height: 1;
 }
 
+.text-\[2rem\] {
+  font-size: 2rem;
+}
+
 .text-gray-300 {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
