@@ -1270,6 +1270,26 @@ article strong {
   padding-bottom: 4%;
 }
 
+.px-\[20px\] {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.px-\[28px\] {
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.px-\[25px\] {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.px-\[22px\] {
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
 .pb-16 {
   padding-bottom: 4rem;
 }
@@ -1312,6 +1332,38 @@ article strong {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-\[2rem\] {
+  font-size: 2rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.text-8xl {
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.text-\[160px\] {
+  font-size: 160px;
+}
+
+.text-\[100px\] {
+  font-size: 100px;
 }
 
 .text-gray-300 {
@@ -1735,6 +1787,18 @@ article ol {
   .sm\:text-\[2rem\] {
     font-size: 2rem;
   }
+
+  .sm\:text-\[3rem\] {
+    font-size: 3rem;
+  }
+
+  .sm\:text-\[2\.5rem\] {
+    font-size: 2.5rem;
+  }
+
+  .sm\:text-\[1\.5rem\] {
+    font-size: 1.5rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1745,6 +1809,10 @@ article ol {
 
   .md\:mb-16 {
     margin-bottom: 4rem;
+  }
+
+  .md\:mb-\[2\%\] {
+    margin-bottom: 2%;
   }
 
   .md\:block {
@@ -1777,6 +1845,20 @@ article ol {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
+
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+
+  .md\:text-\[160px\] {
+    font-size: 160px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1790,6 +1872,10 @@ article ol {
 
   .lg\:ml-\[calc\(25\%\+200px\)\] {
     margin-left: calc(25% + 200px);
+  }
+
+  .lg\:mb-0 {
+    margin-bottom: 0px;
   }
 
   .lg\:flex {
@@ -1837,6 +1923,25 @@ article ol {
   .lg\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .lg\:text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+
+  .lg\:text-\[140px\] {
+    font-size: 140px;
+  }
+
+  .lg\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }
 
