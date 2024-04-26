@@ -7,7 +7,7 @@
   h3,
   h4,
   h5 {
-    @apply text-offWhite;
+    @apply text-turquoise-300;
     @apply font-varela;
     @apply z-10;
     @apply relative;
@@ -461,4 +461,8 @@ article ol {
     ),
     radial-gradient(ellipse at bottom, rgba(17, 24, 39, 1), transparent);
   transform-style: preserve-3d;
+}
+
+h2 strong {
+  color: #7effe2;
 }
