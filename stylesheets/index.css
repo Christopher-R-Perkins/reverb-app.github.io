@@ -1267,6 +1267,14 @@ article strong {
   line-height: 1.75rem;
 }
 
+.text-\[0\.8rem\] {
+  font-size: 0.8rem;
+}
+
+.text-\[0\.4rem\] {
+  font-size: 0.4rem;
+}
+
 .text-gray-300 {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
@@ -1743,6 +1751,14 @@ h2 strong {
 
   .lg\:ml-\[calc\(25\%\+200px\)\] {
     margin-left: calc(25% + 200px);
+  }
+
+  .lg\:mt-\[-30px\] {
+    margin-top: -30px;
+  }
+
+  .lg\:mt-\[-50px\] {
+    margin-top: -50px;
   }
 
   .lg\:flex {
