@@ -113,6 +113,10 @@
   .left-visual img {
     @apply 2xl:left-[-185px] xl:w-full xl:absolute xl:left-[-10vw] xl:aspect-auto;
   }
+
+  .figure {
+    @apply sm:max-md:w-full;
+  }
 }
 
 html {
