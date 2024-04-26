@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Reverb</title>
+    <link rel="icon" type="image/png" href="/assets/Logo.png" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, minimum-scale=1"
@@ -390,7 +391,10 @@
                   Third-Party Workflows
                 </div>
               </div>
-              <div id="code-block" class="inset bg-bgGray text-[0.8rem]">
+              <div
+                id="code-block"
+                class="inset bg-bgGray text-[0.8rem] h-[425px] overflow-auto"
+              >
                 <pre id="use-1" class="show"><code class="language-typescript">
   const handleSignUp = reverb.createFunction({
     id: 'handle-sign-up',
@@ -460,57 +464,57 @@
             </code></pre>
                 <pre id="use-4"><code class="language-typescript">
   const processSquareWebhook = reverb.createFunction({
-  id: 'process-square-webhook',
-  event: 'reverb-received-webhook',
-  fn: async (event, step) => {
-    if (event.payload) {
-      const payload: { [key: string]: any } = event.payload
-      console.log('Square webhook: ' + payload.webhook.body.type);
-      const squareEvent: string = payload.webhook.body.type
-      const emitSquareEvent: string = 'emit-' + squareEvent
-      await step.emitEvent(emitSquareEvent, squareEvent, payload);
-    }
-    return;
-  },
+    id: 'process-square-webhook',
+    event: 'reverb-received-webhook',
+    fn: async (event, step) => {
+      if (event.payload) {
+        const payload: { [key: string]: any } = event.payload
+        console.log('Square webhook: ' + payload.webhook.body.type);
+        const squareEvent: string = payload.webhook.body.type
+        const emitSquareEvent: string = 'emit-' + squareEvent
+        await step.emitEvent(emitSquareEvent, squareEvent, payload);
+      }
+      return;
+    },
   });
 
   const processSquareInvoicePaid = reverb.createFunction({
-  id: 'process-square-invoice-paid',
-  event: 'invoice.payment_made',
-  fn: async (event, step) => {
-    const invoice = event.payload
-    if (invoice) {
+    id: 'process-square-invoice-paid',
+    event: 'invoice.payment_made',
+    fn: async (event, step) => {
+      const invoice = event.payload
+      if (invoice) {
 
-      await step.run('update_invoice_status', async () => {
-        await db.updateInvoiceStatus(invoice);
-      });
+        await step.run('update_invoice_status', async () => {
+          await db.updateInvoiceStatus(invoice);
+        });
 
-      await step.run('send_client_receipt', async () => {
-        await mail.sendClientReceipt(invoice);
-      });
+        await step.run('send_client_receipt', async () => {
+          await mail.sendClientReceipt(invoice);
+        });
 
-      await step.run('start-shipping-procedure', async () => {
-        await logistics.startShippingProcedure(invoice);
-      });
+        await step.run('start-shipping-procedure', async () => {
+          await logistics.startShippingProcedure(invoice);
+        });
 
-      console.log(`Invoice ${invoice.data.id} paid successfully`);
-    }
-  },
+        console.log(`Invoice ${invoice.data.id} paid successfully`);
+      }
+    },
   });
 
   const processSquareInvoiceSubmitted = reverb.createFunction({
-  id: 'process-square-invoice-submitted',
-  event: 'invoice.submitted',
-  fn: async (event, step) => {
-    const invoice = event.payload;
-    if (invoice) {
-      await step.run('update-invoice-status', async () => {
-        await db.updateInvoiceStatus(invoice);
-      });
+    id: 'process-square-invoice-submitted',
+    event: 'invoice.submitted',
+    fn: async (event, step) => {
+      const invoice = event.payload;
+      if (invoice) {
+        await step.run('update-invoice-status', async () => {
+          await db.updateInvoiceStatus(invoice);
+        });
 
-      console.log(`Invoice ${invoice.data.id} submitted successfully`);
-    }
-  },
+        console.log(`Invoice ${invoice.data.id} submitted successfully`);
+      }
+    },
   });
                         </code></pre>
               </div>
@@ -2451,7 +2455,7 @@
                 ></a>
               </li>
               <li>
-                <a href="morgansummerdavis.com" target="_blank"
+                <a href="https://www.morgansummerdavis.com" target="_blank"
                   ><i class="fas fa-globe"></i
                 ></a>
               </li>
