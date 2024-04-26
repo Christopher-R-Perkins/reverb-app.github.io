@@ -602,72 +602,63 @@
           <strong>Asynchronous Workflows</strong>
         </h2>
         <h3 id="section-2-1">The Request-Response Cycle</h3>
-        <div class="xl:w-[50%] 2xl:w-[60%] relative">
-          <p>
-            The <strong>request-response cycle</strong> is the basis for all web
-            interactions. The client sends a request to retrieve data or perform
-            an action, and the server processes this request and returns a
-            response.
-          </p>
-          <figure
-            class="right-visual xl:absolute xl:left-[75%] 2xl:left-[65%] xl:top-[-100px] xl:mt-[-50px]"
-          >
-            <video loop autoplay muted>
-              <source src="./assets/diagrams/req_res.webm" type="video/webm" />
-            </video>
-            <figcaption>Request-Response Cycle</figcaption>
-          </figure>
-          <p>
-            Any tasks the server completes between receiving a request and
-            sending a response are said to be handled
-            <strong>synchronously</strong>. For quick tasks that don’t require
-            many resources, like simple database queries or calculations,
-            synchronous execution makes sense since the user would barely notice
-            any delay in the response.
-          </p>
-          <h3 id="section-2-2">Offloading Asynchronous Jobs</h3>
-          <p>
-            On the other hand, many tasks would be problematic to handle
-            synchronously. For instance, consider a user signing up for a
-            subscription service. Their initial sign-up should be synchronous
-            because it must be confirmed before they can continue using the
-            site. However, generating and sending a welcome email could take a
-            few extra minutes. Executing this operation synchronously would be
-            terrible for the user experience. There’s no reason to make them sit
-            and wait on a long task that doesn’t need to run immediately.
-          </p>
-          <figure
-            class="right-visual xl:absolute xl:left-[75%] 2xl:left-[65%] xl:top-[150px]"
-          >
-            <video loop autoplay muted>
-              <source src="./assets/diagrams/long_job.webm" type="video/webm" />
-            </video>
-          </figure>
-          <p>
-            Furthermore, having the API handle long or intensive operations
-            would consume significant resources, leaving fewer available for
-            responding to other requests. This could lead to longer response
-            times and temporarily deadlock the server under high-traffic
-            conditions.
-          </p>
-          <figure
-            class="right-visual xl:absolute xl:left-[75%] 2xl:left-[65%] xl:top-[475px]"
-          >
-            <video loop autoplay muted>
-              <source
-                src="./assets/diagrams/overloading_req_res.webm"
-                type="video/webm"
-              />
-            </video>
-          </figure>
-          <p>
-            To solve these problems, time or resource-intensive jobs can be
-            completed <strong>asynchronously</strong>, or outside of the primary
-            request-response cycle. The client-facing API server can offload
-            jobs to another service, freeing up the API to immediately send back
-            responses and become available to new requests.
-          </p>
-        </div>
+        <p>
+          The <strong>request-response cycle</strong> is the basis for all web
+          interactions. The client sends a request to retrieve data or perform
+          an action, and the server processes this request and returns a
+          response.
+        </p>
+        <figure>
+          <video loop autoplay muted>
+            <source src="./assets/diagrams/req_res.webm" type="video/webm" />
+          </video>
+          <figcaption>Request-Response Cycle</figcaption>
+        </figure>
+        <p>
+          Any tasks the server completes between receiving a request and sending
+          a response are said to be handled
+          <strong>synchronously</strong>. For quick tasks that don’t require
+          many resources, like simple database queries or calculations,
+          synchronous execution makes sense since the user would barely notice
+          any delay in the response.
+        </p>
+        <h3 id="section-2-2">Offloading Asynchronous Jobs</h3>
+        <p>
+          On the other hand, many tasks would be problematic to handle
+          synchronously. For instance, consider a user signing up for a
+          subscription service. Their initial sign-up should be synchronous
+          because it must be confirmed before they can continue using the site.
+          However, generating and sending a welcome email could take a few extra
+          minutes. Executing this operation synchronously would be terrible for
+          the user experience. There’s no reason to make them sit and wait on a
+          long task that doesn’t need to run immediately.
+        </p>
+        <figure>
+          <video loop autoplay muted>
+            <source src="./assets/diagrams/long_job.webm" type="video/webm" />
+          </video>
+        </figure>
+        <p>
+          Furthermore, having the API handle long or intensive operations would
+          consume significant resources, leaving fewer available for responding
+          to other requests. This could lead to longer response times and
+          temporarily deadlock the server under high-traffic conditions.
+        </p>
+        <figure>
+          <video loop autoplay muted>
+            <source
+              src="./assets/diagrams/overloading_req_res.webm"
+              type="video/webm"
+            />
+          </video>
+        </figure>
+        <p>
+          To solve these problems, time or resource-intensive jobs can be
+          completed <strong>asynchronously</strong>, or outside of the primary
+          request-response cycle. The client-facing API server can offload jobs
+          to another service, freeing up the API to immediately send back
+          responses and become available to new requests.
+        </p>
         <figure>
           <img
             src="./assets/diagrams/background_jobs_service.png"
@@ -698,77 +689,66 @@
             Each microservice performs a specific business task.
           </figcaption>
         </figure>
-        <div class="xl:w-full xl:h-[300px] 2xl:h-[200px]">
-          <div class="xl:w-[50%] 2xl:w-[60%] xl:relative xl:float-right">
-            <p>
-              For our purposes thus far, we might separate out an API Service
-              and a Background Jobs Service. While this is great for offloading
-              asynchronous jobs and keeping the API responsive, it introduces
-              fragility into the system:
-            </p>
-            <ul>
-              <li>
-                Different parts of the application now communicate over the
-                network rather than through memory. Even a momentary network
-                failure can result in jobs being lost while in transit.
-                <figure
-                  class="left-visual xl:absolute xl:right-[80%] xl:top-[-80%] 2xl:left-[-80%] 2xl:top-[-200%]"
-                >
-                  <video loop autoplay muted>
-                    <source
-                      src="./assets/diagrams/network_failure.webm"
-                      type="video/webm"
-                    />
-                  </video>
-                  <figcaption>
-                    Network failures lead to dropped jobs.
-                  </figcaption>
-                </figure>
-              </li>
-              <li>
-                If the background service crashes, it won&#39;t receive any jobs
-                sent during that period.
-              </li>
-              <li>
-                If the service can’t handle the volume of throughput it’s
-                receiving, jobs will be dropped.
-              </li>
-              <li>
-                If the service throws an error while executing a job, that job
-                will be discarded.
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="xl:mt-[200px]">
-          <h3 id="section-2-3">Adding a Message Queue</h3>
-          <p>
-            Problems that arise when communicating in a distributed system are
-            commonly solved by positioning a
-            <strong>message queue</strong> between services. Messages are the
-            data–in our case, background job invocations–transported between a
-            producer service and a consumer service. The producer adds jobs to
-            the queue, and the consumer dequeues and executes them.
-          </p>
-          <figure>
-            <img
-              src="./assets/diagrams/message_queue.png"
-              alt="Message queue added"
-              class="ml-[-2.5%]"
-            />
-            <figcaption>
-              Message queues add reliability to distributed systems.
-            </figcaption>
-          </figure>
-          <p>
-            If the network fails or the consumer crashes, the queue will persist
-            the job until the consumer is reachable and ready to process it.
-            Additionally, the queue can act as a rate limiter by letting the
-            consumer wait to process additional jobs until it has the resources
-            to do so. But using queues as a solution also introduces new
-            problems:
-          </p>
-        </div>
+        <p>
+          For our purposes thus far, we might separate out an API Service and a
+          Background Jobs Service. While this is great for offloading
+          asynchronous jobs and keeping the API responsive, it introduces
+          fragility into the system:
+        </p>
+        <ul>
+          <li>
+            Different parts of the application now communicate over the network
+            rather than through memory. Even a momentary network failure can
+            result in jobs being lost while in transit.
+            <figure>
+              <video loop autoplay muted>
+                <source
+                  src="./assets/diagrams/network_failure.webm"
+                  type="video/webm"
+                />
+              </video>
+              <figcaption>Network failures lead to dropped jobs.</figcaption>
+            </figure>
+          </li>
+          <li>
+            If the background service crashes, it won&#39;t receive any jobs
+            sent during that period.
+          </li>
+          <li>
+            If the service can’t handle the volume of throughput it’s receiving,
+            jobs will be dropped.
+          </li>
+          <li>
+            If the service throws an error while executing a job, that job will
+            be discarded.
+          </li>
+        </ul>
+        <h3 id="section-2-3">Adding a Message Queue</h3>
+        <p>
+          Problems that arise when communicating in a distributed system are
+          commonly solved by positioning a
+          <strong>message queue</strong> between services. Messages are the
+          data–in our case, background job invocations–transported between a
+          producer service and a consumer service. The producer adds jobs to the
+          queue, and the consumer dequeues and executes them.
+        </p>
+        <figure>
+          <img
+            src="./assets/diagrams/message_queue.png"
+            alt="Message queue added"
+            class="ml-[-2.5%]"
+          />
+          <figcaption>
+            Message queues add reliability to distributed systems.
+          </figcaption>
+        </figure>
+        <p>
+          If the network fails or the consumer crashes, the queue will persist
+          the job until the consumer is reachable and ready to process it.
+          Additionally, the queue can act as a rate limiter by letting the
+          consumer wait to process additional jobs until it has the resources to
+          do so. But using queues as a solution also introduces new problems:
+        </p>
         <ul>
           <li>
             <strong>Adding Infrastructure:</strong> Different queues are built
@@ -785,13 +765,8 @@
             re-enqueued to try again. However, developers are still responsible
             for configuring timeouts between retries and maximum retry limits to
             keep their queue from clogging up.
-            <figure class="right-visual xl:relative xl:ml-[-4vw] xl:mb-[-15px]">
-              <video
-                loop
-                autoplay
-                muted
-                class="xl:mt-[-20px] xl:absolute xl:top-[-10px]"
-              >
+            <figure>
+              <video loop autoplay muted>
                 <source
                   src="./assets/diagrams/retries.webm"
                   type="video/webm"
@@ -892,13 +867,10 @@
           notification and change the delivery’s status in your database.
         </p>
 
-        <figure
-          class="2xl:min-h-[590px] 2xl:w-[700px] 2xl:relative 2xl:float-left 2xl:mr-[-11vw]"
-        >
+        <figure>
           <img
             src="./assets/diagrams/basic_workflow.png"
             alt="A basic workflow"
-            class="2xl:left-[-185px] 2xl:w-full 2xl:absolute 2xl:aspect-auto"
           />
         </figure>
         <p>
@@ -927,42 +899,35 @@
             executing with serverless becomes a viable option.
           </li>
         </ul>
-        <div class="xl:w-[50%] 2xl:w-[60%] relative xl:min-h-[328px]">
-          <figure>
-            <video
-              loop
-              autoplay
-              muted
-              class="right-visual xl:absolute xl:left-[100%] 2xl:left-[90%]"
-            >
-              <source
-                src="./assets/diagrams/steps_with_lambda.webm"
-                type="video/webm"
-              />
-            </video>
-            <figcaption>
-              Workflows can break long jobs into short steps that can run on
-              serverless infrastructure.
-            </figcaption>
-          </figure>
-          <ul>
-            <li>
-              Workflows greatly increase retry efficiency because failing in the
-              middle of a workflow no longer means you have to retry the entire
-              job—just the latest step.
-            </li>
-            <li>
-              Event tracing becomes more specific and helpful for debugging
-              because you can identify failures at specific substeps.
-            </li>
-            <li>
-              A single event can trigger multiple <em>sequences</em> of jobs
-              instead of individual ones. A service expends negligible resources
-              to enqueue an event, yet this simple action can set off a complex
-              network of processes.
-            </li>
-          </ul>
-        </div>
+        <figure>
+          <video loop autoplay muted>
+            <source
+              src="./assets/diagrams/steps_with_lambda.webm"
+              type="video/webm"
+            />
+          </video>
+          <figcaption>
+            Workflows can break long jobs into short steps that can run on
+            serverless infrastructure.
+          </figcaption>
+        </figure>
+        <ul>
+          <li>
+            Workflows greatly increase retry efficiency because failing in the
+            middle of a workflow no longer means you have to retry the entire
+            job—just the latest step.
+          </li>
+          <li>
+            Event tracing becomes more specific and helpful for debugging
+            because you can identify failures at specific substeps.
+          </li>
+          <li>
+            A single event can trigger multiple <em>sequences</em> of jobs
+            instead of individual ones. A service expends negligible resources
+            to enqueue an event, yet this simple action can set off a complex
+            network of processes.
+          </li>
+        </ul>
         <figure class="full-visual">
           <img
             src="./assets/diagrams/complex_workflow.png"
@@ -1358,10 +1323,8 @@
           Graphile Worker prevents jobs from being dequeued by more than one
           worker through the Postgres SKIP LOCKED command.
         </p>
-        <figure
-          class="left-visual xl:relative xl:float-left xl:mr-[-20%] xl:h-[420px]"
-        >
-          <video loop autoplay muted class="xl:absolute xl:top-[12%]">
+        <figure>
+          <video loop autoplay muted>
             <source
               src="./assets/diagrams/process_job_lock.webm"
               type="video/webm"
@@ -1414,7 +1377,7 @@
           The first task is called “process-event.” Its workers take in events
           and map them to the workflows they should trigger.
         </p>
-        <figure class="right-visual xl:relative xl:ml-[-8%] 2xl:ml-[-15%]">
+        <figure>
           <img
             src="./assets/diagrams/dequeue_event.png"
             alt="process-event can fan out to mutliple process-jobs"
@@ -1470,74 +1433,58 @@
             The AWS infrastructure underlying Reverb’s first two nodes.
           </figcaption>
         </figure>
-        <div class="xl:w-full xl:h-[900px] 2xl:h-[800px]">
-          <div class="xl:w-[50%] 2xl:w-[60%] xl:relative xl:float-right">
-            <h4>Lambdas vs. Database Connection Pooling</h4>
-            <p>
-              While Lambda and Postgres were each great solutions for their
-              respective nodes, having the Lambdas directly enqueue events in
-              Postgres posed a problem.
-            </p>
-            <p>
-              Opening database connections is expensive. Each new connection
-              introduces overhead and latency through network handshakes, client
-              authentication, and session management. If we’d stuck with an
-              always-on ingress server, we could have maintained a long-running
-              connection pool to store and reuse open connections. In other
-              words, we wouldn’t have had to perform expensive operations every
-              time we wanted to enqueue an event.
-            </p>
-            <p>
-              However, we instead opted for Lambdas and their short lifespans,
-              which cannot maintain database connections between invocations.
-              Thankfully AWS offers a solution to this problem called a database
-              proxy.
-            </p>
-            <figure
-              class="left-visual xl:absolute xl:top-[10%] 2xl:top-[0px] 2xl:left-[-19vw] xl:left-[-24vw] xl:min-w-[400px]"
-            >
-              <video loop autoplay muted>
-                <source
-                  src="./assets/diagrams/no_proxy.webm"
-                  type="video/webm"
-                />
-              </video>
-              <figcaption>
-                Lambdas open a new database connection every time they spin up.
-              </figcaption>
-            </figure>
-            <h4>Adding a Database Proxy</h4>
-            <p>
-              A database proxy is an intermediary layer that manages traffic
-              between clients (such as our ingress Lambdas) and a database
-              server. It can provide various functionalities like query caching
-              and security, but most importantly for Reverb, it can maintain a
-              connection pool.
-            </p>
-            <p>
-              We introduced an AWS RDS Proxy between the Lambdas and the
-              Postgres queue. Rather than constantly creating new connections to
-              the RDS, the Lambdas communicate with the proxy through a pool of
-              connections it maintains. Ultimately, we decided the efficiency
-              benefits of using Lambdas were worth the tradeoff of adding
-              another piece of infrastructure.
-            </p>
-            <figure
-              class="left-visual xl:absolute xl:bottom-[10%] 2xl:top-[400px] 2xl:left-[-19vw] xl:left-[-24vw] xl:min-w-[400px]"
-            >
-              <video loop autoplay muted>
-                <source
-                  src="./assets/diagrams/rds_proxy.webm"
-                  type="video/webm"
-                />
-              </video>
-              <figcaption>
-                Lambdas connect to the database through a connection pool on an
-                RDS Proxy.
-              </figcaption>
-            </figure>
-          </div>
-        </div>
+        <h4>Lambdas vs. Database Connection Pooling</h4>
+        <p>
+          While Lambda and Postgres were each great solutions for their
+          respective nodes, having the Lambdas directly enqueue events in
+          Postgres posed a problem.
+        </p>
+        <p>
+          Opening database connections is expensive. Each new connection
+          introduces overhead and latency through network handshakes, client
+          authentication, and session management. If we’d stuck with an
+          always-on ingress server, we could have maintained a long-running
+          connection pool to store and reuse open connections. In other words,
+          we wouldn’t have had to perform expensive operations every time we
+          wanted to enqueue an event.
+        </p>
+        <p>
+          However, we instead opted for Lambdas and their short lifespans, which
+          cannot maintain database connections between invocations. Thankfully
+          AWS offers a solution to this problem called a database proxy.
+        </p>
+        <figure>
+          <video loop autoplay muted>
+            <source src="./assets/diagrams/no_proxy.webm" type="video/webm" />
+          </video>
+          <figcaption>
+            Lambdas open a new database connection every time they spin up.
+          </figcaption>
+        </figure>
+        <h4>Adding a Database Proxy</h4>
+        <p>
+          A database proxy is an intermediary layer that manages traffic between
+          clients (such as our ingress Lambdas) and a database server. It can
+          provide various functionalities like query caching and security, but
+          most importantly for Reverb, it can maintain a connection pool.
+        </p>
+        <p>
+          We introduced an AWS RDS Proxy between the Lambdas and the Postgres
+          queue. Rather than constantly creating new connections to the RDS, the
+          Lambdas communicate with the proxy through a pool of connections it
+          maintains. Ultimately, we decided the efficiency benefits of using
+          Lambdas were worth the tradeoff of adding another piece of
+          infrastructure.
+        </p>
+        <figure>
+          <video loop autoplay muted>
+            <source src="./assets/diagrams/rds_proxy.webm" type="video/webm" />
+          </video>
+          <figcaption>
+            Lambdas connect to the database through a connection pool on an RDS
+            Proxy.
+          </figcaption>
+        </figure>
         <h3 id="section-5-4">Defining &amp; Executing Workflows</h3>
         <h4>Defining Workflows as Step Functions</h4>
         <p>
@@ -1588,38 +1535,31 @@
           of the above steps can be set to execute only when conditions
           specified by the developer are satisfied.
         </p>
-        <div class="xl:w-full xl:h-[450px]">
-          <div class="xl:w-[50%] 2xl:w-[60%] xl:relative xl:float-right">
-            <h4>Registering &amp; Serving Functions</h4>
-            <p>
-              A workflow engine also needs to provide a way for the user to
-              expose their function definitions to the engine. You can think of
-              this as registering functions with Reverb so it knows how to
-              trigger and execute them. So, in addition to “createFunction,” the
-              Reverb NPM package exposes a “serve” method that performs two
-              essential actions.
-            </p>
-            <p>
-              First, it registers metadata representing functions and events on
-              the same Postgres RDS instance that hosts our queue. The
-              “process-event” workers will use this data to map events to the
-              functions they trigger.
-            </p>
-            <p>
-              Second, the “serve” method spins up a server endpoint where
-              workers can send RPCs to invoke the step functions.
-            </p>
-            <figure
-              class="left-visual xl:absolute xl:top-[17.5%] 2xl:top-[0px] xl:left-[-325px] xl:min-w-[425px] 2xl:max-w-[500px] xl:max-w-[450px]"
-            >
-              <video loop autoplay muted>
-                <source src="./assets/diagrams/serve.webm" type="video/webm" />
-              </video>
-            </figure>
-          </div>
-        </div>
+        <h4>Registering &amp; Serving Functions</h4>
+        <p>
+          A workflow engine also needs to provide a way for the user to expose
+          their function definitions to the engine. You can think of this as
+          registering functions with Reverb so it knows how to trigger and
+          execute them. So, in addition to “createFunction,” the Reverb NPM
+          package exposes a “serve” method that performs two essential actions.
+        </p>
+        <p>
+          First, it registers metadata representing functions and events on the
+          same Postgres RDS instance that hosts our queue. The “process-event”
+          workers will use this data to map events to the functions they
+          trigger.
+        </p>
+        <p>
+          Second, the “serve” method spins up a server endpoint where workers
+          can send RPCs to invoke the step functions.
+        </p>
+        <figure>
+          <video loop autoplay muted>
+            <source src="./assets/diagrams/serve.webm" type="video/webm" />
+          </video>
+        </figure>
         <h4>Where Does the Functions Node Live?</h4>
-        <figure class="right-visual xl:relative xl:ml-[-8%] xl:min-w-[425px]">
+        <figure>
           <img
             src="./assets/diagrams/functions_location.png"
             alt="Diagram showing the difference between where the functions live"
@@ -1733,7 +1673,7 @@
           invocation, and workflow step passes through the workers at some
           point. So, they were a logical place from which to do our logging.
         </p>
-        <figure class="right-visual xl:relative xl:ml-[-10%] 2xl:ml-[-15%]">
+        <figure>
           <video loop autoplay muted>
             <source src="./assets/diagrams/mongodb.webm" type="video/webm" />
           </video>
@@ -1783,7 +1723,7 @@
           key. Upon deployment, this key is auto-generated for the user and
           ensures they’re the only ones who can send events or access logs.
         </p>
-        <figure class="right-visual xl:relative xl:ml-[-10%]">
+        <figure>
           <img src="./assets/diagrams/logs_lambdas.png" alt="Logs Lambda" />
         </figure>
         <p>
@@ -2036,33 +1976,23 @@
             starting at that step?
           </li>
         </ul>
-        <div class="xl:w-full xl:h-[350px] 2xl:h-[300px]">
-          <div class="xl:w-[50%] 2xl:w-[60%] xl:relative xl:float-right">
-            <h4>State Machine Pattern</h4>
-            <p>
-              At the center of any multi-step workflow engine is a state
-              management pattern known as a <strong>state machine.</strong>
-            </p>
-            <figure
-              class="left-visual xl:absolute xl:top-[-10%] 2xl:top-[-20%] xl:left-[-90%] xl:min-w-[440px] 2xl:left-[-70%]"
-            >
-              <img
-                src="./assets/diagrams/state_machine.png"
-                alt="State Machine"
-              />
-              <figcaption>
-                State machines can only have one internal state at a time.
-              </figcaption>
-            </figure>
-            <p>
-              A state machine is a model of computation that represents complex
-              processes as a series of distinct states. The machine can only
-              exist in one state at any given time, meaning the machine has to
-              transition from one state to another in order to perform
-              sequential actions.
-            </p>
-          </div>
-        </div>
+        <h4>State Machine Pattern</h4>
+        <p>
+          At the center of any multi-step workflow engine is a state management
+          pattern known as a <strong>state machine.</strong>
+        </p>
+        <figure>
+          <img src="./assets/diagrams/state_machine.png" alt="State Machine" />
+          <figcaption>
+            State machines can only have one internal state at a time.
+          </figcaption>
+        </figure>
+        <p>
+          A state machine is a model of computation that represents complex
+          processes as a series of distinct states. The machine can only exist
+          in one state at any given time, meaning the machine has to transition
+          from one state to another in order to perform sequential actions.
+        </p>
         <p>
           Clearly, this pattern maps well to the concept of a Reverb workflow:
         </p>
@@ -2189,7 +2119,7 @@
           our Graphile workers from querying the database every time the
           functions server scaled up.
         </p>
-        <figure class="right-visual xl:relative xl:ml-[-8%] 2xl:ml-[-15%]">
+        <figure>
           <video loop autoplay muted>
             <source
               src="./assets/diagrams/functions_redeploy_and_scaling.webm"
@@ -2232,30 +2162,23 @@
             functions codebase.
           </figcaption>
         </figure>
-        <div class="xl:w-[50%] relative xl:h-[300px]">
-          <p>
-            We realized we could use a hashing library to efficiently compare
-            the functions data in our database with that on the new functions
-            server. To do so, we created a new, single-row table in the database
-            that stored a hash string. Every time a new server spun up, it would
-            stringify its data, hash it, and compare the hash with what was
-            already in the database. If and only if the hashes didn’t match, it
-            would update the events, functions, and hash tables.
-          </p>
-          <figure
-            class="right-visual xl:absolute xl:top-[-15%] 2xl:left-[70%] xl:left-[80%]"
-          >
-            <video loop autoplay muted>
-              <source
-                src="./assets/diagrams/hashing_2.webm"
-                type="video/webm"
-              />
-            </video>
-            <figcaption>
-              The database data is updated when the hashes don’t match.
-            </figcaption>
-          </figure>
-        </div>
+        <p>
+          We realized we could use a hashing library to efficiently compare the
+          functions data in our database with that on the new functions server.
+          To do so, we created a new, single-row table in the database that
+          stored a hash string. Every time a new server spun up, it would
+          stringify its data, hash it, and compare the hash with what was
+          already in the database. If and only if the hashes didn’t match, it
+          would update the events, functions, and hash tables.
+        </p>
+        <figure>
+          <video loop autoplay muted>
+            <source src="./assets/diagrams/hashing_2.webm" type="video/webm" />
+          </video>
+          <figcaption>
+            The database data is updated when the hashes don’t match.
+          </figcaption>
+        </figure>
         <h5>Updating Long-Running Functions</h5>
         <p>
           One of the problems with updating Reverb’s functions on the fly is
@@ -2306,101 +2229,88 @@
           cron jobs it’s supposed to run by reading from a crontab. A crontab is
           essentially a schedule of tasks to be executed at specified times.
         </p>
-        <div class="xl:w-full xl:h-[675px]">
-          <div class="xl:w-[50%] 2xl:w-[60%] xl:relative xl:float-right">
-            <p>
-              The catch is that Graphile runners can only configure their
-              crontab when they first start up. This simple fact introduced a
-              number of issues into Reverb’s system.
-            </p>
-            <h5>Timing the startup of the runners</h5>
-            <p>
-              At first, we figured it would be easy enough to store data about
-              cron-triggered workflows in our database and have the runners
-              configure their crontab based on that data. However, if the
-              runners happened to start up before the functions server populated
-              the database, the runners wouldn’t see any data and would
-              configure an empty crontab. And because Graphile doesn’t let you
-              update this later on, Reverb would never execute any cron
-              workflows.
-            </p>
-            <figure
-              class="left-visual xl:absolute 2xl:top-[-7%] 2xl:left-[-70%] xl:top-[4%] xl:left-[-90%] xl:min-w-[420px]"
-            >
-              <video loop autoplay muted>
-                <source
-                  src="./assets/diagrams/empty_crontab.webm"
-                  type="video/webm"
-                />
-              </video>
-              <figcaption>
-                The crontab could be configured incorrectly if Graphile Worker
-                does this before the database is populated
-              </figcaption>
-            </figure>
-            <p>
-              Our initial solution was to have Graphile Worker poll, or
-              repeatedly query, the database to check for the presence of data.
-              Only after data appeared, Graphile Worker would spin up its
-              runners and configure the correct crontab.
-            </p>
-            <figure
-              class="left-visual xl:absolute 2xl:top-[55%] 2xl:left-[-70%] xl:top-[55%] xl:left-[-90%] xl:min-w-[420px]"
-            >
-              <video loop autoplay muted>
-                <source
-                  src="./assets/diagrams/crontab_polling.webm"
-                  type="video/webm"
-                />
-              </video>
-              <figcaption>
-                The Worker Service polls the database for data before
-                configuring the crontab
-              </figcaption>
-            </figure>
-            <p>
-              This worked for the initial deployment of the data. But what about
-              when the user updates and redeploys their functions? Our runners’
-              crontabs would already be configured, and Graphile wouldn’t let us
-              update them.
-            </p>
-          </div>
-        </div>
-        <div class="xl:w-[50%] 2xl:w-[60%] relative">
-          <h5>Solution: The update-cron Runner</h5>
-          <p>
-            At this point, we only had runners for processing events and jobs.
-            To solve the above conundrum, we added a new runner with workers
-            subscribed to “update-cron” queue messages.
-          </p>
-          <p>
-            The first time this runner spins up, it configures its crontab based
-            on data in the database. It also stores the database hash used in
-            the Updates to the Functions Codebase section.
-          </p>
-          <p>
-            On subsequent changes to the functions data, the functions server
-            enqueues an update-cron message containing the newest hash. An
-            update-cron worker checks whether this new hash matches the old one.
-            If not, it shuts down its own runner and starts an entirely new one.
-            This works because, by default, Graphile has its workers complete
-            their entire task before shutting down.
-          </p>
-          <figure
-            class="right-visual xl:absolute 2xl:top-[20%] xl:top-[35%] 2xl:left-[70%] xl:left-[80%]"
-          >
-            <video loop autoplay muted>
-              <source
-                src="./assets/diagrams/update_crontab.webm"
-                type="video/webm"
-              />
-            </video>
-          </figure>
-          <p>
-            Finally, the new runner configures its crontab with fresh data from
-            the database.
-          </p>
-        </div>
+        <p>
+          The catch is that Graphile runners can only configure their crontab
+          when they first start up. This simple fact introduced a number of
+          issues into Reverb’s system.
+        </p>
+        <h5>Timing the startup of the runners</h5>
+        <p>
+          At first, we figured it would be easy enough to store data about
+          cron-triggered workflows in our database and have the runners
+          configure their crontab based on that data. However, if the runners
+          happened to start up before the functions server populated the
+          database, the runners wouldn’t see any data and would configure an
+          empty crontab. And because Graphile doesn’t let you update this later
+          on, Reverb would never execute any cron workflows.
+        </p>
+        <figure>
+          <video loop autoplay muted>
+            <source
+              src="./assets/diagrams/empty_crontab.webm"
+              type="video/webm"
+            />
+          </video>
+          <figcaption>
+            The crontab could be configured incorrectly if Graphile Worker does
+            this before the database is populated
+          </figcaption>
+        </figure>
+        <p>
+          Our initial solution was to have Graphile Worker poll, or repeatedly
+          query, the database to check for the presence of data. Only after data
+          appeared, Graphile Worker would spin up its runners and configure the
+          correct crontab.
+        </p>
+        <figure>
+          <video loop autoplay muted>
+            <source
+              src="./assets/diagrams/crontab_polling.webm"
+              type="video/webm"
+            />
+          </video>
+          <figcaption>
+            The Worker Service polls the database for data before configuring
+            the crontab
+          </figcaption>
+        </figure>
+        <p>
+          This worked for the initial deployment of the data. But what about
+          when the user updates and redeploys their functions? Our runners’
+          crontabs would already be configured, and Graphile wouldn’t let us
+          update them.
+        </p>
+        <h5>Solution: The update-cron Runner</h5>
+        <p>
+          At this point, we only had runners for processing events and jobs. To
+          solve the above conundrum, we added a new runner with workers
+          subscribed to “update-cron” queue messages.
+        </p>
+        <p>
+          The first time this runner spins up, it configures its crontab based
+          on data in the database. It also stores the database hash used in the
+          Updates to the Functions Codebase section.
+        </p>
+        <p>
+          On subsequent changes to the functions data, the functions server
+          enqueues an update-cron message containing the newest hash. An
+          update-cron worker checks whether this new hash matches the old one.
+          If not, it shuts down its own runner and starts an entirely new one.
+          This works because, by default, Graphile has its workers complete
+          their entire task before shutting down.
+        </p>
+        <figure>
+          <video loop autoplay muted>
+            <source
+              src="./assets/diagrams/update_crontab.webm"
+              type="video/webm"
+            />
+          </video>
+        </figure>
+        <p>
+          Finally, the new runner configures its crontab with fresh data from
+          the database.
+        </p>
         <h5>Achieving Eventual Consistency</h5>
         <p>
           As with the functions containers, having AWS Fargate automatically

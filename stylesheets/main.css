@@ -7,10 +7,11 @@
   h3,
   h4,
   h5 {
-    @apply text-gray-300;
+    @apply text-offWhite;
     @apply font-varela;
     @apply z-10;
     @apply relative;
+    @apply font-bold;
   }
 
   .link {
@@ -224,6 +225,7 @@ article img,
 article video {
   max-width: 100%;
   margin: 0 auto;
+  pointer-events: none;
 }
 
 article figcaption {
