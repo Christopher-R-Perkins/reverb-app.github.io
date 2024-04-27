@@ -159,7 +159,7 @@ const handleHeaderTextSpacing = () => {
   } else {
     headerText.style.left = '';
     headerText.style.top = `calc(${
-      window.scrollY + logo.getBoundingClientRect().bottom
+      logo.getBoundingClientRect().bottom
     }px + 20px)`;
   }
 
