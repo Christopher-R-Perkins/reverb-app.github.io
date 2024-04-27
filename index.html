@@ -600,7 +600,7 @@
         <h2 id="section-2-0">
           <strong>2. Asynchronous Workflows</strong>
         </h2>
-        <h3 id="section-2-1">The Request-Response Cycle</h3>
+        <h3 id="section-2-1">2.1 The Request-Response Cycle</h3>
         <p>
           The <strong>request-response cycle</strong> is the basis for all web
           interactions. The client sends a request to retrieve data or perform
@@ -620,7 +620,7 @@
           synchronous execution makes sense since the user would barely notice
           any delay in the response.
         </p>
-        <h3 id="section-2-2">Offloading Asynchronous Jobs</h3>
+        <h3 id="section-2-2">2.2 Offloading Asynchronous Jobs</h3>
         <p>
           On the other hand, many tasks would be problematic to handle
           synchronously. For instance, consider a user signing up for a
@@ -716,7 +716,7 @@
             be discarded.
           </li>
         </ul>
-        <h3 id="section-2-3">Adding a Message Queue</h3>
+        <h3 id="section-2-3">2.3 Adding a Message Queue</h3>
         <p>
           Problems that arise when communicating in a distributed system are
           commonly solved by positioning a
@@ -1414,7 +1414,7 @@
             The AWS infrastructure underlying Reverb’s first two nodes.
           </figcaption>
         </figure>
-        <h4>Lambdas vs. Database Connection Pooling</h4>
+        <h4>5.3.4 Lambdas vs. Database Connection Pooling</h4>
         <p>
           While Lambda and Postgres were each great solutions for their
           respective nodes, having the Lambdas directly enqueue events in
@@ -1441,7 +1441,7 @@
             Lambdas open a new database connection every time they spin up.
           </figcaption>
         </figure>
-        <h4>Adding a Database Proxy</h4>
+        <h4>5.3.5 Adding a Database Proxy</h4>
         <p>
           A database proxy is an intermediary layer that manages traffic between
           clients (such as our ingress Lambdas) and a database server. It can
@@ -1464,8 +1464,8 @@
             Proxy.
           </figcaption>
         </figure>
-        <h3 id="section-5-4">Defining &amp; Executing Workflows</h3>
-        <h4>Defining Workflows as Step Functions</h4>
+        <h3 id="section-5-4">5.4 Defining &amp; Executing Workflows</h3>
+        <h4>5.4.1 Defining Workflows as Step Functions</h4>
         <p>
           We now know how Reverb ingests events, maps them to workflows, and
           sends RPC calls to invoke those workflows. But how were the workflows
@@ -1514,7 +1514,7 @@
           of the above steps can be set to execute only when conditions
           specified by the developer are satisfied.
         </p>
-        <h4>Registering &amp; Serving Functions</h4>
+        <h4>5.4.3 Registering &amp; Serving Functions</h4>
         <p>
           A workflow engine also needs to provide a way for the user to expose
           their function definitions to the engine. You can think of this as
@@ -1537,7 +1537,7 @@
 
           <figcaption></figcaption>
         </figure>
-        <h4>Where Does the Functions Node Live?</h4>
+        <h4>5.4.4 Where Does the Functions Node Live?</h4>
         <figure>
           <img
             src="./assets/diagrams/functions_location.png"
@@ -1960,7 +1960,7 @@
             starting at that step?
           </li>
         </ul>
-        <h4>State Machine Pattern</h4>
+        <h4>8.1.1 State Machine Pattern</h4>
         <p>
           At the center of any multi-step workflow engine is a state management
           pattern known as a <strong>state machine.</strong>
@@ -2153,7 +2153,7 @@
             The database data is updated when the hashes don’t match.
           </figcaption>
         </figure>
-        <h5>Updating Long-Running Functions</h5>
+        <h5>8.2.1.3 Updating Long-Running Functions</h5>
         <p>
           One of the problems with updating Reverb’s functions on the fly is
           that long-running workflows that have already started executing may
@@ -2208,7 +2208,7 @@
           when they first start up. This simple fact introduced a number of
           issues into Reverb’s system.
         </p>
-        <h5>Timing the startup of the runners</h5>
+        <h5>8.2.2.2 Timing the startup of the runners</h5>
         <p>
           At first, we figured it would be easy enough to store data about
           cron-triggered workflows in our database and have the runners
@@ -2246,7 +2246,7 @@
           crontabs would already be configured, and Graphile wouldn’t let us
           update them.
         </p>
-        <h5>Solution: The update-cron Runner</h5>
+        <h5>8.2.2.3 Solution: The update-cron Runner</h5>
         <p>
           At this point, we only had runners for processing events and jobs. To
           solve the above conundrum, we added a new runner with workers
@@ -2274,7 +2274,7 @@
           Finally, the new runner configures its crontab with fresh data from
           the database.
         </p>
-        <h5>Achieving Eventual Consistency</h5>
+        <h5>8.2.2.4 Achieving Eventual Consistency</h5>
         <p>
           As with the functions containers, having AWS Fargate automatically
           horizontally scale our workers containers caused complications.
