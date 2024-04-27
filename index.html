@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Reverb</title>
+    <link rel="icon" type="image/png" href="/assets/Logo.png" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, minimum-scale=1"
@@ -25,21 +26,16 @@
   </head>
   <body class="text-offWhite bg-bgGray">
     <header
-      class="bg-dark fixed w-full h-18 lg:h-16 flex flex-row items-center justify-center md:justify-between px-8 shadow-lg z-50 invisible sm:visible"
+      class="bg-dark fixed w-full h-18 lg:h-16 flex flex-row items-center justify-between px-8 shadow-lg z-50 invisible sm:visible"
     >
-      <img src="./assets/Logo.png" alt="Reverb" class="h-10 hidden md:block" />
+      <a href="#start" class="selected my-auto md:my-0">
+        <img src="./assets/Logo.png" alt="Reverb" class="h-10" />
+      </a>
       <nav
-        class="flex flex-row items-center text-[1.5rem] sm:text-[2rem] lg:text-base min-w-[622px] lg:min-w-0"
+        class="flex flex-row items-center text-[1.5rem] sm:text-[2rem] lg:text-base"
       >
-        <a href="#start" class="link selected my-auto md:my-0">Top</a>
         <a href="#case-study" class="link my-auto md:my-0">Case Study</a>
         <a href="#team" class="link" md:my-0>Our Team</a>
-        <a
-          href="https://github.com/reverb-app/reverb"
-          target="_blank"
-          class="link my-auto md:my-0"
-          >Docs</a
-        >
         <a
           href="https://github.com/reverb-app"
           target="_blank"
@@ -342,10 +338,10 @@
             Reverb
           </p>
           <p
-            class="text-5xl lg:text-3xl px-[22px] font-varela md:mb-[2%] lg:mb-0"
+            class="text-5xl lg:text-3xl px-[22px] font-varela md:mb-[2%] lg:mb-0 lg:mt-[-50px]"
           >
             <span class="text-turquoise-200">An</span>
-            <span class="text-turquoise-300">open-source,</span>
+            <span class="text-turquoise-300">open-img,</span>
             <span class="text-turquoise-400">event-driven,</span>
             <span class="text-turquoise-300">asynchronous</span>
             <span class="text-turquoise-200">workflow engine</span>
@@ -395,7 +391,10 @@
                   Third-Party Workflows
                 </div>
               </div>
-              <div id="code-block" class="inset bg-bgGray">
+              <div
+                id="code-block"
+                class="inset bg-bgGray text-[0.8rem] h-[425px] overflow-auto"
+              >
                 <pre id="use-1" class="show"><code class="language-typescript">
   const handleSignUp = reverb.createFunction({
     id: 'handle-sign-up',
@@ -465,57 +464,57 @@
             </code></pre>
                 <pre id="use-4"><code class="language-typescript">
   const processSquareWebhook = reverb.createFunction({
-  id: 'process-square-webhook',
-  event: 'reverb-received-webhook',
-  fn: async (event, step) => {
-    if (event.payload) {
-      const payload: { [key: string]: any } = event.payload
-      console.log('Square webhook: ' + payload.webhook.body.type);
-      const squareEvent: string = payload.webhook.body.type
-      const emitSquareEvent: string = 'emit-' + squareEvent
-      await step.emitEvent(emitSquareEvent, squareEvent, payload);
-    }
-    return;
-  },
+    id: 'process-square-webhook',
+    event: 'reverb-received-webhook',
+    fn: async (event, step) => {
+      if (event.payload) {
+        const payload: { [key: string]: any } = event.payload
+        console.log('Square webhook: ' + payload.webhook.body.type);
+        const squareEvent: string = payload.webhook.body.type
+        const emitSquareEvent: string = 'emit-' + squareEvent
+        await step.emitEvent(emitSquareEvent, squareEvent, payload);
+      }
+      return;
+    },
   });
 
   const processSquareInvoicePaid = reverb.createFunction({
-  id: 'process-square-invoice-paid',
-  event: 'invoice.payment_made',
-  fn: async (event, step) => {
-    const invoice = event.payload
-    if (invoice) {
+    id: 'process-square-invoice-paid',
+    event: 'invoice.payment_made',
+    fn: async (event, step) => {
+      const invoice = event.payload
+      if (invoice) {
 
-      await step.run('update_invoice_status', async () => {
-        await db.updateInvoiceStatus(invoice);
-      });
+        await step.run('update_invoice_status', async () => {
+          await db.updateInvoiceStatus(invoice);
+        });
 
-      await step.run('send_client_receipt', async () => {
-        await mail.sendClientReceipt(invoice);
-      });
+        await step.run('send_client_receipt', async () => {
+          await mail.sendClientReceipt(invoice);
+        });
 
-      await step.run('start-shipping-procedure', async () => {
-        await logistics.startShippingProcedure(invoice);
-      });
+        await step.run('start-shipping-procedure', async () => {
+          await logistics.startShippingProcedure(invoice);
+        });
 
-      console.log(`Invoice ${invoice.data.id} paid successfully`);
-    }
-  },
+        console.log(`Invoice ${invoice.data.id} paid successfully`);
+      }
+    },
   });
 
   const processSquareInvoiceSubmitted = reverb.createFunction({
-  id: 'process-square-invoice-submitted',
-  event: 'invoice.submitted',
-  fn: async (event, step) => {
-    const invoice = event.payload;
-    if (invoice) {
-      await step.run('update-invoice-status', async () => {
-        await db.updateInvoiceStatus(invoice);
-      });
+    id: 'process-square-invoice-submitted',
+    event: 'invoice.submitted',
+    fn: async (event, step) => {
+      const invoice = event.payload;
+      if (invoice) {
+        await step.run('update-invoice-status', async () => {
+          await db.updateInvoiceStatus(invoice);
+        });
 
-      console.log(`Invoice ${invoice.data.id} submitted successfully`);
-    }
-  },
+        console.log(`Invoice ${invoice.data.id} submitted successfully`);
+      }
+    },
   });
                         </code></pre>
               </div>
@@ -689,10 +688,11 @@
           system lessens the load and scope of responsibility for each service,
           helping developers build more reliable systems.
         </p>
-        <figure class="mt-[-15%] mb-[-5%]">
+        <figure class="mt-[-15%]">
           <img
             src="./assets/diagrams/monolith_vs_microservices.png"
             alt="Monolith v Microservices"
+            class="mb-[-5%]"
           />
           <figcaption>
             Each microservice performs a specific business task.
@@ -785,18 +785,10 @@
             re-enqueued to try again. However, developers are still responsible
             for configuring timeouts between retries and maximum retry limits to
             keep their queue from clogging up.
-            <figure class="right-visual xl:relative xl:ml-[-4vw] xl:mb-[-15px]">
-              <video
-                loop
-                autoplay
-                muted
-                class="xl:mt-[-20px] xl:absolute xl:top-[-10px]"
-              >
-                <source
-                  src="./assets/diagrams/retries.webm"
-                  type="video/webm"
-                />
-              </video>
+            <figure>
+              <img src="./assets/diagrams/retries.gif" />
+
+              <figcaption></figcaption>
             </figure>
           </li>
           <li>
@@ -815,8 +807,8 @@
           </li>
           <li class="list-none">
             <strong>Vertical scaling</strong> involves increasing the capacity
-            of the existing queue by adding more resources—such as CPU, memory,
-            or storage. This keeps infrastructure simple, but hardware can only
+            of the existing queue by adding more reimgs—such as CPU, memory, or
+            storage. This keeps infrastructure simple, but hardware can only
             vertically scale so much. Additionally, having just one instance
             means there’s still a single point of failure and everything could
             be lost if the queue goes down.
@@ -860,7 +852,7 @@
           analytics jobs.
         </p>
 
-        <figure class="mt-[-8%] mb-[-10%]">
+        <figure class="mt-[-8%] mb-[-10%] small-visual">
           <img src="./assets/diagrams/fan_out.png" alt="Fan out" />
           <figcaption>Events trigger jobs in a fan-out pattern</figcaption>
         </figure>
@@ -892,14 +884,12 @@
           notification and change the delivery’s status in your database.
         </p>
 
-        <figure
-          class="2xl:min-h-[590px] 2xl:w-[700px] 2xl:relative 2xl:float-left 2xl:mr-[-11vw]"
-        >
+        <figure class="small-visual">
           <img
             src="./assets/diagrams/basic_workflow.png"
             alt="A basic workflow"
-            class="2xl:left-[-185px] 2xl:w-full 2xl:absolute 2xl:aspect-auto"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           Multi-step background jobs like these are called
@@ -913,11 +903,11 @@
             tasks to build complex background processes.
           </li>
           <li>
-            You can divide time and resource-intensive tasks—like video
-            transcoding or processing large datasets—into smaller, more
-            manageable steps to reduce the burden on your system. Executing
-            these steps concurrently enhances your application&#39;s
-            performance, allowing it to handle demanding jobs more efficiently.
+            You can divide time and reimg-intensive tasks—like video transcoding
+            or processing large datasets—into smaller, more manageable steps to
+            reduce the burden on your system. Executing these steps concurrently
+            enhances your application&#39;s performance, allowing it to handle
+            demanding jobs more efficiently.
           </li>
           <li>
             Serverless functions are popular for their auto-scaling abilities,
@@ -927,47 +917,37 @@
             executing with serverless becomes a viable option.
           </li>
         </ul>
-        <div class="xl:w-[50%] 2xl:w-[60%] relative xl:min-h-[328px]">
-          <figure>
-            <video
-              loop
-              autoplay
-              muted
-              class="right-visual xl:absolute xl:left-[100%] 2xl:left-[90%]"
-            >
-              <source
-                src="./assets/diagrams/steps_with_lambda.webm"
-                type="video/webm"
-              />
-            </video>
-            <figcaption>
-              Workflows can break long jobs into short steps that can run on
-              serverless infrastructure.
-            </figcaption>
-          </figure>
-          <ul>
-            <li>
-              Workflows greatly increase retry efficiency because failing in the
-              middle of a workflow no longer means you have to retry the entire
-              job—just the latest step.
-            </li>
-            <li>
-              Event tracing becomes more specific and helpful for debugging
-              because you can identify failures at specific substeps.
-            </li>
-            <li>
-              A single event can trigger multiple <em>sequences</em> of jobs
-              instead of individual ones. A service expends negligible resources
-              to enqueue an event, yet this simple action can set off a complex
-              network of processes.
-            </li>
-          </ul>
-        </div>
+        <figure>
+          <img src="./assets/diagrams/steps_with_lambda.gif" />
+
+          <figcaption>
+            Workflows can break long jobs into short steps that can run on
+            serverless infrastructure.
+          </figcaption>
+        </figure>
+        <ul>
+          <li>
+            Workflows greatly increase retry efficiency because failing in the
+            middle of a workflow no longer means you have to retry the entire
+            job—just the latest step.
+          </li>
+          <li>
+            Event tracing becomes more specific and helpful for debugging
+            because you can identify failures at specific substeps.
+          </li>
+          <li>
+            A single event can trigger multiple <em>sequences</em> of jobs
+            instead of individual ones. A service expends negligible reimgs to
+            enqueue an event, yet this simple action can set off a complex
+            network of processes.
+          </li>
+        </ul>
         <figure class="full-visual">
           <img
             src="./assets/diagrams/complex_workflow.png"
             alt="A Complex Workflow"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           Of course, before you can reap the benefits above, you must write a
@@ -1109,12 +1089,8 @@
           as a <strong>workflow engine</strong>.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/req_res_with_workflow_engine.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/req_res_with_workflow_engine.gif" />
+
           <figcaption>
             Workflow engines manage complex workflow orchestration.
           </figcaption>
@@ -1189,13 +1165,13 @@
         </p>
         <p>
           However, Inngest has a very limited free tier, and scaling up incurs
-          hefty fees. Additionally, Inngest requires that you outsource your
+          hefty fees. Additionally, Inngest requires that you outimg your
           workflow management to their cloud service, which leads to a lack of
           ownership over your data.
         </p>
         <h4>3.2.2 Temporal</h4>
         <p>
-          Temporal’s open-source workflow engine emphasizes durability over
+          Temporal’s open-img workflow engine emphasizes durability over
           developer experience. It guarantees reliable execution even with
           server failures or network outages. Additionally, Temporal lets you
           manually define your queue’s workers, configure retry policies, pause
@@ -1225,6 +1201,7 @@
             src="./assets/diagrams/aws_step_functions.png"
             alt="Workflow in AWS Step Functions"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           However, recent solutions like Inngest and Temporal have become
@@ -1240,10 +1217,10 @@
         </p>
         <h2 id="section-4-0">4. Introducing Reverb</h2>
         <p>
-          Reverb is a production-ready, developer-friendly, fully open-source,
-          and self-hosted solution.
+          Reverb is a production-ready, developer-friendly, fully open-img, and
+          self-hosted solution.
         </p>
-        <figure class="full-visual -mt-[14%] -mb-[10%]">
+        <figure class="full-visual -mt-[7%] -mb-[5%]">
           <img
             src="./assets/diagrams/alternatives_table.png"
             alt="Comparisons between workflow engines"
@@ -1342,7 +1319,7 @@
         </figure>
         <p>
           We ultimately chose Graphile Worker to implement Reverb’s queues.
-          Graphile Worker is an open-source job queue that stores jobs on
+          Graphile Worker is an open-img job queue that stores jobs on
           PostgreSQL and processes them on Node.js workers. While using a
           database like Postgres as a queue might sound unusual, doing so
           prevents queued jobs from being lost to server crashes by writing them
@@ -1358,15 +1335,9 @@
           Graphile Worker prevents jobs from being dequeued by more than one
           worker through the Postgres SKIP LOCKED command.
         </p>
-        <figure
-          class="left-visual xl:relative xl:float-left xl:mr-[-20%] xl:h-[420px]"
-        >
-          <video loop autoplay muted class="xl:absolute xl:top-[12%]">
-            <source
-              src="./assets/diagrams/process_job_lock.webm"
-              type="video/webm"
-            />
-          </video>
+        <figure>
+          <img src="./assets/diagrams/process_job_lock.gif" />
+
           <figcaption>
             Graphile Worker prevents jobs from being dequeued by more than one
             worker.
@@ -1414,13 +1385,13 @@
           The first task is called “process-event.” Its workers take in events
           and map them to the workflows they should trigger.
         </p>
-        <figure class="right-visual xl:relative xl:ml-[-8%] 2xl:ml-[-15%]">
+        <figure class="small-visual">
           <img
             src="./assets/diagrams/dequeue_event.png"
             alt="process-event can fan out to mutliple process-jobs"
           />
           <figcaption>
-            process-event” messages can fan out to multiple “process-job”
+            "process-event” messages can fan out to multiple “process-job”
             messages.
           </figcaption>
         </figure>
@@ -1624,6 +1595,7 @@
             src="./assets/diagrams/functions_location.png"
             alt="Diagram showing the difference between where the functions live"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           Some engines execute workflows on the user’s existing infrastructure,
@@ -1702,9 +1674,9 @@
           through Reverb’s system:
         </p>
         <figure class="full-visual">
-          <video loop autoplay muted>
-            <source src="./assets/diagrams/lifecycle.webm" type="video/webm" />
-          </video>
+          <img src="./assets/diagrams/lifecycle.gif" />
+
+          <figcaption></figcaption>
         </figure>
         <h2 id="section-6-0"><strong>6. Improving Reverb</strong></h2>
         <p>
@@ -1733,10 +1705,9 @@
           invocation, and workflow step passes through the workers at some
           point. So, they were a logical place from which to do our logging.
         </p>
-        <figure class="right-visual xl:relative xl:ml-[-10%] 2xl:ml-[-15%]">
-          <video loop autoplay muted>
-            <source src="./assets/diagrams/mongodb.webm" type="video/webm" />
-          </video>
+        <figure>
+          <img src="./assets/diagrams/mongodb.gif" />
+
           <figcaption>
             Logs are captured on Reverb’s workers and stored in a MongoDB
             database.
@@ -1783,8 +1754,9 @@
           key. Upon deployment, this key is auto-generated for the user and
           ensures they’re the only ones who can send events or access logs.
         </p>
-        <figure class="right-visual xl:relative xl:ml-[-10%]">
+        <figure class="small-visual">
           <img src="./assets/diagrams/logs_lambdas.png" alt="Logs Lambda" />
+          <figcaption></figcaption>
         </figure>
         <p>
           An API Gateway also lets you define different routes for directing
@@ -1847,6 +1819,7 @@
             src="./assets/diagrams/pagination.png"
             alt="Pagination choices"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           <strong>Cursor-based pagination</strong>, on the other hand, uses a
@@ -1902,8 +1875,8 @@
           background workflows. However, third parties can’t be fully integrated
           without the engine providing a way to digest their webhooks. At this
           point, all the events Reverb was configured to receive shared an
-          expected schema, while webhook requests from different sources could
-          look completely different from one another.
+          expected schema, while webhook requests from different imgs could look
+          completely different from one another.
         </p>
         <p>
           To solve this, we added a second endpoint for reaching our ingress
@@ -1912,11 +1885,12 @@
           event is queued. The body of the webhook request is made accessible
           via a “webhook” property in the enqueued payload.
         </p>
-        <figure>
+        <figure class="small-visual">
           <img
             src="./assets/diagrams/routes.png"
             alt="Reverb's API Gateway routes"
           />
+          <figcaption></figcaption>
         </figure>
         <p>
           Essentially, this endpoint acts as a passthrough which enables devs to
@@ -1953,7 +1927,7 @@
           this process, a developer would have to build a new Docker image of
           their functions server, push it to a Docker image repository, and
           redeploy the functions to ECS. Not only is this a lot of work, but
-          it’s a very manual process that could become a large source of user
+          it’s a very manual process that could become a large img of user
           errors.
         </p>
         <p>
@@ -1974,11 +1948,12 @@
           be pulled by AWS ECS. Finally, it triggers a Lambda to redeploy the
           functions container using that new image.
         </p>
-        <figure class="full-visual">
+        <figure class="small-visual">
           <img
             src="./assets/diagrams/github_actions.png"
             alt="Functions deployed to Reverb via Github Actions and Docker Hub"
           />
+          <figcaption></figcaption>
         </figure>
         <h4>6.3.2 Create Reverb Template</h4>
         <p>
@@ -2013,6 +1988,7 @@
             src="./assets/diagrams/overall_architecture.png"
             alt="Reverb's architecture"
           />
+          <figcaption></figcaption>
         </figure>
 
         <h2 id="section-8-0">
@@ -2154,12 +2130,7 @@
           kind of step had run and what it returned.
         </p>
         <figure class="inset">
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/intentional_errors.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/intentional_errors.gif" />
         </figure>
         <p>
           Finally, the worker would re-enqueue a call to the same workflow, but
@@ -2189,13 +2160,9 @@
           our Graphile workers from querying the database every time the
           functions server scaled up.
         </p>
-        <figure class="right-visual xl:relative xl:ml-[-8%] 2xl:ml-[-15%]">
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/functions_redeploy_and_scaling.webm"
-              type="video/webm"
-            />
-          </video>
+        <figure>
+          <img src="./assets/diagrams/functions_redeploy_and_scaling.gif" />
+
           <figcaption>
             Reverb has to know the difference between user-deployed containers
             and those auto-scaled by Fargate.
@@ -2225,7 +2192,7 @@
           previously calculated hash. If the hashes don’t match, that
           necessarily means the inputs were different.
         </p>
-        <figure class="z-10">
+        <figure class="z-10 small-visual">
           <img src="./assets/diagrams/hashing_1.png" alt="Hashing Functions" />
           <figcaption>
             Reverb uses hashing to check whether the user has changed their
@@ -2438,12 +2405,8 @@
           runners will have updated their crontabs.
         </p>
         <figure>
-          <video loop autoplay muted>
-            <source
-              src="./assets/diagrams/eventual_consistency.webm"
-              type="video/webm"
-            />
-          </video>
+          <img src="./assets/diagrams/eventual_consistency.gif" />
+
           <figcaption>
             The runners' cron-tabs will reach eventual consistency
           </figcaption>
@@ -2546,7 +2509,7 @@
                 ></a>
               </li>
               <li>
-                <a href="morgansummerdavis.com" target="_blank"
+                <a href="https://www.morgansummerdavis.com" target="_blank"
                   ><i class="fas fa-globe"></i
                 ></a>
               </li>
