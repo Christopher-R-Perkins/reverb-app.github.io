@@ -7,10 +7,11 @@
   h3,
   h4,
   h5 {
-    @apply text-gray-300;
+    @apply text-turquoise-300;
     @apply font-varela;
     @apply z-10;
     @apply relative;
+    @apply font-bold;
   }
 
   .link {
@@ -68,7 +69,7 @@
   }
 
   article figcaption {
-    @apply text-sm;
+    @apply text-sm text-gray-500;
   }
 
   article strong {
@@ -87,14 +88,14 @@
     @apply text-gray-300 bg-black;
   }
 
-  .full-visual {
+  /* .full-visual {
     @apply xl:max-h-[800px] lg:w-[calc(100vw-464px)] lg:max-h-[540px] aspect-[1.414/1] relative;
   }
 
   .full-visual video,
   .full-visual img {
     @apply 2xl:left-[-185px] h-full absolute xl:left-[-10vw] lg:left-[-7vw] aspect-auto;
-  }
+  } */
 
   .right-visual {
     @apply xl:min-h-[300px] xl:min-w-[250px] xl:w-[calc(95vw-864px)] 2xl:w-[500px] xl:float-right xl:max-w-[500px];
@@ -224,6 +225,7 @@ article img,
 article video {
   max-width: 100%;
   margin: 0 auto;
+  pointer-events: none;
 }
 
 article figcaption {
@@ -366,9 +368,9 @@ article small {
   pointer-events: none;
 }
 
-figcaption {
+/* figcaption {
   display: none;
-}
+} */
 
 article ol {
   list-style-type: decimal;
@@ -459,4 +461,13 @@ article ol {
     ),
     radial-gradient(ellipse at bottom, rgba(17, 24, 39, 1), transparent);
   transform-style: preserve-3d;
+}
+
+h2 strong {
+  color: #7effe2;
+}
+
+pre,
+code {
+  height: 100%;
 }

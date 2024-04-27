@@ -1,5 +1,5 @@
 const navLinks = Array.from(document.querySelectorAll("header nav a"))
-  .filter((link) => link.hash)
+  .filter(link => link.hash)
   .reverse();
 
 const tocLinks = Array.from(document.querySelectorAll("#toc a")).reverse();
@@ -30,8 +30,8 @@ const handleLogoVisibility = () => {
 };
 
 const handleMainSectionSelection = () => {
-  const selectNavItem = (hash) => {
-    navLinks.forEach((link) => {
+  const selectNavItem = hash => {
+    navLinks.forEach(link => {
       if (link.hash === hash) {
         link.classList.add("selected");
       } else {
@@ -79,8 +79,8 @@ const tocIsVisible = () => {
 };
 
 const handleTocSelection = () => {
-  const selectTocItem = (link) => {
-    tocLinks.forEach((link) =>
+  const selectTocItem = link => {
+    tocLinks.forEach(link =>
       link.closest("li").classList.remove("selected", "show")
     );
 
@@ -90,7 +90,7 @@ const handleTocSelection = () => {
       `li.subitem[data-section="${section}"]`
     );
 
-    subItems.forEach((subItem) => {
+    subItems.forEach(subItem => {
       subItem.classList.add("show");
     });
 
@@ -129,14 +129,14 @@ const throttle = (callback, wait) => {
 document.addEventListener("scroll", throttle(handleScroll, 16));
 handleScroll();
 
-const handleTab = (event) => {
+const handleTab = event => {
   if (!event.target.classList.contains("tab")) return;
 
-  tabs.forEach((tab) => tab.classList.remove("selected"));
-  pres.forEach((pre) => pre.classList.remove("show"));
+  tabs.forEach(tab => tab.classList.remove("selected"));
+  pres.forEach(pre => pre.classList.remove("show"));
   event.target.classList.add("selected");
   pres
-    .find((pre) => pre.id === event.target.dataset.target)
+    .find(pre => pre.id === event.target.dataset.target)
     .classList.add("show");
 };
 
@@ -151,7 +151,11 @@ const handleHeaderTextSpacing = () => {
   );
   if (vw >= 1280) {
     headerText.style.left = `calc(${logo.offsetWidth}px + 10%)`;
-    headerText.style.top = "47.5%";
+    headerText.style.top = `calc(${
+      logo.getBoundingClientRect().top +
+      logo.offsetHeight / 2 -
+      headerText.offsetHeight / 2
+    }px)`;
   } else {
     headerText.style.left = "";
     headerText.style.top = `calc(${
@@ -170,7 +174,7 @@ const handleHeaderTextSpacing = () => {
   }
 };
 
-const fadeIn = (element) => {
+const fadeIn = element => {
   let op = 0.1;
   element.style.display = "block";
   const timer = setInterval(function () {

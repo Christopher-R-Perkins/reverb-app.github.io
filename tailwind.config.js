@@ -30,7 +30,7 @@ module.exports = {
         dim: '#135D66',
         bright: '#77B0AA',
         light: '#E3FEF7',
-        bgGray: '#1f2937',
+        bgGray: '#1E2834',
       },
       fontFamily: {
         varela: ['Varela Round', 'sans-serif'],
