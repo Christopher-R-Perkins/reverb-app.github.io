@@ -581,16 +581,16 @@
         class="p-8 pt-16 lg:ml-[calc(25%+200px)] lg:max-w-[100ch] text-[2rem] sm:text-[2.5rem] lg:text-base"
       >
         <h2 id="section-1-0">
-          <strong>What is Reverb?</strong>
+          <strong>1. What is Reverb?</strong>
         </h2>
         <p>
           Reverb is an open-source, <strong>event-driven, asynchronous</strong>
-          <strong>workflow engine</strong> that abstracts away the logic and
-          infrastructure developers need to orchestrate complex background
-          tasks. Users define tasks as multi-step functions in their repository,
-          and Reverb handles triggering and executing them step-by-step. The
-          service is self-hosted on Amazon Web Services (AWS) and is deployable
-          with one command using our CLI tool.
+          <strong>workflow engine</strong> that orchestrates the logic and
+          infrastructure developers need to build complex background tasks.
+          Users define tasks as multi-step functions in their repository, and
+          Reverb handles triggering, executing, and retrying them step-by-step.
+          The service is self-hosted on Amazon Web Services (AWS) and is
+          deployable with one command using our CLI tool.
         </p>
         <p>
           In this case study, we will discuss how we built Reverb and the
@@ -598,9 +598,9 @@
           developers would benefit from using a workflow engine.
         </p>
         <h2 id="section-2-0">
-          <strong>Asynchronous Workflows</strong>
+          <strong>2. Asynchronous Workflows</strong>
         </h2>
-        <h3 id="section-2-1">The Request-Response Cycle</h3>
+        <h3 id="section-2-1">2.1 The Request-Response Cycle</h3>
         <p>
           The <strong>request-response cycle</strong> is the basis for all web
           interactions. The client sends a request to retrieve data or perform
@@ -620,7 +620,7 @@
           synchronous execution makes sense since the user would barely notice
           any delay in the response.
         </p>
-        <h3 id="section-2-2">Offloading Asynchronous Jobs</h3>
+        <h3 id="section-2-2">2.2 Offloading Asynchronous Jobs</h3>
         <p>
           On the other hand, many tasks would be problematic to handle
           synchronously. For instance, consider a user signing up for a
@@ -716,7 +716,7 @@
             be discarded.
           </li>
         </ul>
-        <h3 id="section-2-3">Adding a Message Queue</h3>
+        <h3 id="section-2-3">2.3 Adding a Message Queue</h3>
         <p>
           Problems that arise when communicating in a distributed system are
           commonly solved by positioning a
@@ -797,7 +797,7 @@
           </li>
         </ul>
 
-        <h3 id="section-2-4">Event-driven Architecture (EDA)</h3>
+        <h3 id="section-2-4">2.4 Event-driven Architecture (EDA)</h3>
         <p>
           So far, we’ve assumed that the API server adds one job invocation to
           the queue for each job that needs to be executed. However, this
@@ -839,7 +839,7 @@
           it triggers. This is crucial for debugging and monitoring the health
           of an event-driven system.
         </p>
-        <h3 id="section-2-5">From Background Jobs to Workflows</h3>
+        <h3 id="section-2-5">2.5 From Background Jobs to Workflows</h3>
         <p>
           We’ve seen that an event can trigger multiple jobs concurrently. But
           what if you instead want to trigger jobs as an in-order sequence of
@@ -963,7 +963,7 @@
           Clearly, manually implementing workflows demands substantial
           development time and deep expertise in the subject matter.
         </p>
-        <h3 id="section-2-6">Different Kinds of Workflows</h3>
+        <h3 id="section-2-6">2.6 Different Kinds of Workflows</h3>
         <p>
           Executing workflows is challenging enough when they simply respond to
           events and proceed step-by-step. However, modern workflows come in
@@ -971,7 +971,7 @@
           applications with the flexibility to handle a variety of triggers and
           steps.
         </p>
-        <h4>Different Triggers</h4>
+        <h4>2.6.1 Different Triggers</h4>
         <p>
           Other than events, there are several common ways to trigger a
           workflow. Each one comes with its own set of challenges:
@@ -1015,7 +1015,7 @@
             utilize standardized protocols that developers must learn to use.
           </li>
         </ul>
-        <h4>Different Steps</h4>
+        <h4>2.6.2 Different Steps</h4>
         <p>
           To this point, we’ve assumed that every “step” is just a piece of code
           that performs an action, like sending an e-mail or prompting a large
@@ -1048,7 +1048,7 @@
           and triggers every time they appeared would make such a codebase
           incredibly messy, repetitive, and unmanageable.
         </p>
-        <h3 id="section-2-7">Solution: Using a Workflow Engine</h3>
+        <h3 id="section-2-7">2.7 Solution: Using a Workflow Engine</h3>
         <p>
           Given all the complexities we’ve outlined in implementing asynchronous
           workflows, it&#39;s evident why developers might seek out a more
@@ -1110,8 +1110,8 @@
             workflows.
           </li>
         </ul>
-        <h2 id="section-3-0"><strong>Existing Solutions</strong></h2>
-        <h3 id="section-3-1">DIY Approach</h3>
+        <h2 id="section-3-0"><strong>3. Existing Solutions</strong></h2>
+        <h3 id="section-3-1">3.1 DIY Approach</h3>
         <p>
           As we saw in the Asynchronous Workflows section, going the
           Do-It-Yourself (DIY) route for event-driven workflow orchestration can
@@ -1121,14 +1121,14 @@
           infrastructure over time. This is not always realistic for small to
           medium-sized companies.
         </p>
-        <h3 id="section-3-2">Paid Solutions</h3>
+        <h3 id="section-3-2">3.2 Paid Solutions</h3>
         <figure class="-mt-[8rem] -mb-[15rem]">
           <img
             src="./assets/diagrams/alternatives_logos.png"
             alt="Inngest, Temporal, and AWS Step Functions logos"
           />
         </figure>
-        <h4>Inngest</h4>
+        <h4>3.2.1 Inngest</h4>
         <p>
           Inngest is a prototypical event-driven workflow engine. It offers a
           full suite of features, including multi-language SDKs, logging &amp;
@@ -1142,7 +1142,7 @@
           workflow management to their cloud service, which leads to a lack of
           ownership over your data.
         </p>
-        <h4>Temporal</h4>
+        <h4>3.2.2 Temporal</h4>
         <p>
           Temporal’s open-source workflow engine emphasizes durability over
           developer experience. It guarantees reliable execution even with
@@ -1161,7 +1161,7 @@
           Finally, while Temporal does offer a self-hosted solution to improve
           data ownership, it does not have a free tier.
         </p>
-        <h4>AWS Step Functions</h4>
+        <h4>3.2.3 AWS Step Functions</h4>
         <p>
           AWS is a veteran in the workflow engine game. Its Step Functions
           service was one of the first solutions to design workflow execution as
@@ -1188,7 +1188,7 @@
           for events and steps that occur within AWS services. This disqualifies
           it from being a true competitor.
         </p>
-        <h2 id="section-4-0">Introducing Reverb</h2>
+        <h2 id="section-4-0">4. Introducing Reverb</h2>
         <p>
           Reverb is a production-ready, developer-friendly, fully open-source,
           and self-hosted solution.
@@ -1217,9 +1217,9 @@
           industry and to improve Reverb’s durability further via type safety.
         </p>
         <h2 id="section-5-0">
-          <strong>Building Reverb’s Core</strong>
+          <strong>5. Building Reverb’s Core</strong>
         </h2>
-        <h3 id="section-5-1">Overview of the Three-Node Pattern</h3>
+        <h3 id="section-5-1">5.1 Overview of the Three-Node Pattern</h3>
         <p>
           Before discussing how we designed and built Reverb on AWS, let’s
           consider a high-level view of how an existing application would
@@ -1253,7 +1253,7 @@
             workflows are executed here.
           </li>
         </ul>
-        <h3 id="section-5-2">Ingesting Events</h3>
+        <h3 id="section-5-2">5.2 Ingesting Events</h3>
         <p>
           Our natural first step was to build the ingress node for ingesting,
           validating, and enqueuing events. We started out by implementing it as
@@ -1274,7 +1274,7 @@
             Replacing our long-running ingest server with auto-scaling Lambdas.
           </figcaption>
         </figure>
-        <h3 id="section-5-3">Implementing our Queues</h3>
+        <h3 id="section-5-3">5.3 Implementing our Queues</h3>
         <p>
           Creating our own queue system from scratch would have added
           unnecessary complexity and development time, as there are already many
@@ -1282,7 +1282,7 @@
           that could handle significant throughput, survive system crashes, and
           be easy for users to maintain when self-hosting.
         </p>
-        <h4>Postgres and Graphile Worker</h4>
+        <h4>5.3.1 Postgres and Graphile Worker</h4>
         <figure class="-mt-[3em] -mb-[2em]">
           <img
             src="./assets/diagrams/graphile_and_postgres.png"
@@ -1349,7 +1349,7 @@
           messages longer than 15 minutes, which disqualified it for use in our
           engine.
         </p>
-        <h4>Processing Events and Invocations with Graphile Worker</h4>
+        <h4>5.3.2 Processing Events and Invocations with Graphile Worker</h4>
         <p>
           To implement our main queuing functionality with Graphile Worker, we
           created two separate task queues.
@@ -1381,7 +1381,7 @@
           about how this step functionality was implemented, see the
           Implementation Challenges section.
         </p>
-        <h4>Mapping to AWS</h4>
+        <h4>5.3.3 Mapping to AWS</h4>
         <p>
           Because Reverb is a self-hosted service, all maintenance and scaling
           of our queue would take place on our users’ AWS accounts. Therefore,
@@ -1414,7 +1414,7 @@
             The AWS infrastructure underlying Reverb’s first two nodes.
           </figcaption>
         </figure>
-        <h4>Lambdas vs. Database Connection Pooling</h4>
+        <h4>5.3.4 Lambdas vs. Database Connection Pooling</h4>
         <p>
           While Lambda and Postgres were each great solutions for their
           respective nodes, having the Lambdas directly enqueue events in
@@ -1441,7 +1441,7 @@
             Lambdas open a new database connection every time they spin up.
           </figcaption>
         </figure>
-        <h4>Adding a Database Proxy</h4>
+        <h4>5.3.5 Adding a Database Proxy</h4>
         <p>
           A database proxy is an intermediary layer that manages traffic between
           clients (such as our ingress Lambdas) and a database server. It can
@@ -1464,8 +1464,8 @@
             Proxy.
           </figcaption>
         </figure>
-        <h3 id="section-5-4">Defining &amp; Executing Workflows</h3>
-        <h4>Defining Workflows as Step Functions</h4>
+        <h3 id="section-5-4">5.4 Defining &amp; Executing Workflows</h3>
+        <h4>5.4.1 Defining Workflows as Step Functions</h4>
         <p>
           We now know how Reverb ingests events, maps them to workflows, and
           sends RPC calls to invoke those workflows. But how were the workflows
@@ -1486,7 +1486,7 @@
             alt="An example step function"
           />
         </figure>
-        <h4>Function Steps</h4>
+        <h4>5.4.2 Function Steps</h4>
         <p>
           Reverb supports four types of steps within its workflows, allowing it
           to accommodate many different use cases.
@@ -1514,7 +1514,7 @@
           of the above steps can be set to execute only when conditions
           specified by the developer are satisfied.
         </p>
-        <h4>Registering &amp; Serving Functions</h4>
+        <h4>5.4.3 Registering &amp; Serving Functions</h4>
         <p>
           A workflow engine also needs to provide a way for the user to expose
           their function definitions to the engine. You can think of this as
@@ -1537,7 +1537,7 @@
 
           <figcaption></figcaption>
         </figure>
-        <h4>Where Does the Functions Node Live?</h4>
+        <h4>5.4.4 Where Does the Functions Node Live?</h4>
         <figure>
           <img
             src="./assets/diagrams/functions_location.png"
@@ -1587,7 +1587,7 @@
           to the user. We’ll cover this more deeply in the Improving Reverb
           section.
         </p>
-        <h4>Choosing Fargate Again</h4>
+        <h4>5.4.5 Choosing Fargate Again</h4>
         <p>
           Our functions node is managed by AWS Fargate alongside the workers
           node. Combining Fargate with our ingress Lambdas allows Reverb to
@@ -1603,7 +1603,7 @@
             Reverb’s Three-Node Architecture mapped to AWS
           </figcaption>
         </figure>
-        <h3 id="section-5-5">The Life Cycle of a Multi-Step Workflow</h3>
+        <h3 id="section-5-5">5.5 The Life Cycle of a Multi-Step Workflow</h3>
         <p>
           Now that all of our core functionality is in place, let’s walk through
           a high-level example of how Reverb might trigger and execute a
@@ -1626,12 +1626,12 @@
 
           <figcaption></figcaption>
         </figure>
-        <h2 id="section-6-0"><strong>Improving Reverb</strong></h2>
+        <h2 id="section-6-0"><strong>6. Improving Reverb</strong></h2>
         <p>
           Once Reverb&#39;s core functionality was implemented, it was time to
           make it a more robust, fully-featured service.
         </p>
-        <h3 id="section-6-1">Logging, Event Tracing, and Monitoring</h3>
+        <h3 id="section-6-1">6.1 Logging, Event Tracing, and Monitoring</h3>
         <p>
           Between an event’s initial ingestion and the eventual completion of
           all the workflows it triggers, there are many places where things
@@ -1642,7 +1642,7 @@
           an application’s health, all of the above issues need to be registered
           in real-time and made visible to developers for debugging.
         </p>
-        <h4>Collecting Logs</h4>
+        <h4>6.1.1 Collecting Logs</h4>
         <p>
           Our first step toward improving Reverb’s observability was logging
           notable success points and errors along an event’s journey. But where
@@ -1685,8 +1685,8 @@
           All of these factors pointed us toward utilizing a document database
           for Reverb’s logs. We went with MongoDB.
         </p>
-        <h4>Logs API</h4>
-        <h5>Building the API</h5>
+        <h4>6.1.2 Logs API</h4>
+        <h5>6.1.2.1 Building the API</h5>
         <p>
           At this point, our logs database was hidden within a private VPC with
           the rest of Reverb’s core architecture. In order for the logs to
@@ -1734,7 +1734,7 @@
           Where relevant, we allow devs to filter the results by timestamp or ID
           through the use of query parameters.
         </p>
-        <h5>Implementing Pagination</h5>
+        <h5>6.1.2.2 Implementing Pagination</h5>
         <p>
           Without further configuration, many of the above routes would return
           massive amounts of data with every request. This is a problem, as
@@ -1791,7 +1791,7 @@
           and keeping datasets small. You can read more about this in the Future
           Work section.
         </p>
-        <h4>UI &amp; CLI tool</h4>
+        <h4>6.1.3 UI &amp; CLI tool</h4>
         <figure class="inset">
           <img
             src="./assets/diagrams/ui_screen_recording.gif"
@@ -1816,7 +1816,7 @@
           Compared with the CLI tool, the dashboard makes it easier to quickly
           see a function&#39;s status and offers more robust filtering tools.
         </p>
-        <h3 id="section-6-2">Webhooks</h3>
+        <h3 id="section-6-2">6.2 Webhooks</h3>
         <p>
           From Stripe payments to Supabase insertions to automated X posts,
           <strong>third-party integrations</strong> are critical to modern
@@ -1851,7 +1851,7 @@
           the remaining workflow steps could prompt ChatGPT to come up with the
           content for the next post and schedule it for the following week.
         </p>
-        <h3 id="section-6-3">CI/CD &amp; GitHub Actions</h3>
+        <h3 id="section-6-3">6.3 CI/CD &amp; GitHub Actions</h3>
         <p>
           At this point, we had virtually all the infrastructure we needed to
           implement Reverb, but we didn’t have an easy way for developers to
@@ -1867,7 +1867,7 @@
           (Cloud Development Kit). Then, we integrated the CDK with our CLI to
           allow users to deploy Reverb to their AWS account with one command.
         </p>
-        <h4>GitHub Actions</h4>
+        <h4>6.3.1 GitHub Actions</h4>
         <p>
           While the CDK was helpful for the initial infrastructure deployment,
           we still needed a way for users to deploy and redeploy their workflow
@@ -1903,7 +1903,7 @@
           />
           <figcaption></figcaption>
         </figure>
-        <h4>Create Reverb Template</h4>
+        <h4>6.3.2 Create Reverb Template</h4>
         <p>
           With our Github Action designed for deployment, we now needed a way
           for developers to start a repository with the Action included. This
@@ -1924,7 +1924,7 @@
           />
         </figure>
         <h2 id="section-7-0">
-          <strong>Reverb’s Architecture</strong>
+          <strong>7. Reverb’s Architecture</strong>
         </h2>
         <p>
           With every component covered above, this is what Reverb’s current AWS
@@ -1940,9 +1940,9 @@
         </figure>
 
         <h2 id="section-8-0">
-          <strong>Implementation Challenges</strong>
+          <strong>8. Implementation Challenges</strong>
         </h2>
-        <h3 id="section-8-1">Step Functionality and State Management</h3>
+        <h3 id="section-8-1">8.1 Step Functionality and State Management</h3>
         <p>
           We encountered significant engineering challenges when figuring out
           how to implement the step functions at the core of Reverb:
@@ -1960,7 +1960,7 @@
             starting at that step?
           </li>
         </ul>
-        <h4>State Machine Pattern</h4>
+        <h4>8.1.1 State Machine Pattern</h4>
         <p>
           At the center of any multi-step workflow engine is a state management
           pattern known as a <strong>state machine.</strong>
@@ -1998,7 +1998,7 @@
           the beginning of the function, but from the first step that hadn’t yet
           been executed.
         </p>
-        <h4>Trying a Counter System</h4>
+        <h4>8.1.2 Trying a Counter System</h4>
         <p>
           We first experimented with a naive solution that boiled down to
           keeping two counts:
@@ -2028,7 +2028,7 @@
           function mid-execution. Specifically, adding/removing steps or
           changing the order would break any already-running functions.
         </p>
-        <h4>Passing a Cache Object</h4>
+        <h4>8.1.3 Passing a Cache Object</h4>
         <p>
           Instead of using a counter, Reverb implements the “state” part of our
           state machine by passing in a new instance of a “step” class with each
@@ -2049,7 +2049,7 @@
           next. But we still had to figure out how to stop functions mid-run
           after each step to queue up the next one.
         </p>
-        <h4>Solution: Intentionally Throwing Custom Errors</h4>
+        <h4>8.1.4 Intentionally Throwing Custom Errors</h4>
         <p>
           The only two ways to exit a Javascript function early are returning or
           throwing an error. Returning early was a non-starter—it would force
@@ -2074,8 +2074,8 @@
           Finally, the worker would re-enqueue a call to the same workflow, but
           with an updated cache for the next round.
         </p>
-        <h3 id="section-8-2">Handling Codebase Updates</h3>
-        <h4>Updates to the Functions Codebase</h4>
+        <h3 id="section-8-2">8.2 Handling Codebase Updates</h3>
+        <h4>8.2.1 Updates to the Functions Codebase</h4>
         <p>
           Using AWS ECS to auto-scale our functions server containers was
           helpful for accommodating varying levels of throughput. However, this
@@ -2106,7 +2106,7 @@
             and those auto-scaled by Fargate.
           </figcaption>
         </figure>
-        <h5>Detecting changes to the functions</h5>
+        <h5>8.2.1.1 Detecting changes to the functions</h5>
         <p>
           To avoid slowing our system unnecessarily, we needed each new server
           to know whether it contained brand new functions data in its memory.
@@ -2117,7 +2117,7 @@
           cross check every record with its own data. But it quickly became
           clear this would add inefficiencies on top of inefficiencies.
         </p>
-        <h5>Using a hash</h5>
+        <h5>8.2.1.2 Using a hash</h5>
         <p>
           A hash function is an algorithm that always returns the same output,
           or “hash”, for a given input. Such functions are designed to be fast
@@ -2153,7 +2153,7 @@
             The database data is updated when the hashes don’t match.
           </figcaption>
         </figure>
-        <h5>Updating Long-Running Functions</h5>
+        <h5>8.2.1.3 Updating Long-Running Functions</h5>
         <p>
           One of the problems with updating Reverb’s functions on the fly is
           that long-running workflows that have already started executing may
@@ -2194,8 +2194,8 @@
           flow receive the data they expect. This tactic does not require any
           additional database space or version-checking logic.
         </p>
-        <h4>Updates to Cron Functions</h4>
-        <h5>Managing cron with Graphile Worker</h5>
+        <h4>8.2.2 Updates to Cron Functions</h4>
+        <h5>8.2.2.1 Managing cron with Graphile Worker</h5>
         <p>
           One reason we chose Graphile Worker as our queue was because it had
           built-in cron job functionality. Every “runner”—which is what Graphile
@@ -2208,7 +2208,7 @@
           when they first start up. This simple fact introduced a number of
           issues into Reverb’s system.
         </p>
-        <h5>Timing the startup of the runners</h5>
+        <h5>8.2.2.2 Timing the startup of the runners</h5>
         <p>
           At first, we figured it would be easy enough to store data about
           cron-triggered workflows in our database and have the runners
@@ -2246,7 +2246,7 @@
           crontabs would already be configured, and Graphile wouldn’t let us
           update them.
         </p>
-        <h5>Solution: The update-cron Runner</h5>
+        <h5>8.2.2.3 Solution: The update-cron Runner</h5>
         <p>
           At this point, we only had runners for processing events and jobs. To
           solve the above conundrum, we added a new runner with workers
@@ -2274,7 +2274,7 @@
           Finally, the new runner configures its crontab with fresh data from
           the database.
         </p>
-        <h5>Achieving Eventual Consistency</h5>
+        <h5>8.2.2.4 Achieving Eventual Consistency</h5>
         <p>
           As with the functions containers, having AWS Fargate automatically
           horizontally scale our workers containers caused complications.
@@ -2317,8 +2317,8 @@
             The runners' cron-tabs will reach eventual consistency
           </figcaption>
         </figure>
-        <h2 id="section-9-0"><strong>Future Work</strong></h2>
-        <h3 id="section-9-1">More Observability Metrics</h3>
+        <h2 id="section-9-0"><strong>9. Future Work</strong></h2>
+        <h3 id="section-9-1">9.1 More Observability Metrics</h3>
         <p>
           Right now, all of Reverb’s observability is based on digesting logs
           from our Graphile workers. Developers can also view performance
@@ -2330,7 +2330,7 @@
           valuable engine data into a single place would improve the developer
           experience.
         </p>
-        <h3 id="section-9-2">Long-Term Logs Storage</h3>
+        <h3 id="section-9-2">9.2 Long-Term Logs Storage</h3>
         <p>
           Reverb’s MongoDB server currently holds all logs from the entire app’s
           history. This is not ideal, as long-running Reverb instances will
@@ -2339,7 +2339,7 @@
           system. In the future, we would like to automate removing older logs
           from the server and storing them in an AWS S3 bucket.
         </p>
-        <h3 id="section-9-3">waitForEvent Steps</h3>
+        <h3 id="section-9-3">9.3 waitForEvent Steps</h3>
         <p>
           Some event-based workflow engines, like Inngest, include a
           waitForEvent step in their API. This step would hold until a specific
@@ -2354,7 +2354,7 @@
           if the event never came. Both solutions have their use cases, but it
           would be best to give developers the choice.
         </p>
-        <h3 id="section-9-4">Multiple Language Support</h3>
+        <h3 id="section-9-4">9.4 Multiple Language Support</h3>
         <p>
           Reverb currently only supports Typescript/Javascript due to their
           level of adoption within the industry.
