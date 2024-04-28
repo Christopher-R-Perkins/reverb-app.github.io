@@ -46,11 +46,13 @@ const handleMainSectionSelection = () => {
     navLinks.forEach((link) => {
       if (link.hash === hash) {
         link.classList.add("selected");
-      } else {
-        link.classList.remove("selected");
       }
     });
   };
+
+  navLinks.forEach((link) => {
+    link.classList.remove("selected");
+  });
 
   const teamInView =
     team.offsetTop + team.offsetHeight / 2 <
