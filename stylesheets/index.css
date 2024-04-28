@@ -600,6 +600,26 @@ h2,
   font-weight: 700;
 }
 
+h2 {
+  font-size: 1.3em;
+}
+
+@media (min-width: 768px) {
+  h2 {
+    font-size: 1.8em;
+  }
+}
+
+h3 {
+  font-size: 1.15em;
+}
+
+@media (min-width: 768px) {
+  h3 {
+    font-size: 1.5em;
+  }
+}
+
 .\!link {
   font-weight: 500;
   --tw-text-opacity: 1;
@@ -873,12 +893,16 @@ article strong {
   right: 0px;
 }
 
+.top-0 {
+  top: 0px;
+}
+
 .top-\[47\.5\%\] {
   top: 47.5%;
 }
 
-.top-0 {
-  top: 0px;
+.top-\[50vh\] {
+  top: 50vh;
 }
 
 .-z-10 {
@@ -1092,12 +1116,12 @@ article strong {
   width: 100%;
 }
 
-.min-w-\[400px\] {
-  min-width: 400px;
-}
-
 .max-w-\[980px\] {
   max-width: 980px;
+}
+
+.max-w-full {
+  max-width: 100%;
 }
 
 .resize {
@@ -1152,6 +1176,11 @@ article strong {
   border-radius: 9999px;
 }
 
+.bg-bgBlue {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 56 77 / var(--tw-bg-opacity));
+}
+
 .bg-bgGray {
   --tw-bg-opacity: 1;
   background-color: rgb(30 40 52 / var(--tw-bg-opacity));
@@ -1160,11 +1189,6 @@ article strong {
 .bg-dark {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
-.bg-bgBlue {
-  --tw-bg-opacity: 1;
-  background-color: rgb(37 56 77 / var(--tw-bg-opacity));
 }
 
 .p-8 {
@@ -1186,11 +1210,6 @@ article strong {
   padding-right: 22px;
 }
 
-.px-\[30px\] {
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
 .py-16 {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -1205,12 +1224,12 @@ article strong {
   padding-bottom: 4rem;
 }
 
-.pt-16 {
-  padding-top: 4rem;
-}
-
 .pb-\[8\%\] {
   padding-bottom: 8%;
+}
+
+.pt-16 {
+  padding-top: 4rem;
 }
 
 .text-center {
@@ -1231,9 +1250,9 @@ article strong {
   line-height: 2.25rem;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
 
 .text-\[0\.8rem\] {
@@ -1244,12 +1263,12 @@ article strong {
   font-size: 1.5rem;
 }
 
-.text-\[100px\] {
-  font-size: 100px;
-}
-
 .text-\[2rem\] {
   font-size: 2rem;
+}
+
+.text-\[80px\] {
+  font-size: 80px;
 }
 
 .text-xl {
@@ -1330,14 +1349,12 @@ h4 {
 }
 
 h2 {
-  font-size: 1.8em;
   margin-bottom: 0.888889em;
   line-height: 1.111111;
   margin-top: 5rem;
 }
 
 h3 {
-  font-size: 1.5em;
   margin-bottom: 0.666667em;
   line-height: 1.333333;
 }
@@ -1439,12 +1456,10 @@ article li {
   margin-left: 2em;
   margin-bottom: 0.5em;
   position: relative;
-  transform-style: preserve-3d;
   z-index: 1;
 }
 
 article li .right-visual {
-  transform: translateZ(-10px);
 }
 
 article small {
@@ -1571,65 +1586,29 @@ article ol {
   margin-bottom: 1rem;
 }
 
-#top {
-  transform-style: flat;
-}
-
-#top > div:nth-of-type(1),
-#top > div:nth-of-type(3) {
+#top > div:nth-of-type(1) > div:first-of-type,
+#top > div:nth-of-type(3) > div:first-of-type {
   background: radial-gradient(ellipse at top, #304a66, transparent),
     radial-gradient(ellipse at bottom, rgba(17, 24, 39, 1), transparent);
-  transform-style: preserve-3d;
 }
 
-#top > div:nth-of-type(2),
-#top > div:nth-of-type(4) {
+#top > div:nth-of-type(2) > div:first-of-type,
+#top > div:nth-of-type(4) > div:first-of-type {
   background: radial-gradient(
       ellipse at top,
       rgba(0, 233, 202, 0.09),
       transparent
     ),
     radial-gradient(ellipse at bottom, rgba(17, 24, 39, 1), transparent);
-  transform-style: preserve-3d;
-}
-
-#start {
-  transform-style: preserve-3d;
-}
-
-#top > div:nth-of-type(1)::after,
-#top > div:nth-of-type(3)::after {
-  background-color: #25384d;
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  pointer-events: none;
-  transform: translateZ(-10px);
-}
-
-#top > div:nth-of-type(2)::after,
-#top > div:nth-of-type(4)::after {
-  background-color: #111827;
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  pointer-events: none;
-  transform: translateZ(-10px);
 }
 
 #logo {
   shape-outside: inset(50%);
-  top: 50vh;
+  /* top: 50vh; */
   transform: translate(0, -50%);
 }
 
-#workflows-module,
+#top > div:nth-of-type(2),
 #team {
   box-shadow: inset 0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -1706,8 +1685,18 @@ code {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:px-\[30px\] {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
   .md\:pt-16 {
     padding-top: 4rem;
+  }
+
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
   }
 
   .md\:text-\[160px\] {
@@ -1760,11 +1749,6 @@ code {
     justify-content: center;
   }
 
-  .lg\:bg-red-800 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(153 27 27 / var(--tw-bg-opacity));
-  }
-
   .lg\:p-8 {
     padding: 2rem;
   }
@@ -1772,11 +1756,6 @@ code {
   .lg\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
-  }
-
-  .lg\:text-4xl {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
   }
 
   .lg\:text-\[140px\] {
@@ -1797,10 +1776,6 @@ code {
 @media (min-width: 1280px) {
   .xl\:fixed {
     position: fixed;
-  }
-
-  .xl\:absolute {
-    position: absolute;
   }
 
   .xl\:left-\[10\%\] {
@@ -1869,6 +1844,10 @@ code {
     width: auto;
   }
 
+  .xl\:max-w-full {
+    max-width: 100%;
+  }
+
   .xl\:flex-row {
     flex-direction: row;
   }
@@ -1877,27 +1856,17 @@ code {
     flex-wrap: nowrap;
   }
 
-  .xl\:bg-green-800 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(22 101 52 / var(--tw-bg-opacity));
-  }
-
-  .xl\:py-0 {
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
   .xl\:py-\[2\%\] {
     padding-top: 2%;
     padding-bottom: 2%;
   }
 
-  .xl\:pl-\[10\%\] {
-    padding-left: 10%;
-  }
-
   .xl\:pb-\[4\%\] {
     padding-bottom: 4%;
+  }
+
+  .xl\:pl-\[10\%\] {
+    padding-left: 10%;
   }
 
   .xl\:text-left {

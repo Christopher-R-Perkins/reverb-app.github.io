@@ -22,6 +22,18 @@ const handleScroll = () => {
   handleTocVisibility();
   handleTocSelection();
   handleLogoVisibility();
+  handleLogoPosition();
+};
+
+const handleLogoPosition = () => {
+  const vw = Math.max(
+    document.documentElement.clientWidth || 0,
+    window.innerWidth || 0
+  );
+
+  if (vw >= 1280) {
+    // logo.style.top = `calc(${window.scrollY}px + 50vh)`;
+  }
 };
 
 const handleLogoVisibility = () => {
@@ -159,7 +171,7 @@ const handleHeaderTextSpacing = () => {
   } else {
     headerText.style.left = '';
     headerText.style.top = `calc(${
-      logo.getBoundingClientRect().bottom
+      window.scrollY + logo.getBoundingClientRect().bottom
     }px + 20px)`;
   }
 
@@ -189,7 +201,9 @@ const fadeIn = (element) => {
 
 if (!logo.complete) {
   logo.addEventListener('load', handleHeaderTextSpacing);
+  logo.addEventListener('load', handleLogoPosition);
 } else {
   handleHeaderTextSpacing();
+  handleLogoPosition();
 }
 window.addEventListener('resize', handleHeaderTextSpacing);

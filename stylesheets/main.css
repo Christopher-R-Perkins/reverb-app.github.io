@@ -14,6 +14,14 @@
     @apply font-bold;
   }
 
+  h2 {
+    @apply text-[1.3em] md:text-[1.8em];
+  }
+
+  h3 {
+    @apply text-[1.15em] md:text-[1.5em];
+  }
+
   .link {
     @apply hover:text-turquoise-700 hover:border-b-2 font-medium hover:border-turquoise-700 text-slate-400;
   }
@@ -136,14 +144,12 @@ h4 {
 }
 
 h2 {
-  font-size: 1.8em;
   margin-bottom: 0.888889em;
   line-height: 1.111111;
   margin-top: 5rem;
 }
 
 h3 {
-  font-size: 1.5em;
   margin-bottom: 0.666667em;
   line-height: 1.333333;
 }
@@ -245,12 +251,10 @@ article li {
   margin-left: 2em;
   margin-bottom: 0.5em;
   position: relative;
-  transform-style: preserve-3d;
   z-index: 1;
 }
 
 article li .right-visual {
-  transform: translateZ(-10px);
 }
 
 article small {
@@ -377,65 +381,29 @@ article ol {
   margin-bottom: 1rem;
 }
 
-#top {
-  transform-style: flat;
-}
-
-#top > div:nth-of-type(1),
-#top > div:nth-of-type(3) {
+#top > div:nth-of-type(1) > div:first-of-type,
+#top > div:nth-of-type(3) > div:first-of-type {
   background: radial-gradient(ellipse at top, #304a66, transparent),
     radial-gradient(ellipse at bottom, rgba(17, 24, 39, 1), transparent);
-  transform-style: preserve-3d;
 }
 
-#top > div:nth-of-type(2),
-#top > div:nth-of-type(4) {
+#top > div:nth-of-type(2) > div:first-of-type,
+#top > div:nth-of-type(4) > div:first-of-type {
   background: radial-gradient(
       ellipse at top,
       rgba(0, 233, 202, 0.09),
       transparent
     ),
     radial-gradient(ellipse at bottom, rgba(17, 24, 39, 1), transparent);
-  transform-style: preserve-3d;
-}
-
-#start {
-  transform-style: preserve-3d;
-}
-
-#top > div:nth-of-type(1)::after,
-#top > div:nth-of-type(3)::after {
-  background-color: #25384d;
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  pointer-events: none;
-  transform: translateZ(-10px);
-}
-
-#top > div:nth-of-type(2)::after,
-#top > div:nth-of-type(4)::after {
-  background-color: #111827;
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  pointer-events: none;
-  transform: translateZ(-10px);
 }
 
 #logo {
   shape-outside: inset(50%);
-  top: 50vh;
+  /* top: 50vh; */
   transform: translate(0, -50%);
 }
 
-#workflows-module,
+#top > div:nth-of-type(2),
 #team {
   box-shadow: inset 0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
