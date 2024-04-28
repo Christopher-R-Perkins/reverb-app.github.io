@@ -23,7 +23,7 @@
   }
 
   .link {
-    @apply hover:text-turquoise-700 hover:border-b-2 font-medium hover:border-turquoise-700 text-slate-400;
+    @apply hover:text-turquoise-700 hover:border-b-2 hover:border-turquoise-700 text-slate-400;
   }
 
   .link.selected {
