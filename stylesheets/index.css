@@ -1644,6 +1644,11 @@ code {
     visibility: visible;
   }
 
+  .sm\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .sm\:mb-8 {
     margin-bottom: 2rem;
   }
@@ -1717,6 +1722,22 @@ code {
 
   .lg\:mt-\[-50px\] {
     margin-top: -50px;
+  }
+
+  .lg\:ml-\[calc\(400px\)\] {
+    margin-left: calc(400px);
+  }
+
+  .lg\:ml-\[400px\] {
+    margin-left: 400px;
+  }
+
+  .lg\:ml-\[420px\] {
+    margin-left: 420px;
+  }
+
+  .lg\:ml-\[410px\] {
+    margin-left: 410px;
   }
 
   .lg\:flex {
