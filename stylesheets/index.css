@@ -588,7 +588,8 @@ video {
   }
 }
 
-h2,
+h1,
+  h2,
   h3,
   h4,
   h5 {
@@ -598,6 +599,16 @@ h2,
   z-index: 10;
   position: relative;
   font-weight: 700;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
 }
 
 h2 {
@@ -611,12 +622,26 @@ h2 {
 }
 
 h3 {
-  font-size: 1.15em;
+  font-size: 1.2em;
 }
 
 @media (min-width: 768px) {
   h3 {
     font-size: 1.5em;
+  }
+}
+
+h4 {
+  font-size: 1.1em;
+}
+
+@media (min-width: 768px) {
+  h4 {
+    font-size: 1.3em;
+  }
+
+  h5 {
+    font-size: 1.15em;
   }
 }
 
@@ -1226,22 +1251,18 @@ article strong {
   font-size: 0.8rem;
 }
 
-.text-\[1\.5rem\] {
-  font-size: 1.5rem;
-}
-
 .text-\[80px\] {
   font-size: 80px;
-}
-
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
 }
 
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .text-gray-300 {
@@ -1306,6 +1327,7 @@ html {
   margin-left: 2rem;
 }
 
+h1,
 h2,
 h3,
 h4 {
@@ -1380,6 +1402,7 @@ article p {
   z-index: 1;
 }
 
+article h1::before,
 article h2::before,
 article h3::before,
 article h4::before,
@@ -1421,9 +1444,6 @@ article li {
   margin-bottom: 0.5em;
   position: relative;
   z-index: 1;
-}
-
-article li .right-visual {
 }
 
 article small {
@@ -1614,10 +1634,6 @@ code {
     visibility: visible;
   }
 
-  .sm\:text-\[2rem\] {
-    font-size: 2rem;
-  }
-
   .sm\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -1707,11 +1723,6 @@ code {
 
   .lg\:text-left {
     text-align: left;
-  }
-
-  .lg\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
   }
 
   .lg\:text-xl {
@@ -1806,5 +1817,12 @@ code {
 
   .xl\:text-left {
     text-align: left;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }

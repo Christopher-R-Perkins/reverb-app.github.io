@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer components {
+  h1,
   h2,
   h3,
   h4,
@@ -14,12 +15,24 @@
     @apply font-bold;
   }
 
+  h1 {
+    @apply text-[1.5em] md:text-[2em];
+  }
+
   h2 {
     @apply text-[1.3em] md:text-[1.8em];
   }
 
   h3 {
-    @apply text-[1.15em] md:text-[1.5em];
+    @apply text-[1.2em] md:text-[1.5em];
+  }
+
+  h4 {
+    @apply text-[1.1em] md:text-[1.3em];
+  }
+
+  h5 {
+    @apply md:text-[1.15em];
   }
 
   .link {
@@ -137,6 +150,7 @@ html {
   margin-left: 2rem;
 }
 
+h1,
 h2,
 h3,
 h4 {
@@ -211,6 +225,7 @@ article p {
   z-index: 1;
 }
 
+article h1::before,
 article h2::before,
 article h3::before,
 article h4::before,
@@ -252,9 +267,6 @@ article li {
   margin-bottom: 0.5em;
   position: relative;
   z-index: 1;
-}
-
-article li .right-visual {
 }
 
 article small {
