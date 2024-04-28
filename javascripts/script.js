@@ -1,19 +1,19 @@
-const navLinks = Array.from(document.querySelectorAll('header nav a'))
+const navLinks = Array.from(document.querySelectorAll("header nav a"))
   .filter((link) => link.hash)
   .reverse();
 
-const tocLinks = Array.from(document.querySelectorAll('#toc a')).reverse();
+const tocLinks = Array.from(document.querySelectorAll("#toc a")).reverse();
 
-const headerText = document.getElementById('header-text');
-const logo = document.getElementById('logo');
+const headerText = document.getElementById("header-text");
+const logo = document.getElementById("logo");
 
-const caseStudy = document.getElementById('case-study');
-const toc = document.getElementById('toc');
-const team = document.getElementById('team');
+const caseStudy = document.getElementById("case-study");
+const toc = document.getElementById("toc");
+const team = document.getElementById("team");
 
-const tabs = document.querySelectorAll('.tab');
-const pres = Array.from(document.querySelectorAll('pre'));
-const tabBlock = document.getElementById('tab-block');
+const tabs = document.querySelectorAll(".tab");
+const pres = Array.from(document.querySelectorAll("pre"));
+const tabBlock = document.getElementById("tab-block");
 
 const BAR_HEIGHT = 16;
 
@@ -37,17 +37,17 @@ const handleLogoPosition = () => {
 };
 
 const handleLogoVisibility = () => {
-  headerText.style.visibility = tocIsVisible() ? 'hidden' : 'visible';
-  logo.style.visibility = tocIsVisible() ? 'hidden' : 'visible';
+  headerText.style.visibility = tocIsVisible() ? "hidden" : "visible";
+  logo.style.visibility = tocIsVisible() ? "hidden" : "visible";
 };
 
 const handleMainSectionSelection = () => {
   const selectNavItem = (hash) => {
     navLinks.forEach((link) => {
       if (link.hash === hash) {
-        link.classList.add('selected');
+        link.classList.add("selected");
       } else {
-        link.classList.remove('selected');
+        link.classList.remove("selected");
       }
     });
   };
@@ -57,7 +57,7 @@ const handleMainSectionSelection = () => {
     window.scrollY + window.innerHeight;
 
   if (teamInView) {
-    selectNavItem('#team');
+    selectNavItem("#team");
     return;
   }
 
@@ -75,9 +75,9 @@ const handleMainSectionSelection = () => {
 
 const handleTocVisibility = () => {
   if (tocIsVisible()) {
-    toc.classList.add('lg:left-0');
+    toc.classList.add("lg:left-0");
   } else {
-    toc.classList.remove('lg:left-0');
+    toc.classList.remove("lg:left-0");
   }
 };
 
@@ -93,20 +93,20 @@ const tocIsVisible = () => {
 const handleTocSelection = () => {
   const selectTocItem = (link) => {
     tocLinks.forEach((link) =>
-      link.closest('li').classList.remove('selected', 'show')
+      link.closest("li").classList.remove("selected", "show")
     );
 
-    const tocItem = link.closest('li');
+    const tocItem = link.closest("li");
     const section = tocItem.dataset.section;
     const subItems = document.querySelectorAll(
       `li.subitem[data-section="${section}"]`
     );
 
     subItems.forEach((subItem) => {
-      subItem.classList.add('show');
+      subItem.classList.add("show");
     });
 
-    tocItem.classList.add('selected');
+    tocItem.classList.add("selected");
   };
 
   if (!tocIsVisible()) return;
@@ -138,21 +138,21 @@ const throttle = (callback, wait) => {
   };
 };
 
-document.addEventListener('scroll', throttle(handleScroll, 16));
+document.addEventListener("scroll", throttle(handleScroll, 16));
 handleScroll();
 
 const handleTab = (event) => {
-  if (!event.target.classList.contains('tab')) return;
+  if (!event.target.classList.contains("tab")) return;
 
-  tabs.forEach((tab) => tab.classList.remove('selected'));
-  pres.forEach((pre) => pre.classList.remove('show'));
-  event.target.classList.add('selected');
+  tabs.forEach((tab) => tab.classList.remove("selected"));
+  pres.forEach((pre) => pre.classList.remove("show"));
+  event.target.classList.add("selected");
   pres
     .find((pre) => pre.id === event.target.dataset.target)
-    .classList.add('show');
+    .classList.add("show");
 };
 
-tabBlock.addEventListener('click', handleTab);
+tabBlock.addEventListener("click", handleTab);
 
 hljs.highlightAll();
 
@@ -168,8 +168,9 @@ const handleHeaderTextSpacing = () => {
       logo.offsetHeight / 2 -
       headerText.offsetHeight / 2
     }px)`;
+    headerText.style.right = 0;
   } else {
-    headerText.style.left = '';
+    headerText.style.left = "";
     headerText.style.top = `calc(${
       window.scrollY + logo.getBoundingClientRect().bottom
     }px + 20px)`;
@@ -177,7 +178,7 @@ const handleHeaderTextSpacing = () => {
 
   if (
     parseInt(
-      window.getComputedStyle(headerText).getPropertyValue('opacity'),
+      window.getComputedStyle(headerText).getPropertyValue("opacity"),
       10
     ) < 0.1
   ) {
@@ -188,22 +189,22 @@ const handleHeaderTextSpacing = () => {
 
 const fadeIn = (element) => {
   let op = 0.1;
-  element.style.display = 'block';
+  element.style.display = "block";
   const timer = setInterval(function () {
     if (op >= 1) {
       clearInterval(timer);
     }
     element.style.opacity = op;
-    element.style.filter = 'alpha(opacity=' + op * 100 + ')';
+    element.style.filter = "alpha(opacity=" + op * 100 + ")";
     op += op * 0.1;
   }, 10);
 };
 
 if (!logo.complete) {
-  logo.addEventListener('load', handleHeaderTextSpacing);
-  logo.addEventListener('load', handleLogoPosition);
+  logo.addEventListener("load", handleHeaderTextSpacing);
+  logo.addEventListener("load", handleLogoPosition);
 } else {
   handleHeaderTextSpacing();
   handleLogoPosition();
 }
-window.addEventListener('resize', handleHeaderTextSpacing);
+window.addEventListener("resize", handleHeaderTextSpacing);

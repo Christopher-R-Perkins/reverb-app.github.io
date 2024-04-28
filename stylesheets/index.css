@@ -1086,6 +1086,10 @@ article strong {
   min-height: calc(80vh + 600px);
 }
 
+.min-h-\[calc\(80vh\)\] {
+  min-height: calc(80vh);
+}
+
 .w-40 {
   width: 10rem;
 }
