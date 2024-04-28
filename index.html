@@ -401,7 +401,7 @@
                     LLM Chains
                   </div>
                   <div data-target="use-4" class="tab mx-auto order-4">
-                    Third-Party Workflows
+                    Third-Party Webhooks
                   </div>
                 </div>
                 <div
@@ -412,12 +412,10 @@
                     id="use-1"
                     class="show"
                   ><code class="language-typescript">
-    const handleSignUp = reverb.createFunction({
+    const signUpFlow = reverb.createFunction({
       id: 'handle-sign-up',
       event: 'sign-up',
       fn: async (event, step) => {
-        const client = event.payload
-        if (client) {
           await step.run('add-client', async () => {
             await db.addClient(client);
           });
@@ -428,35 +426,35 @@
             await mail.sendSurvey(client.email)
           );
 
-          console.log(`Sign up of ${client.name} handled successfully`);
+          console.log(`${client.name} sign up flow successful`);
         }
-      },
     });
                                   </code></pre>
                   <pre id="use-2"><code class="language-typescript">
-    const cronVacuumDb = reverb.createFunction({
+    const vacuumCron = reverb.createFunction({
       id: 'cron-vacuum-db',
       cron: '59 23 * * 6',
       fn: async (event, step) => {
         await step.run('vacuum-db', async () => db.vacuum);
+        
         await step.run('log-vacuum-db', async () => log.info('Database vacuumed'));
+        
         await step.run('slack-notify-admin', async () => {
           const now = new Date();
           axios.post(slackApiUrl, {
           channel: adminChannel,
           text: `Database vacuumed at ${now.toLocaleTimeString()}.`
-          }
-        }
+          })
+        });
       },
     });            
               </code></pre>
                   <pre id="use-3"><code class="language-typescript">
-    const summarizeWithBlockers = reverb.createFunction({
-      id: 'summarize-with-blockers',
+    const summarizeMeetingMinutes = reverb.createFunction({
+      id: 'summarize-with-timeline',
       event: 'submit-minutes',
       fn: async (event, step) => {
-        const payload: { [key: string]: any } = event.payload
-        const meetingMinutes: string = payload.minutes;
+        const meetingMinutes: string = event.payload.minutes;
 
         const summary = await step.run('summarize', async () => {
           return await llm.createCompletion({
@@ -465,15 +463,15 @@
           })
         });
 
-        const blockers = await step.run('extract-blockers', async () => {
+        const blockers = await step.run('extract-project-timeline', async () => {
           return await llm.createCompletion({
             model: "gpt-3.5-turbo-0125",
-            prompt: blockerPrompt(summary)
+            prompt: timelinePrompt(summary)
           })
         });
         
         await.step.run('save-processed-minutes', async () => {
-          await db.saveMinutes({ blockers: blockers, summary: summary })
+          await db.saveMinutes({ timeline, summary })
         })
       },
     });
@@ -483,14 +481,11 @@
       id: 'process-square-webhook',
       event: 'reverb-received-webhook',
       fn: async (event, step) => {
-        if (event.payload) {
-          const payload: { [key: string]: any } = event.payload
-          console.log('Square webhook: ' + payload.webhook.body.type);
-          const squareEvent: string = payload.webhook.body.type
-          const emitSquareEvent: string = 'emit-' + squareEvent
-          await step.emitEvent(emitSquareEvent, squareEvent, payload);
-        }
-        return;
+        const squareEvent: string = event.payload.webhook.body.type
+        console.log('Square webhook: ' + event.payload.webhook.body.type);
+
+        const emitSquareEvent: string = 'emit-' + squareEvent
+        await step.emitEvent(emitSquareEvent, squareEvent, payload);
       },
     });
 
@@ -499,8 +494,7 @@
       event: 'invoice.payment_made',
       fn: async (event, step) => {
         const invoice = event.payload
-        if (invoice) {
-
+ 
           await step.run('update_invoice_status', async () => {
             await db.updateInvoiceStatus(invoice);
           });
@@ -512,9 +506,6 @@
           await step.run('start-shipping-procedure', async () => {
             await logistics.startShippingProcedure(invoice);
           });
-
-          console.log(`Invoice ${invoice.data.id} paid successfully`);
-        }
       },
     });
 
