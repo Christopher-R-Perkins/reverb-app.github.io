@@ -966,16 +966,8 @@ article strong {
   margin-bottom: -2em;
 }
 
-.-mb-\[5\%\] {
-  margin-bottom: -5%;
-}
-
 .-mt-\[3em\] {
   margin-top: -3em;
-}
-
-.-mt-\[7\%\] {
-  margin-top: -7%;
 }
 
 .-mt-\[8rem\] {
@@ -1028,6 +1020,14 @@ article strong {
 
 .mt-\[-8\%\] {
   margin-top: -8%;
+}
+
+.-mb-\[5\%\] {
+  margin-bottom: -5%;
+}
+
+.-mt-\[7\%\] {
+  margin-top: -7%;
 }
 
 .block {
@@ -1112,6 +1112,14 @@ article strong {
 
 .w-full {
   width: 100%;
+}
+
+.w-3\/4 {
+  width: 75%;
+}
+
+.w-1\/2 {
+  width: 50%;
 }
 
 .max-w-\[980px\] {

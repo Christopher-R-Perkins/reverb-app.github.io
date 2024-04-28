@@ -5,31 +5,44 @@
     <link rel="icon" type="image/png" href="/assets/Logo.png" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, minimum-scale=1" />
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" />
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
     <link rel="stylesheet" href="./stylesheets/index.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
-      rel="stylesheet" />
+      rel="stylesheet"
+    />
   </head>
   <body class="text-offWhite bg-bgGray">
     <header
-      class="bg-dark fixed w-full h-18 lg:h-16 flex flex-row items-center justify-between px-8 shadow-lg z-50 invisible sm:visible">
+      class="bg-dark fixed w-full h-18 lg:h-16 flex flex-row items-center justify-between px-8 shadow-lg z-50 invisible sm:visible"
+    >
       <a href="#start" class="selected my-auto md:my-0">
         <img src="./assets/Logo.png" alt="Reverb" class="h-10" />
       </a>
       <nav
-        class="flex flex-row items-center text-[1.5rem] sm:text-[2rem] lg:text-base">
+        class="flex flex-row items-center text-[1.5rem] sm:text-[2rem] lg:text-base"
+      >
         <a href="#case-study" class="link my-auto md:my-0">Case Study</a>
         <a href="#team" class="link" md:my-0>Our Team</a>
+        <a
+          href="https://github.com/reverb-app/reverb"
+          target="_blank"
+          class="link"
+          md:my-0
+          >Try Reverb</a
+        >
         <a
           href="https://github.com/reverb-app"
           target="_blank"
@@ -41,7 +54,8 @@
 
     <aside
       id="toc"
-      class="invisible lg:visible fixed bg-dark w-[400px] left-[-400px] mt-16 min-h-[200vh] transition-all duration-300 shadow-lg z-20">
+      class="invisible lg:visible fixed bg-dark w-[400px] left-[-400px] mt-16 min-h-[200vh] transition-all duration-300 shadow-lg z-20"
+    >
       <ul>
         <!-- Section 1 -->
         <li data-section="section-1" class="selected">
@@ -314,49 +328,59 @@
     <div id="top" class="relative">
       <div
         id="start"
-        class="shadow-lg -z-20 relative min-h-[calc(80vh+600px)] xl:min-h-screen bg-bgBlue">
+        class="shadow-lg -z-20 relative min-h-[calc(80vh+600px)] xl:min-h-screen bg-bgBlue"
+      >
         <img
           id="logo"
           src="./assets/Logo.png"
           alt="Reverb Logo"
-          class="max-h-[80vh] md:pt-16 mb-4 sm:mb-8 md:mb-16 absolute xl:fixed top-[50vh] left-0 right-0 mx-auto xl:left-[10%] xl:mx-0 opacity-0" />
+          class="max-h-[80vh] md:pt-16 mb-4 sm:mb-8 md:mb-16 absolute xl:fixed top-[50vh] left-0 right-0 mx-auto xl:left-[10%] xl:mx-0 opacity-0"
+        />
         <div class="absolute w-full h-full -z-10"></div>
         <div
           id="header-text"
-          class="absolute top-[47.5%] text-center xl:text-left -z-10 opacity-0 w-full xl:w-auto xl:pr-16">
+          class="absolute top-[47.5%] text-center xl:text-left -z-10 opacity-0 w-full xl:w-auto xl:pr-16"
+        >
           <p class="text-[80px] md:text-[160px] px-4 font-varela mb-[2%]">
             Reverb
           </p>
           <p
-            class="text-3xl md:text-5xl px-[22px] font-varela md:mb-[2%] lg:mb-0 lg:mt-[-50px]">
-            <span class="text-turquoise-200">An</span>
+            class="text-3xl md:text-5xl px-[22px] font-varela md:mb-[2%] lg:mb-0 lg:mt-[-50px]"
+          >
+            <span class="text-turquoise-200">An intuitive,</span>
             <span class="text-turquoise-300">open-source,</span>
-            <span class="text-turquoise-400">event-driven,</span>
-            <span class="text-turquoise-300">asynchronous</span>
-            <span class="text-turquoise-200">workflow engine</span>
+            <span class="text-turquoise-400">event-driven</span>
+            <span class="text-turquoise-300">workflow</span>
+            <span class="text-turquoise-200">engine</span>
           </p>
           <p
-            class="text-2xl lg:text-xl px-[22px] mt-2 font-varela text-gray-300">
-            Reliably orchestrate complex, multi-step background jobs
+            class="text-2xl lg:text-xl px-[22px] mt-2 font-varela text-gray-300"
+          >
+            Built to reliably orchestrate complex background job sequences
           </p>
         </div>
       </div>
 
       <div
-        class="bg-dark xl:min-h-[max(25vw,40vh)] shadow-lg z-20 py-[4%] xl:py-[2%] relative">
+        class="bg-dark xl:min-h-[max(25vw,40vh)] shadow-lg z-20 py-[4%] xl:py-[2%] relative"
+      >
         <div
-          class="absolute w-full h-full top-0 pb-[8%] xl:pb-[4%] -z-10"></div>
+          class="absolute w-full h-full top-0 pb-[8%] xl:pb-[4%] -z-10"
+        ></div>
         <div
           id="workflows-module"
-          class="relative flex flex-column flex-wrap xl:flex-row xl:flex-nowrap justify-center">
+          class="relative flex flex-column flex-wrap xl:flex-row xl:flex-nowrap justify-center"
+        >
           <div
-            class="text-center xl:text-left -z-10 xl:right-[10%] xl:w-[40%] xl:my-auto order-1 xl:pl-[10%] w-[60%] max-w-[980px] xl:max-w-full mb-[2%]">
+            class="text-center xl:text-left -z-10 xl:right-[10%] xl:w-[40%] xl:my-auto order-1 xl:pl-[10%] w-[60%] max-w-[980px] xl:max-w-full mb-[2%]"
+          >
             <p class="text-4xl md:px-[30px] font-varela">
               Define Workflows as Functions
             </p>
             <p
-              class="md:px-[30px] mt-2 font-varela text-gray-300 text-2xl lg:text-xl">
-              Users create workflows with the TypeScript SDK and Reverb
+              class="md:px-[30px] mt-2 font-varela text-gray-300 text-2xl lg:text-xl"
+            >
+              Users easily create workflows with the TypeScript SDK. Reverb
               triggers, executes, and retries them step-by-step.
             </p>
           </div>
@@ -365,7 +389,8 @@
               <div class="lg:p-8 py-16 max-w-100% mx-auto">
                 <div
                   id="tab-block"
-                  class="flex flex-row justify-center text-center">
+                  class="flex flex-row justify-center text-center"
+                >
                   <div data-target="use-1" class="tab selected mx-auto order-1">
                     Background Sequences
                   </div>
@@ -376,21 +401,21 @@
                     LLM Chains
                   </div>
                   <div data-target="use-4" class="tab mx-auto order-4">
-                    Third-Party Workflows
+                    Third-Party Webhooks
                   </div>
                 </div>
                 <div
                   id="code-block"
-                  class="inset bg-bgGray text-[0.8rem] h-[425px] overflow-auto">
+                  class="inset bg-bgGray text-[0.8rem] h-[425px] overflow-auto"
+                >
                   <pre
                     id="use-1"
-                    class="show"><code class="language-typescript">
-    const handleSignUp = reverb.createFunction({
+                    class="show"
+                  ><code class="language-typescript">
+    const signUpFlow = reverb.createFunction({
       id: 'handle-sign-up',
       event: 'sign-up',
       fn: async (event, step) => {
-        const client = event.payload
-        if (client) {
           await step.run('add-client', async () => {
             await db.addClient(client);
           });
@@ -401,35 +426,35 @@
             await mail.sendSurvey(client.email)
           );
 
-          console.log(`Sign up of ${client.name} handled successfully`);
+          console.log(`${client.name} sign up flow successful`);
         }
-      },
     });
                                   </code></pre>
                   <pre id="use-2"><code class="language-typescript">
-    const cronVacuumDb = reverb.createFunction({
+    const vacuumCron = reverb.createFunction({
       id: 'cron-vacuum-db',
       cron: '59 23 * * 6',
       fn: async (event, step) => {
         await step.run('vacuum-db', async () => db.vacuum);
+        
         await step.run('log-vacuum-db', async () => log.info('Database vacuumed'));
+        
         await step.run('slack-notify-admin', async () => {
           const now = new Date();
           axios.post(slackApiUrl, {
           channel: adminChannel,
           text: `Database vacuumed at ${now.toLocaleTimeString()}.`
-          }
-        }
+          })
+        });
       },
     });            
               </code></pre>
                   <pre id="use-3"><code class="language-typescript">
-    const summarizeWithBlockers = reverb.createFunction({
-      id: 'summarize-with-blockers',
+    const summarizeMeetingMinutes = reverb.createFunction({
+      id: 'summarize-with-timeline',
       event: 'submit-minutes',
       fn: async (event, step) => {
-        const payload: { [key: string]: any } = event.payload
-        const meetingMinutes: string = payload.minutes;
+        const meetingMinutes: string = event.payload.minutes;
 
         const summary = await step.run('summarize', async () => {
           return await llm.createCompletion({
@@ -438,15 +463,15 @@
           })
         });
 
-        const blockers = await step.run('extract-blockers', async () => {
+        const blockers = await step.run('extract-project-timeline', async () => {
           return await llm.createCompletion({
             model: "gpt-3.5-turbo-0125",
-            prompt: blockerPrompt(summary)
+            prompt: timelinePrompt(summary)
           })
         });
         
         await.step.run('save-processed-minutes', async () => {
-          await db.saveMinutes({ blockers: blockers, summary: summary })
+          await db.saveMinutes({ timeline, summary })
         })
       },
     });
@@ -456,14 +481,11 @@
       id: 'process-square-webhook',
       event: 'reverb-received-webhook',
       fn: async (event, step) => {
-        if (event.payload) {
-          const payload: { [key: string]: any } = event.payload
-          console.log('Square webhook: ' + payload.webhook.body.type);
-          const squareEvent: string = payload.webhook.body.type
-          const emitSquareEvent: string = 'emit-' + squareEvent
-          await step.emitEvent(emitSquareEvent, squareEvent, payload);
-        }
-        return;
+        const squareEvent: string = event.payload.webhook.body.type
+        console.log('Square webhook: ' + event.payload.webhook.body.type);
+
+        const emitSquareEvent: string = 'emit-' + squareEvent
+        await step.emitEvent(emitSquareEvent, squareEvent, payload);
       },
     });
 
@@ -472,8 +494,7 @@
       event: 'invoice.payment_made',
       fn: async (event, step) => {
         const invoice = event.payload
-        if (invoice) {
-
+ 
           await step.run('update_invoice_status', async () => {
             await db.updateInvoiceStatus(invoice);
           });
@@ -485,9 +506,6 @@
           await step.run('start-shipping-procedure', async () => {
             await logistics.startShippingProcedure(invoice);
           });
-
-          console.log(`Invoice ${invoice.data.id} paid successfully`);
-        }
       },
     });
 
@@ -514,22 +532,29 @@
       </div>
 
       <div
-        class="bg-bgGray xl:h-[max(25vw,40vh)] shadow-lg z-20 py-[4%] xl:py-[2%] relative">
+        class="bg-bgGray xl:h-[max(25vw,40vh)] shadow-lg z-20 py-[4%] xl:py-[2%] relative"
+      >
         <div
-          class="absolute w-full h-full top-0 pb-[8%] xl:pb-[4%] -z-10"></div>
+          class="absolute w-full h-full top-0 pb-[8%] xl:pb-[4%] -z-10"
+        ></div>
         <div
-          class="h-full relative flex flex-column flex-wrap xl:flex-row xl:flex-nowrap justify-center">
+          class="h-full relative flex flex-column flex-wrap xl:flex-row xl:flex-nowrap justify-center"
+        >
           <div
-            class="inset w-[60%] max-w-[980px] xl:w-auto xl:h-full aspect-[1.414/1] xl:ml-[7.5%] xl:my-auto xl:order-1 order-2 hidden md:block">
+            class="inset w-[60%] max-w-[980px] xl:w-auto xl:h-full aspect-[1.414/1] xl:ml-[7.5%] xl:my-auto xl:order-1 order-2 hidden md:block"
+          >
             <img
               src="./assets/diagrams/github_actions.png"
-              alt="Functions deployed to Reverb via Github Actions and Docker Hub" />
+              alt="Functions deployed to Reverb via Github Actions and Docker Hub"
+            />
           </div>
           <div
-            class="text-center xl:text-left -z-10 xl:right-[10%] xl:w-[40%] xl:my-auto order-1 xl:order-2 xl:pl-[10%] w-[60%] max-w-[980px] mb-[2%]">
+            class="text-center xl:text-left -z-10 xl:right-[10%] xl:w-[40%] xl:my-auto order-1 xl:order-2 xl:pl-[10%] w-[60%] max-w-[980px] mb-[2%]"
+          >
             <p class="text-4xl md:px-[30px] font-varela">Automated CI/CD</p>
             <p
-              class="text-2xl lg:text-xl md:px-[30px] mt-2 font-varela text-gray-300">
+              class="text-2xl lg:text-xl md:px-[30px] mt-2 font-varela text-gray-300"
+            >
               Deploy self-hosted AWS cloud infrastructure with one command, and
               automatically redeploy workflow changes by simply pushing to
               GitHub.
@@ -539,27 +564,34 @@
       </div>
 
       <div
-        class="bg-dark xl:h-[max(25vw,40vh)] shadow-lg z-20 py-[4%] xl:py-[2%] relative">
+        class="bg-dark xl:h-[max(25vw,40vh)] shadow-lg z-20 py-[4%] xl:py-[2%] relative"
+      >
         <div
-          class="absolute w-full h-full top-0 pb-[8%] xl:pb-[4%] -z-10"></div>
+          class="absolute w-full h-full top-0 pb-[8%] xl:pb-[4%] -z-10"
+        ></div>
         <div
-          class="h-full relative flex flex-column flex-wrap xl:flex-row xl:flex-nowrap justify-center">
+          class="h-full relative flex flex-column flex-wrap xl:flex-row xl:flex-nowrap justify-center"
+        >
           <div
-            class="text-center xl:text-left -z-10 xl:right-[10%] xl:w-[40%] xl:my-auto order-1 xl:pl-[10%] w-[60%] max-w-[980px] mb-[2%]">
+            class="text-center xl:text-left -z-10 xl:right-[10%] xl:w-[40%] xl:my-auto order-1 xl:pl-[10%] w-[60%] max-w-[980px] mb-[2%]"
+          >
             <p class="text-4xl md:px-[30px] font-varela">
               Workflow Visualization
             </p>
             <p
-              class="text-2xl lg:text-xl md:px-[30px] mt-2 font-varela text-gray-300">
+              class="text-2xl lg:text-xl md:px-[30px] mt-2 font-varela text-gray-300"
+            >
               Trace events and monitor workflow state with the Reverb dashboard
               and CLI tool.
             </p>
           </div>
           <div
-            class="inset w-[60%] max-w-[980px] xl:w-auto xl:h-full aspect-[1.608/1] xl:ml-[7.5%] xl:my-auto order-2 hidden md:block">
+            class="inset w-[60%] max-w-[980px] xl:w-auto xl:h-full aspect-[1.608/1] xl:ml-[7.5%] xl:my-auto order-2 hidden md:block"
+          >
             <img
               src="./assets/diagrams/ui_screen_recording.gif"
-              alt="Recording of Reverb logging UI" />
+              alt="Recording of Reverb logging UI"
+            />
           </div>
         </div>
       </div>
@@ -567,7 +599,8 @@
 
     <div id="case-study" class="bg-bgGray text-gray-300">
       <article
-        class="p-8 pt-16 lg:ml-[420px] lg:max-w-[100ch] text-16 sm:text-24 lg:text-xl lg:pr-16">
+        class="p-8 pt-16 lg:ml-[420px] lg:max-w-[100ch] text-16 sm:text-24 lg:text-xl lg:pr-16"
+      >
         <h2 id="section-1-0">
           <strong>1. What is Reverb?</strong>
         </h2>
@@ -647,7 +680,8 @@
           <img
             src="./assets/diagrams/background_jobs_service.png"
             alt="Offloaded background jobs service"
-            class="w-[85%]" />
+            class="w-[85%]"
+          />
           <figcaption>
             Offloading asynchronous background jobs frees up the API server.
           </figcaption>
@@ -667,7 +701,8 @@
           <img
             src="./assets/diagrams/monolith_vs_microservices.png"
             alt="Monolith v Microservices"
-            class="mb-[-5%]" />
+            class="mb-[-5%]"
+          />
           <figcaption>
             Each microservice performs a specific business task.
           </figcaption>
@@ -715,7 +750,8 @@
           <img
             src="./assets/diagrams/message_queue.png"
             alt="Message queue added"
-            class="ml-[-2.5%]" />
+            class="ml-[-2.5%]"
+          />
           <figcaption>
             Message queues add reliability to distributed systems.
           </figcaption>
@@ -845,7 +881,8 @@
         <figure class="small-visual">
           <img
             src="./assets/diagrams/basic_workflow.png"
-            alt="A basic workflow" />
+            alt="A basic workflow"
+          />
           <figcaption></figcaption>
         </figure>
         <p>
@@ -902,8 +939,11 @@
         <figure class="full-visual">
           <img
             src="./assets/diagrams/complex_workflow.png"
-            alt="A Complex Workflow" />
-          <figcaption></figcaption>
+            alt="A Complex Workflow"
+          />
+          <figcaption>
+            With workflows, one event can trigger multiple sequences of jobs.
+          </figcaption>
         </figure>
         <p>
           Of course, before you can reap the benefits above, you must write a
@@ -1108,7 +1148,8 @@
         <figure class="-mt-[8rem] -mb-[15rem]">
           <img
             src="./assets/diagrams/alternatives_logos.png"
-            alt="Inngest, Temporal, and AWS Step Functions logos" />
+            alt="Inngest, Temporal, and AWS Step Functions logos"
+          />
         </figure>
         <h4>3.2.1 Inngest</h4>
         <p>
@@ -1154,7 +1195,8 @@
         <figure>
           <img
             src="./assets/diagrams/aws_step_functions.png"
-            alt="Workflow in AWS Step Functions" />
+            alt="Workflow in AWS Step Functions"
+          />
           <figcaption></figcaption>
         </figure>
         <p>
@@ -1177,7 +1219,8 @@
         <figure class="full-visual -mt-[7%] -mb-[5%]">
           <img
             src="./assets/diagrams/alternatives_table.png"
-            alt="Comparisons between workflow engines" />
+            alt="Comparisons between workflow engines"
+          />
         </figure>
         <p>
           Our engine supports triggering workflows with events, cron, and
@@ -1267,7 +1310,8 @@
           <img
             src="./assets/diagrams/graphile_and_postgres.png"
             alt="Graphile and Postgres Logos"
-            class="w-[65%]" />
+            class="w-[65%]"
+          />
         </figure>
         <p>
           We ultimately chose Graphile Worker to implement Reverb’s queues.
@@ -1340,7 +1384,8 @@
         <figure class="small-visual">
           <img
             src="./assets/diagrams/dequeue_event.png"
-            alt="process-event can fan out to mutliple process-jobs" />
+            alt="process-event can fan out to mutliple process-jobs"
+          />
           <figcaption>
             "process-event” messages can fan out to multiple “process-job”
             messages.
@@ -1386,7 +1431,8 @@
         <figure>
           <img
             src="./assets/diagrams/three_node_3.png"
-            alt="Updated Infrastructure" />
+            alt="Updated Infrastructure"
+          />
           <figcaption>
             The AWS infrastructure underlying Reverb’s first two nodes.
           </figcaption>
@@ -1460,7 +1506,8 @@
         <figure class="inset">
           <img
             src="./assets/diagrams/handle_sign_up.png"
-            alt="An example step function" />
+            alt="An example step function"
+          />
         </figure>
         <h4>5.4.2 Function Steps</h4>
         <p>
@@ -1517,7 +1564,8 @@
         <figure>
           <img
             src="./assets/diagrams/functions_location.png"
-            alt="Diagram showing the difference between where the functions live" />
+            alt="Diagram showing the difference between where the functions live"
+          />
           <figcaption></figcaption>
         </figure>
         <p>
@@ -1572,7 +1620,8 @@
         <figure>
           <img
             src="./assets/diagrams/three_node_4.png"
-            alt="Infrastructure Updated Again" />
+            alt="Infrastructure Updated Again"
+          />
           <figcaption>
             Reverb’s Three-Node Architecture mapped to AWS
           </figcaption>
@@ -1587,7 +1636,8 @@
         <figure class="inset">
           <img
             src="./assets/diagrams/handle_sign_up.png"
-            alt="An example step function" />
+            alt="An example step function"
+          />
         </figure>
         <p>
           The function definition consists of three steps, the middle of which
@@ -1738,7 +1788,8 @@
         <figure>
           <img
             src="./assets/diagrams/pagination.png"
-            alt="Pagination choices" />
+            alt="Pagination choices"
+          />
           <figcaption></figcaption>
         </figure>
         <p>
@@ -1767,7 +1818,8 @@
         <figure class="inset">
           <img
             src="./assets/diagrams/ui_screen_recording.gif"
-            alt="Recording of Reverb logging UI" />
+            alt="Recording of Reverb logging UI"
+          />
         </figure>
         <p>
           While devs could technically now access their Reverb logs directly at
@@ -1807,7 +1859,8 @@
         <figure class="small-visual">
           <img
             src="./assets/diagrams/routes.png"
-            alt="Reverb's API Gateway routes" />
+            alt="Reverb's API Gateway routes"
+          />
           <figcaption></figcaption>
         </figure>
         <p>
@@ -1869,7 +1922,8 @@
         <figure class="small-visual">
           <img
             src="./assets/diagrams/github_actions.png"
-            alt="Functions deployed to Reverb via Github Actions and Docker Hub" />
+            alt="Functions deployed to Reverb via Github Actions and Docker Hub"
+          />
           <figcaption></figcaption>
         </figure>
         <h4>6.3.2 Create Reverb Template</h4>
@@ -1889,7 +1943,8 @@
         <figure class="inset">
           <img
             src="./assets/diagrams/create_reverb.gif"
-            alt="Screen recording of the create reverb script building a Reverb template directory" />
+            alt="Screen recording of the create reverb script building a Reverb template directory"
+          />
         </figure>
         <h2 id="section-7-0">
           <strong>7. Reverb’s Architecture</strong>
@@ -1902,7 +1957,8 @@
         <figure class="full-visual">
           <img
             src="./assets/diagrams/overall_architecture.png"
-            alt="Reverb's architecture" />
+            alt="Reverb's architecture"
+          />
           <figcaption></figcaption>
         </figure>
 
@@ -2339,21 +2395,20 @@
 
     <div
       id="team"
-      class="bg-dark flex flex-col items-center pb-16 shadow-lg z-30">
+      class="bg-dark flex flex-col items-center pb-16 shadow-lg z-30"
+    >
       <div>
-        <h2 class="text-center text-offWhite">Meet Our Team</h2>
-        <p class="text-xl text-center mb-[2rem] mt-[-1rem] text-gray-300">
-          We are currently looking for opportunities. If you liked what you saw
-          and want to talk more, please reach out!
-        </p>
+        <h2 class="text-center text-offWhite">Meet Team Reverb</h2>
       </div>
       <ul
-        class="w-[80%] grid grid-cols-1 md:grid-cols-2 gap-2 justify-between lg:flex lg:flex-row lg:justify-center lg:flex-wrap">
+        class="w-[80%] grid grid-cols-1 md:grid-cols-2 gap-2 justify-between lg:flex lg:flex-row lg:justify-center lg:flex-wrap"
+      >
         <li class="profile">
           <img
             class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56"
             src="assets/team/morgan.jpg"
-            alt="Morgan's Headshot" />
+            alt="Morgan's Headshot"
+          />
           <div>
             <div>
               <h3>Morgan Davis</h3>
@@ -2391,7 +2446,8 @@
           <img
             class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56"
             src="assets/team/blake.jpg"
-            alt="" />
+            alt=""
+          />
           <div>
             <div>
               <h3>Blake Fromkin</h3>
@@ -2429,7 +2485,8 @@
           <img
             class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56"
             src="assets/team/christopher.png"
-            alt="" />
+            alt=""
+          />
           <div>
             <div>
               <h3>Chris Perkins</h3>
@@ -2469,7 +2526,8 @@
           <img
             class="mx-auto h-40 w-40 rounded-full xl:w-56 xl:h-56 lazy"
             src="assets/team/vincent.jpg"
-            alt="Vincent's Headshot" />
+            alt="Vincent's Headshot"
+          />
           <div>
             <div>
               <h3>Vincent Sijssens</h3>
