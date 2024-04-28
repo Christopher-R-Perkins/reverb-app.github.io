@@ -4,8 +4,9 @@ const navLinks = Array.from(document.querySelectorAll("header nav a"))
 
 const tocLinks = Array.from(document.querySelectorAll("#toc a")).reverse();
 
-const headerText = document.getElementById("header-text");
+// const headerText = document.getElementById("header-text");
 const logo = document.getElementById("logo");
+const logoBox = document.getElementById("logo-box");
 
 const caseStudy = document.getElementById("case-study");
 const toc = document.getElementById("toc");
@@ -21,25 +22,25 @@ const handleScroll = () => {
   handleMainSectionSelection();
   handleTocVisibility();
   handleTocSelection();
-  handleLogoVisibility();
-  handleLogoPosition();
+  // handleLogoVisibility();
+  // handleLogoPosition();
 };
 
-const handleLogoPosition = () => {
-  const vw = Math.max(
-    document.documentElement.clientWidth || 0,
-    window.innerWidth || 0
-  );
+// const handleLogoPosition = () => {
+//   const vw = Math.max(
+//     document.documentElement.clientWidth || 0,
+//     window.innerWidth || 0
+//   );
 
-  if (vw >= 1280) {
-    // logo.style.top = `calc(${window.scrollY}px + 50vh)`;
-  }
-};
+//   if (vw >= 1024) {
+//     // logo.style.top = `calc(${window.scrollY}px + 50vh)`;
+//   }
+// };
 
-const handleLogoVisibility = () => {
-  headerText.style.visibility = tocIsVisible() ? "hidden" : "visible";
-  logo.style.visibility = tocIsVisible() ? "hidden" : "visible";
-};
+// const handleLogoVisibility = () => {
+//   headerText.style.visibility = tocIsVisible() ? "hidden" : "visible";
+//   logo.style.visibility = tocIsVisible() ? "hidden" : "visible";
+// };
 
 const handleMainSectionSelection = () => {
   const selectNavItem = (hash) => {
@@ -158,55 +159,61 @@ tabBlock.addEventListener("click", handleTab);
 
 hljs.highlightAll();
 
-const handleHeaderTextSpacing = () => {
-  const vw = Math.max(
-    document.documentElement.clientWidth || 0,
-    window.innerWidth || 0
-  );
-  if (vw >= 1280) {
-    headerText.style.left = `calc(${logo.offsetWidth}px + 10%)`;
-    headerText.style.top = `calc(${
-      logo.getBoundingClientRect().top +
-      logo.offsetHeight / 2 -
-      headerText.offsetHeight / 2
-    }px)`;
-    headerText.style.right = 0;
-  } else {
-    headerText.style.left = "";
-    headerText.style.top = `calc(${
-      window.scrollY + logo.getBoundingClientRect().bottom
-    }px + 20px)`;
-  }
+// const handleHeaderTextSpacing = () => {
+//   const vw = Math.max(
+//     document.documentElement.clientWidth || 0,
+//     window.innerWidth || 0
+//   );
+//   if (vw >= 1280) {
+//     headerText.style.left = `calc(${logo.offsetWidth}px + 10%)`;
+//     headerText.style.top = `calc(${
+//       logo.getBoundingClientRect().top +
+//       logo.offsetHeight / 2 -
+//       headerText.offsetHeight / 2
+//     }px)`;
+//     headerText.style.right = 0;
+//   } else {
+//     headerText.style.left = "";
+//     headerText.style.top = `calc(${
+//       window.scrollY + logo.getBoundingClientRect().bottom
+//     }px + 20px)`;
+//   }
 
-  if (
-    parseInt(
-      window.getComputedStyle(headerText).getPropertyValue("opacity"),
-      10
-    ) < 0.1
-  ) {
-    fadeIn(headerText);
-    fadeIn(logo);
-  }
-};
+//   if (
+//     parseInt(
+//       window.getComputedStyle(headerText).getPropertyValue("opacity"),
+//       10
+//     ) < 0.1
+//   ) {
+//     fadeIn(headerText);
+//     fadeIn(logo);
+//   }
+// };
 
-const fadeIn = (element) => {
-  let op = 0.1;
-  element.style.display = "block";
-  const timer = setInterval(function () {
-    if (op >= 1) {
-      clearInterval(timer);
-    }
-    element.style.opacity = op;
-    element.style.filter = "alpha(opacity=" + op * 100 + ")";
-    op += op * 0.1;
-  }, 10);
-};
+// const fadeIn = (element) => {
+//   let op = 0.1;
+//   element.style.display = "block";
+//   const timer = setInterval(function () {
+//     if (op >= 1) {
+//       clearInterval(timer);
+//     }
+//     element.style.opacity = op;
+//     element.style.filter = "alpha(opacity=" + op * 100 + ")";
+//     op += op * 0.1;
+//   }, 10);
+// };
 
-if (!logo.complete) {
-  logo.addEventListener("load", handleHeaderTextSpacing);
-  logo.addEventListener("load", handleLogoPosition);
+// if (!logo.complete) {
+//   logo.addEventListener("load", handleHeaderTextSpacing);
+//   logo.addEventListener("load", handleLogoPosition);
+// } else {
+//   handleHeaderTextSpacing();
+//   handleLogoPosition();
+// }
+// window.addEventListener("resize", handleHeaderTextSpacing);
+
+if (logo.complete) {
+  logoBox.style.opacity = "1";
 } else {
-  handleHeaderTextSpacing();
-  handleLogoPosition();
+  logo.addEventListener("load", () => (logoBox.style.opacity = "1"));
 }
-window.addEventListener("resize", handleHeaderTextSpacing);

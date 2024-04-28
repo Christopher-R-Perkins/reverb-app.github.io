@@ -397,11 +397,11 @@ article ol {
     radial-gradient(ellipse at bottom, rgba(17, 24, 39, 1), transparent);
 }
 
-#logo {
+/* #logo {
   shape-outside: inset(50%);
-  /* top: 50vh; */
+  top: 50vh;
   transform: translate(0, -50%);
-}
+} */
 
 #top > div:nth-of-type(2),
 #team {
