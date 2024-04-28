@@ -1230,6 +1230,18 @@ article strong {
   padding-top: 4rem;
 }
 
+.pr-8 {
+  padding-right: 2rem;
+}
+
+.pr-12 {
+  padding-right: 3rem;
+}
+
+.pr-16 {
+  padding-right: 4rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1882,6 +1894,22 @@ code {
 
   .xl\:pl-\[10\%\] {
     padding-left: 10%;
+  }
+
+  .xl\:pr-8 {
+    padding-right: 2rem;
+  }
+
+  .xl\:pr-32 {
+    padding-right: 8rem;
+  }
+
+  .xl\:pr-96 {
+    padding-right: 24rem;
+  }
+
+  .xl\:pr-16 {
+    padding-right: 4rem;
   }
 
   .xl\:text-left {
