@@ -3,6 +3,8 @@ module.exports = {
   content: ['./*.html', './javascripts/script.js'],
   theme: {
     extend: {
+      width: ['responsive'],
+      height: ['responsive'],
       keyframes: {
         slideIn: {
           '0%': { opacity: 0 },
