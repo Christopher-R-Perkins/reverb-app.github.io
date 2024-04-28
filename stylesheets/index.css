@@ -714,9 +714,7 @@ h3 {
 }
 
 .profile img {
-  aspect-ratio: auto;
-  height: 350px;
-  width: 350px;
+  aspect-ratio: 1 / 1;
   border-width: 2px;
   --tw-border-opacity: 1;
   border-color: rgb(17 24 39 / var(--tw-border-opacity));
@@ -1088,6 +1086,10 @@ article strong {
   min-height: calc(80vh + 600px);
 }
 
+.min-h-\[calc\(80vh\)\] {
+  min-height: calc(80vh);
+}
+
 .w-40 {
   width: 10rem;
 }
@@ -1118,10 +1120,6 @@ article strong {
 
 .max-w-\[980px\] {
   max-width: 980px;
-}
-
-.max-w-full {
-  max-width: 100%;
 }
 
 .resize {
@@ -1230,6 +1228,18 @@ article strong {
 
 .pt-16 {
   padding-top: 4rem;
+}
+
+.pr-8 {
+  padding-right: 2rem;
+}
+
+.pr-12 {
+  padding-right: 3rem;
+}
+
+.pr-16 {
+  padding-right: 4rem;
 }
 
 .text-center {
@@ -1421,7 +1431,7 @@ article h3::before,
 article h4::before,
 article h5::before {
   display: block;
-  content: ' ';
+  content: " ";
   margin-top: -4rem;
   height: 4rem;
   visibility: hidden;
@@ -1567,7 +1577,7 @@ article small {
 
 .inset::after {
   box-shadow: inset 0 10px 20px 0 rgb(0 0 0 / 0.3);
-  content: '';
+  content: "";
   display: block;
   height: 100%;
   position: absolute;
@@ -1616,7 +1626,7 @@ article ol {
 
 #team::after {
   background-color: #111827;
-  content: '';
+  content: "";
   display: block;
   height: 100%;
   position: absolute;
@@ -1648,6 +1658,11 @@ code {
 @media (min-width: 640px) {
   .sm\:visible {
     visibility: visible;
+  }
+
+  .sm\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .sm\:mb-8 {
@@ -1723,6 +1738,22 @@ code {
 
   .lg\:mt-\[-50px\] {
     margin-top: -50px;
+  }
+
+  .lg\:ml-\[calc\(400px\)\] {
+    margin-left: calc(400px);
+  }
+
+  .lg\:ml-\[400px\] {
+    margin-left: 400px;
+  }
+
+  .lg\:ml-\[420px\] {
+    margin-left: 420px;
+  }
+
+  .lg\:ml-\[410px\] {
+    margin-left: 410px;
   }
 
   .lg\:flex {
@@ -1804,10 +1835,6 @@ code {
     margin-bottom: auto;
   }
 
-  .xl\:ml-\[10\%\] {
-    margin-left: 10%;
-  }
-
   .xl\:ml-\[7\.5\%\] {
     margin-left: 7.5%;
   }
@@ -1867,6 +1894,22 @@ code {
 
   .xl\:pl-\[10\%\] {
     padding-left: 10%;
+  }
+
+  .xl\:pr-8 {
+    padding-right: 2rem;
+  }
+
+  .xl\:pr-32 {
+    padding-right: 8rem;
+  }
+
+  .xl\:pr-96 {
+    padding-right: 24rem;
+  }
+
+  .xl\:pr-16 {
+    padding-right: 4rem;
   }
 
   .xl\:text-left {
