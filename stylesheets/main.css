@@ -217,7 +217,7 @@ article figure {
 
 article img,
 article video {
-  max-width: 600px;
+  max-width: max(600px, auto);
   margin: 0 auto;
   pointer-events: none;
 }
@@ -342,24 +342,39 @@ article small {
   border-radius: 0.75rem;
   position: relative;
   z-index: 1;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
-.inset::after {
+figure.inset::after {
   box-shadow: inset 0 10px 20px 0 rgb(0 0 0 / 0.3);
   content: '';
   display: block;
   height: 100%;
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 0.75rem;
+  pointer-events: none;
+  margin: 0 auto;
+}
+
+#top .inset::after {
+  box-shadow: inset 0 10px 20px 0 rgb(0 0 0 / 0.3);
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   border-radius: 0.75rem;
   pointer-events: none;
+  margin: 0 auto;
 }
-
-/* figcaption {
-  display: none;
-} */
 
 article ol {
   list-style-type: decimal;
