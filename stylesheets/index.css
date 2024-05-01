@@ -1405,7 +1405,7 @@ article figure {
 
 article img,
 article video {
-  max-width: max(600px, auto);
+  max-width: min(600px, 100%);
   margin: 0 auto;
   pointer-events: none;
 }
