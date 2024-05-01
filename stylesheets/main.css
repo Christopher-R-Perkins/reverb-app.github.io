@@ -112,6 +112,10 @@
   .figure {
     @apply sm:max-md:w-full;
   }
+
+  .full-visual img {
+    @apply max-w-full w-full xl:max-w-[80%];
+  }
 }
 
 html {
@@ -438,9 +442,4 @@ h2 strong {
 pre,
 code {
   height: 100%;
-}
-
-.full-visual img {
-  max-width: 80%;
-  width: 80%;
 }
