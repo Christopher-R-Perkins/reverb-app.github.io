@@ -231,7 +231,7 @@ article h3::before,
 article h4::before,
 article h5::before {
   display: block;
-  content: " ";
+  content: ' ';
   margin-top: -4rem;
   height: 4rem;
   visibility: hidden;
@@ -244,7 +244,7 @@ article figure {
 
 article img,
 article video {
-  max-width: 100%;
+  max-width: 600px;
   margin: 0 auto;
   pointer-events: none;
 }
@@ -374,7 +374,7 @@ article small {
 
 .inset::after {
   box-shadow: inset 0 10px 20px 0 rgb(0 0 0 / 0.3);
-  content: "";
+  content: '';
   display: block;
   height: 100%;
   position: absolute;
@@ -423,7 +423,7 @@ article ol {
 
 #team::after {
   background-color: #111827;
-  content: "";
+  content: '';
   display: block;
   height: 100%;
   position: absolute;
@@ -450,4 +450,9 @@ h2 strong {
 pre,
 code {
   height: 100%;
+}
+
+.full-visual img {
+  max-width: 80%;
+  width: 80%;
 }
